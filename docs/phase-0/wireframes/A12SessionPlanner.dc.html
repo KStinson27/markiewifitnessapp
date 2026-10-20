@@ -76,7 +76,7 @@ a{color:#006A60}a:hover{color:#00504A}
 </div>
 <button type="button" style="align-self: flex-start; height: 32px; padding: 0 8px; border: 0; background: transparent; color: {{primary}}; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.add}}"></path></svg>Add exercise</button>
 <div style="display: flex; gap: 10px; padding: 10px 12px; border-radius: 4px; background: #E5F6FD; color: #014361; font-size: 13px; line-height: 1.45"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#0288D1" style="flex-shrink: 0"><path d="{{ic.info}}"></path></svg>One shared plan, with weights set per person. Each person's results go to their own profile, and neither sees the other's numbers.</div>
-<label style="display: flex; align-items: center; gap: 10px; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: {{primary}}">Share results &amp; notes with clients after the session</label>
+<label style="display: flex; align-items: center; gap: 10px; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: {{primary}}">After the session, I review results &amp; notes, then share them with each client</label>
 <div style="display: flex; justify-content: flex-end; gap: 8px">
 <button type="button" style="height: 36px; padding: 0 14px; border: 0; border-radius: 4px; background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase">Save as template</button>
 <button type="button" style="height: 36px; padding: 0 16px; border: 0; border-radius: 4px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase">Mark ready</button>
@@ -117,7 +117,7 @@ class Component extends DCLogic {
       label, on: i === 0, bg: i === 0 ? primary : 'transparent', fg: i === 0 ? '#FFFFFF' : 'rgba(0,0,0,0.87)', border: i === 0 ? primary : '#BDBDBD'
     }));
     const st = {
-      done: { status: 'Done · results shared', chipBg: '#EEEEEE', chipFg: 'rgba(0,0,0,0.75)', chipIcon: ic.done, action: 'View', btnBorder: '1px solid #BDBDBD', btnBg: 'transparent', btnFg: 'rgba(0,0,0,0.87)' },
+      done: { status: 'Done · shared after review', chipBg: '#EEEEEE', chipFg: 'rgba(0,0,0,0.75)', chipIcon: ic.done, action: 'View', btnBorder: '1px solid #BDBDBD', btnBg: 'transparent', btnFg: 'rgba(0,0,0,0.87)' },
       ready: { status: 'Ready', chipBg: '#E8F5E9', chipFg: '#1B5E20', chipIcon: ic.ok, action: 'Edit', btnBorder: '1px solid rgba(0,106,96,0.5)', btnBg: 'transparent', btnFg: primary },
       draft: { status: 'Draft', chipBg: '#E5F6FD', chipFg: '#014361', chipIcon: ic.edit, action: 'Edit', btnBorder: '1px solid rgba(0,106,96,0.5)', btnBg: 'transparent', btnFg: primary },
       none: { status: 'Not planned', chipBg: '#FFF4E5', chipFg: '#663C00', chipIcon: ic.empty, action: 'Plan', btnBorder: '0', btnBg: primary, btnFg: '#FFFFFF' }

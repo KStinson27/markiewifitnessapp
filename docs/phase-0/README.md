@@ -51,6 +51,7 @@ Two versions, both with a placeholder teal accent until the brand kit arrives. F
 | Coach · Program templates (v2) | `M3ProgramLibrary.dc.html` |
 | Coach · Assign program on calendar (v2) | `M3ProgramCalendar.dc.html` |
 | Client · Choose a program (v2) | `M3ClientPrograms.dc.html` |
+| Coach · Exercise library muscle map (clickable prototype) | `M3MuscleMap.dc.html` |
 | Client · Progress: weight & measurements (v2) | `M3Progress.dc.html` |
 | Coach · Client progress & trends (v2) | `M3ClientProgress.dc.html` |
 | A1 · Client onboarding (health check step) | `A1Onboarding.dc.html` |

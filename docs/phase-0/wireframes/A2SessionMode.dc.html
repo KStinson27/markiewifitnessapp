@@ -24,7 +24,7 @@ a{color:#006A60}a:hover{color:#00504A}
 </sc-for>
 <button type="button" aria-label="Add client to session" style="width: 40px; height: 40px; border-radius: 20px; border: 1px dashed #6F7977; background: transparent; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.add}}"></path></svg></button>
 </div>
-<button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 22px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 500">End &amp; save session</button>
+<button type="button" style="height: 44px; padding: 0 20px; border: 0; border-radius: 22px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 500">End &amp; review</button>
 </header>
 
 <div style="flex: 1; display: flex; min-height: 0">
@@ -86,7 +86,7 @@ a{color:#006A60}a:hover{color:#00504A}
 <sc-for list="{{r.dots}}" as="d" hint-placeholder-count="5"><span style="width: 32px; height: 32px; border-radius: 16px; border: 1px solid #6F7977; background: {{d.bg}}; color: {{d.fg}}; display: flex; align-items: center; justify-content: center; font-size: 13px">{{d.n}}</span></sc-for></div>
 </sc-for></div>
 <label style="position: relative; display: block"><span style="position: absolute; top: -8px; left: 12px; padding: 0 4px; background: #FFFFFF; font-size: 12px; color: #3F4947">Session notes</span><textarea rows="5" style="width: 100%; box-sizing: border-box; border: 1px solid #6F7977; border-radius: 4px; padding: 14px; font: inherit; font-size: 14px; resize: none">Hinge looking much better. Add 5 lb next week. Watch right hip shift on last reps.</textarea></label>
-<label style="display: flex; align-items: center; gap: 10px; font-size: 14px"><input type="checkbox" role="switch" checked style="width: 18px; height: 18px; accent-color: {{primary}}">Share notes with Jordan</label>
+<label style="display: flex; align-items: center; gap: 10px; font-size: 14px"><input type="checkbox" role="switch" checked style="width: 18px; height: 18px; accent-color: {{primary}}">Share notes with Jordan after I review</label>
 <label style="display: flex; align-items: center; gap: 10px; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: {{primary}}">Count toward class package</label>
 <div style="font-size: 12px; color: #3F4947; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.cloud}}"></path></svg>Saves offline; syncs when connected</div>
 </aside>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Exercise Library Muscle Map</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 1000px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 16px; background: {{primary}}; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<a href="M3ProgramBuilder.dc.html" aria-label="Back to program builder" style="width: 40px; height: 40px; border-radius: 20px; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></a>
+<div style="flex: 1; font-size: 20px; font-weight: 500">Exercise library · find by muscle</div>
+<span style="font-size: 13px; opacity: 0.9">Adding to: Strength Foundations · Day 2</span>
+</header>
+
+<main style="width: 100%; max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<h2 style="flex: 1; margin: 0; font-size: 18px; font-weight: 500">Tap a muscle</h2>
+<div role="group" aria-label="Body model" style="display: flex; border: 1px solid rgba(0,106,96,0.5); border-radius: 4px; overflow: hidden; height: 36px">
+<button type="button" aria-pressed="{{isFemale}}" onClick="{{setFemale}}" style="padding: 0 14px; border: 0; background: {{femaleBg}}; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer">Female</button>
+<button type="button" aria-pressed="{{isMale}}" onClick="{{setMale}}" style="padding: 0 14px; border: 0; border-left: 1px solid rgba(0,106,96,0.5); background: {{maleBg}}; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer">Male</button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{figures}}" as="f" hint-placeholder-count="2">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 6px">
+<svg role="img" aria-label="{{f.label}} view of the body; selected muscles are highlighted" viewBox="0 0 200 430" style="width: 100%; max-width: 220px; height: auto; display: block">
+<circle cx="100" cy="34" r="20" fill="#EEF0EF"></circle>
+<sc-for list="{{f.sil}}" as="s" hint-placeholder-count="8"><path d="{{s}}" fill="#EEF0EF"></path></sc-for>
+<sc-for list="{{f.paths}}" as="m" hint-placeholder-count="2"><path d="{{m.d}}" fill="{{m.fill}}" stroke="#FFFFFF" stroke-width="1.5" onClick="{{m.pick}}" style="cursor: pointer"><title>{{m.name}}</title></path></sc-for>
+<sc-for list="{{f.rects}}" as="m" hint-placeholder-count="2"><rect x="{{m.x}}" y="{{m.y}}" width="{{m.w}}" height="{{m.h}}" rx="{{m.r}}" fill="{{m.fill}}" stroke="#FFFFFF" stroke-width="1.5" onClick="{{m.pick}}" style="cursor: pointer"><title>{{m.name}}</title></rect></sc-for>
+<sc-for list="{{f.ells}}" as="m" hint-placeholder-count="12"><ellipse cx="{{m.cx}}" cy="{{m.cy}}" rx="{{m.rx}}" ry="{{m.ry}}" fill="{{m.fill}}" stroke="#FFFFFF" stroke-width="1.5" onClick="{{m.pick}}" style="cursor: pointer"><title>{{m.name}}</title></ellipse></sc-for>
+</svg>
+<div style="font-size: 13px; color: rgba(0,0,0,0.6)">{{f.label}}</div>
+</div>
+</sc-for>
+</div>
+
+<div>
+<div style="font-size: 13px; color: rgba(0,0,0,0.6); margin-bottom: 8px">Or pick from the list</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="17">
+<button type="button" aria-pressed="{{c.on}}" onClick="{{c.pick}}" style="height: 30px; padding: 0 10px; border-radius: 15px; border: 1px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}; font: inherit; font-size: 13px; cursor: pointer">{{c.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 16px; font-size: 13px; color: rgba(0,0,0,0.6)">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 3px; background: {{primary}}"></span>Selected</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 3px; background: #9FD3CA"></span>Also worked by results</span>
+<span style="flex: 1"></span>
+<button type="button" onClick="{{clear}}" style="height: 32px; padding: 0 8px; border: 0; background: transparent; color: {{primary}}; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer">Clear</button>
+</div>
+</section>
+
+<section style="flex: 1 1 520px; min-width: 0; background: #FFFFFF; border-radius: 4px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; border-bottom: 1px solid rgba(0,0,0,0.12)">
+<label style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.search}}"></path></svg>
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden">Search exercises</span>
+<input placeholder="Search by name" style="flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font: inherit; font-size: 15px">
+</label>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<div style="flex: 1; min-width: 200px; font-size: 15px"><strong style="font-weight: 500">{{count}}</strong> {{summary}}</div>
+<label style="display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer"><input type="checkbox" role="switch" checked="{{sec}}" onChange="{{toggleSec}}" style="width: 18px; height: 18px; accent-color: {{primary}}">Include secondary muscles</label>
+</div>
+</div>
+<sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+<div style="padding: 40px 20px; text-align: center; color: rgba(0,0,0,0.6); font-size: 15px">Tap a muscle on the body or pick one from the list.</div>
+</sc-if>
+<sc-for list="{{results}}" as="x" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 14px; min-height: 72px; padding: 8px 16px 8px 20px; border-top: 1px solid rgba(0,0,0,0.08)">
+<div style="width: 52px; height: 52px; border-radius: 4px; background: #EEEEEE; color: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="{{x.icon}}"></path></svg></div>
+<div style="flex: 1; min-width: 0">
+<div style="font-size: 15px">{{x.name}}</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px">
+<span style="height: 22px; padding: 0 8px; border-radius: 11px; background: {{primary}}; color: #FFFFFF; font-size: 12px; display: flex; align-items: center">{{x.primary}}</span>
+<sc-for list="{{x.secondary}}" as="s" hint-placeholder-count="1"><span style="height: 22px; padding: 0 8px; border-radius: 11px; background: #E3F2EF; color: #00504A; font-size: 12px; display: flex; align-items: center">{{s}}</span></sc-for>
+<span style="font-size: 12px; color: rgba(0,0,0,0.6); align-self: center">· {{x.equip}}</span>
+</div>
+</div>
+<button type="button" style="height: 36px; padding: 0 12px; border-radius: 4px; border: 1px solid rgba(0,106,96,0.5); background: transparent; color: {{primary}}; font: inherit; font-size: 13px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; flex-shrink: 0; cursor: pointer"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.add}}"></path></svg>Add</button>
+</div>
+</sc-for>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const st = this.state || {};
+    const sex = st.sex || 'female';
+    const sel = st.sel || ['biceps'];
+    const sec = !!st.sec;
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      search: 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z',
+      add: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z',
+      video: 'M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z',
+      image: 'M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'
+    };
+    const names = {
+      neck: 'Neck', traps: 'Traps', shoulders: 'Shoulders', chest: 'Chest', biceps: 'Biceps', forearms: 'Forearms',
+      abdominals: 'Abs & obliques', quadriceps: 'Quads', adductors: 'Adductors', abductors: 'Abductors', calves: 'Calves',
+      triceps: 'Triceps', lats: 'Lats', 'middle back': 'Middle back', 'lower back': 'Lower back', glutes: 'Glutes', hamstrings: 'Hamstrings'
+    };
+    const library = [
+      ['Barbell Curl', 'biceps', ['forearms'], 'Barbell', 'video'],
+      ['Hammer Curl', 'biceps', ['forearms'], 'Dumbbells', 'video'],
+      ['Incline Dumbbell Curl', 'biceps', [], 'Dumbbells', 'image'],
+      ['Chin-up', 'lats', ['biceps', 'middle back'], 'Bodyweight', 'video'],
+      ['Lat Pulldown', 'lats', ['biceps', 'middle back'], 'Cable', 'image'],
+      ['Seated Cable Row', 'middle back', ['lats', 'biceps'], 'Cable', 'image'],
+      ['Bench Press', 'chest', ['shoulders', 'triceps'], 'Barbell', 'video'],
+      ['Push-up', 'chest', ['shoulders', 'triceps', 'abdominals'], 'Bodyweight', 'video'],
+      ['Overhead Press', 'shoulders', ['triceps'], 'Barbell', 'image'],
+      ['Lateral Raise', 'shoulders', [], 'Dumbbells', 'image'],
+      ['Triceps Pushdown', 'triceps', [], 'Cable', 'image'],
+      ['Skull Crusher', 'triceps', [], 'EZ bar', 'image'],
+      ['Barbell Back Squat', 'quadriceps', ['glutes', 'hamstrings', 'lower back'], 'Barbell', 'video'],
+      ['Goblet Squat', 'quadriceps', ['glutes'], 'Kettlebell', 'video'],
+      ['Romanian Deadlift', 'hamstrings', ['glutes', 'lower back'], 'Barbell', 'video'],
+      ['Hip Thrust', 'glutes', ['hamstrings'], 'Barbell', 'video'],
+      ['Back Extension', 'lower back', ['glutes', 'hamstrings'], 'Bench', 'image'],
+      ['Plank', 'abdominals', [], 'Bodyweight', 'image'],
+      ['Hanging Knee Raise', 'abdominals', [], 'Pull-up bar', 'image'],
+      ['Standing Calf Raise', 'calves', [], 'Machine', 'image'],
+      ['Shrug', 'traps', ['forearms'], 'Dumbbells', 'image'],
+      ['Copenhagen Plank', 'adductors', ['abdominals'], 'Bench', 'video'],
+      ['Banded Side Walk', 'abductors', ['glutes'], 'Band', 'image'],
+      ['Farmer Carry', 'forearms', ['traps', 'abdominals'], 'Dumbbells', 'video'],
+      ['Neck Isometric Hold', 'neck', [], 'Bodyweight', 'image']
+    ];
+    const results = sel.length === 0 ? [] : library
+      .filter(([, p, s]) => sel.includes(p) || (sec && s.some((m) => sel.includes(m))))
+      .sort((a, b) => (sel.includes(b[1]) ? 1 : 0) - (sel.includes(a[1]) ? 1 : 0))
+      .map(([name, p, s, equip, media]) => ({ name, primary: names[p], secondary: s.map((m) => names[m]), equip, icon: ic[media] }));
+    const alsoWorked = new Set();
+    library.filter(([, p]) => sel.includes(p)).forEach(([, , s]) => s.forEach((m) => { if (!sel.includes(m)) alsoWorked.add(m); }));
+    const toggle = (m) => () => {
+      const cur = (this.state && this.state.sel) || ['biceps'];
+      this.setState({ sel: cur.includes(m) ? cur.filter((x) => x !== m) : [...cur, m] });
+    };
+    const fillFor = (m) => sel.includes(m) ? primary : (alsoWorked.has(m) ? '#9FD3CA' : '#CBD5D2');
+    const g = sex === 'male' ? { sh: 44, hip: 25, leg: 14 } : { sh: 38, hip: 30, leg: 17 };
+    const c = 100;
+    const pair = (m, dx, cy, rx, ry) => [{ m, cx: c - dx, cy, rx, ry }, { m, cx: c + dx, cy, rx, ry }];
+    const sil = [
+      'M' + (c - g.sh) + ' 76 Q' + (c - g.sh) + ' 62 ' + (c - g.sh + 12) + ' 62 L' + (c + g.sh - 12) + ' 62 Q' + (c + g.sh) + ' 62 ' + (c + g.sh) + ' 76 L' + (c + g.hip + 4) + ' 214 L' + (c - g.hip - 4) + ' 214 Z',
+      'M92 50 H108 V66 H92 Z',
+      ...[-1, 1].map((s) => {
+        const x = c + s * (g.sh + 4);
+        return 'M' + (x - 9) + ' 80 Q' + x + ' 70 ' + (x + 9) + ' 80 L' + (x + 8) + ' 168 L' + (x + 7) + ' 252 Q' + x + ' 264 ' + (x - 7) + ' 252 L' + (x - 8) + ' 168 Z';
+      }),
+      ...[-1, 1].map((s) => {
+        const x = c + s * g.leg;
+        return 'M' + (x - 14) + ' 206 L' + (x + 14) + ' 206 L' + (x + 11) + ' 300 L' + (x + 9) + ' 404 Q' + x + ' 414 ' + (x - 9) + ' 404 L' + (x - 11) + ' 300 Z';
+      })
+    ];
+    const frontE = [
+      ...pair('shoulders', g.sh - 2, 82, 12, 14),
+      ...pair('chest', g.sh * 0.42, 100, g.sh * 0.42, 14),
+      ...pair('biceps', g.sh + 4, 120, 7, 22),
+      ...pair('forearms', g.sh + 4, 200, 6.5, 26),
+      ...pair('quadriceps', g.leg, 256, 11, 38),
+      ...pair('adductors', g.leg - 10, 232, 3.5, 16),
+      ...pair('abductors', g.hip + 1, 212, 4.5, 11),
+      ...pair('calves', g.leg, 346, 7.5, 26)
+    ];
+    const frontR = [{ m: 'neck', x: 94, y: 53, w: 12, h: 10, r: 3 }, { m: 'abdominals', x: 88, y: 118, w: 24, h: 72, r: 8 }];
+    const frontP = [-1, 1].map((s) => ({ m: 'traps', d: 'M' + (c + s * 8) + ' 60 L' + (c + s * (g.sh - 12)) + ' 68 L' + (c + s * 8) + ' 70 Z' }));
+    const backE = [
+      ...pair('shoulders', g.sh - 2, 82, 12, 14),
+      ...pair('triceps', g.sh + 4, 122, 7, 22),
+      ...pair('forearms', g.sh + 4, 200, 6.5, 26),
+      ...pair('lats', g.sh * 0.52, 140, 11, 28),
+      ...pair('glutes', g.leg, 216, 14, 14),
+      ...pair('abductors', g.hip + 1, 206, 4.5, 10),
+      ...pair('hamstrings', g.leg, 272, 10, 34),
+      ...pair('calves', g.leg, 346, 9, 28)
+    ];
+    const backR = [{ m: 'neck', x: 94, y: 53, w: 12, h: 8, r: 3 }, { m: 'middle back', x: 92, y: 100, w: 16, h: 42, r: 4 }, { m: 'lower back', x: 90, y: 150, w: 20, h: 38, r: 6 }];
+    const backP = [{ m: 'traps', d: 'M100 56 L' + (c - g.sh + 12) + ' 72 L100 96 L' + (c + g.sh - 12) + ' 72 Z' }];
+    const deco = (list) => list.map((o) => ({ ...o, name: names[o.m], fill: fillFor(o.m), pick: toggle(o.m) }));
+    const figures = [
+      { label: 'Front', sil, ells: deco(frontE), rects: deco(frontR), paths: deco(frontP) },
+      { label: 'Back', sil, ells: deco(backE), rects: deco(backR), paths: deco(backP) }
+    ];
+    const chips = Object.keys(names).map((m) => {
+      const on = sel.includes(m);
+      return { label: names[m], on, pick: toggle(m), bg: on ? primary : 'transparent', fg: on ? '#FFFFFF' : 'rgba(0,0,0,0.87)', border: on ? primary : '#BDBDBD' };
+    });
+    const selNames = sel.map((m) => names[m]).join(', ');
+    return {
+      primary, ic, figures, chips, results, sec,
+      count: results.length,
+      summary: sel.length ? (results.length === 1 ? 'exercise' : 'exercises') + ' for ' + selNames + (sec ? ' (incl. secondary)' : ' (primary)') : 'exercises',
+      empty: sel.length === 0,
+      isFemale: sex === 'female', isMale: sex === 'male',
+      femaleBg: sex === 'female' ? 'rgba(0,106,96,0.12)' : 'transparent',
+      maleBg: sex === 'male' ? 'rgba(0,106,96,0.12)' : 'transparent',
+      setFemale: () => this.setState({ sex: 'female' }),
+      setMale: () => this.setState({ sex: 'male' }),
+      toggleSec: () => this.setState({ sec: !((this.state && this.state.sec) || false) }),
+      clear: () => this.setState({ sel: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -118,7 +118,14 @@ billing — with room to add contract coaches later.
   by copying the client's last session, or blank. **Couples sessions** use one shared plan
   with weights set per person; each person's results go only to their own profile.
 - **Session results for clients:** after a session, the client sees it under *My profile →
-  Sessions*: their own sets and weights, PRs, and the coach notes marked as shared.
+  Sessions*: their own sets and weights, PRs, and the coach notes marked as shared. Results
+  are released only after the coach reviews them ("End & review" → share).
+- **Muscle-map exercise filter:** in the program builder's exercise library, a clickable
+  front/back body (female or male model) filters exercises by primary muscle, optionally
+  including secondary muscles; an equivalent muscle chip list keeps it keyboard/screen-reader
+  accessible. Uses the starter dataset's `primaryMuscles`/`secondaryMuscles` tags (17 groups);
+  custom exercises get the same tags. Body artwork: commission simple SVGs or use an
+  open-licensed set (licence check in Phase 2).
 - **Program templates:** reusable templates (weeks, days/week, level, equipment, tags) in a
   template library; edit, duplicate, and assign.
 - **Calendar assignment:** per-client month/week calendar; drag a template onto a start date,
@@ -213,7 +220,7 @@ MVP = Phases 0–7. Each task ships as its own reviewable pull request.
 
 ### Phase 2 — Clients & training
 - P2-1 Profiles, goals, intake, e-signed waivers
-- P2-2 Exercise library (seed + uploads, business vs coach scope)
+- P2-2 Exercise library (seed + uploads, business vs coach scope, muscle tags, muscle-map filter)
 - P2-3 Workout builder
 - P2-4 Program builder & template library (tags, duplicate, client-selectable switch)
 - P2-5 Calendar assignment (month/week view, drag to start date, training days, overlap handling)
