@@ -11,7 +11,7 @@ leaving Trainerize will need. Grouped by recommendation.
 | # | Feature | Why it matters for Markiewi Fitness |
 |---|---|---|
 | A1 | **Client onboarding flow** — welcome, goals, PAR-Q health screening, injuries, waiver e-sign, starting weight/measurements/photos, Apple Health and notification permissions | First impression; gathers the baseline that progress tracking compares against. Without it, coaches collect this by hand. |
-| A2 | **Coach-led session mode** — the trainer logs a client's in-person workout from a phone or tablet during the session | Most clients train in person. Their history should be in the app even when they don't log it themselves. |
+| A2 | **Coach-led session mode** — the trainer runs a *session plan* (separate from the client's homework program) on a tablet during in-person sessions and logs it there | Most clients train in person. Their history should be in the app even when they don't log it themselves. |
 | A3 | **Client profile hub for coaches** — one page with Overview, Program, Nutrition, Progress, Check-ins, Messages and **private coach notes** (injuries, preferences) | Everything about a client in one place. Notes are never shown to the client. |
 | A4 | **Workout history & PRs for clients** — past sessions, personal records, "last time" weights | Clients expect to see their own history and lifts going up. |
 | A5 | **Exercise swaps & form-check videos** — client requests a substitution or uploads a short clip for feedback in chat | Common online-coaching need; mostly reuses chat and storage. |
