@@ -132,6 +132,18 @@ billing — with room to add contract coaches later.
   grey "Busy" blocks. Calendly bookings are not re-sent (Calendly already writes them to Google);
   events are de-duplicated by Calendly event ID. Changes flow both ways for synced to-dos via
   Google push notifications (watch channels) handled by an Edge Function.
+- **Social media planner (admin role, optional per admin):** a 4-week content calendar of posts
+  for Instagram feed, Instagram Story and Facebook, shown next to classes and challenges.
+  Statuses: idea → draft → owner review → scheduled → posted. Nothing is approved without the
+  owner. The post editor has the caption, a character count, hashtag sets, and media from the
+  flyer library or auto-made challenge cards. "Ideas from the app" suggests posts: classes with
+  no promo post, challenge launches, and client spotlights. **Client content needs consent:**
+  a client must opt in to being featured and share the photo and quote themselves. Admins never
+  see progress photos, body metrics or other health data. **Publishing:** in the MVP, the admin
+  gets a reminder at the scheduled time and posts from their phone or Meta Business Suite (free),
+  using the copy-caption and download-image buttons. Direct publishing through the Instagram and
+  Facebook APIs comes later; it needs a Business Instagram account linked to a Facebook Page and
+  Meta app review.
 - **Session results for clients:** after a session, the client sees it under *My profile →
   Sessions*: their own sets and weights, PRs, and the coach notes marked as shared. Results
   are released only after the coach reviews them ("End & review" → share).
@@ -196,6 +208,10 @@ session_notes(participant | all, shared_with_client)   -- RLS: a client reads on
 coach_tasks(coach, title, due_date, due_time?, all_day, client?, reminder_at?, done_at,
             visible_to_admins, google_event_id?)
 google_calendar_links(coach, google_account, calendar_id, sync_token, watch_channel, expires_at)  -- tokens encrypted
+social_posts(title, platforms[], scheduled_at, status: idea | draft | review | scheduled | posted,
+             caption, media[], link_note, linked_class? | linked_challenge?, featured_client?,
+             approved_by?, posted_url?)
+marketing_consents(client, granted_at, revoked_at?, shared_media[], quote)  -- client-owned; revoking hides drafts
 
 nutrition_targets, meal_plans, foods(cache), food_logs, water_logs
 habits(scope: client | challenge) → habit_assignments → habit_logs
@@ -272,6 +288,8 @@ MVP = Phases 0–7. Each task ships as its own reviewable pull request.
 - P5-3 Calendly + Eventbrite sync; Upcoming Classes; class flyer upload + thumbnails
 - P5-4 Class package tracker
 - P5-5 Review inbox & at-risk flags
+- P5-6 Social media planner: content calendar, post editor, owner approval, idea suggestions,
+  posting reminders, client "feature me" consent (direct Meta publishing deferred)
 
 ### Phase 6 — Challenges & Apple Health
 - P6-1 Challenge engine (types, metrics, scoring)

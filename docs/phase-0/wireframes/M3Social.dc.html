@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Social Media Planner</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 1000px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 0 24px; background: #006A60; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<div style="flex: 1; font-size: 20px; font-weight: 500; letter-spacing: 0.01em">[MARKIEWI FITNESS] · Admin</div>
+<button type="button" aria-label="Notifications" style="width: 40px; height: 40px; border: 0; border-radius: 20px; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.bell}}"></path></svg></button>
+<div style="width: 36px; height: 36px; border-radius: 18px; background: rgba(255,255,255,0.24); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500">AM</div>
+</header>
+
+<div style="flex: 1; display: flex; flex-wrap: wrap">
+<nav aria-label="Admin" style="flex: 1 1 220px; max-width: 240px; box-sizing: border-box; background: #FFFFFF; border-right: 1px solid rgba(0,0,0,0.12); padding: 8px 0">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="6">
+<a href="{{n.href}}" style="display: flex; align-items: center; gap: 24px; min-height: 48px; padding: 0 16px; text-decoration: none; font-size: 15px; color: rgba(0,0,0,0.87); background: {{n.bg}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="{{n.fg}}"><path d="{{n.icon}}"></path></svg>{{n.label}}</a>
+</sc-for>
+<div style="margin: 16px; padding: 12px; border-radius: 4px; background: #E3F2EF; font-size: 13px; line-height: 1.5; color: rgba(0,0,0,0.75); display: flex; gap: 8px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink: 0"><path d="{{ic.lock}}"></path></svg>Client content shows here only when the client agreed to be featured. No health data.</div>
+</nav>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<h1 style="margin: 0; font-size: 28px; font-weight: 400">Social planner</h1>
+<span style="flex: 1"></span>
+<span style="font-size: 14px; color: rgba(0,0,0,0.6)">Oct 19 – Nov 15, 2026</span>
+<button type="button" onClick="{{newPost}}" style="height: 40px; padding: 0 16px; border: 0; border-radius: 4px; background: #006A60; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.add}}"></path></svg>New post</button>
+</div>
+
+<div role="group" aria-label="Filter by status" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="6">
+<button type="button" onClick="{{f.pick}}" aria-pressed="{{f.on}}" style="height: 32px; padding: 0 12px; border-radius: 16px; border: 1px solid {{f.border}}; background: {{f.bg}}; font: inherit; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer"><span style="width: 10px; height: 10px; border-radius: 3px; background: {{f.dot}}; border: {{f.dotBorder}}; box-sizing: border-box"></span>{{f.label}}<span style="color: rgba(0,0,0,0.6)">{{f.n}}</span></button>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<section aria-label="Content calendar" style="flex: 3 1 560px; min-width: 0; background: #FFFFFF; border-radius: 4px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="overflow-x: auto">
+<div style="min-width: 560px">
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-bottom: 1px solid rgba(0,0,0,0.12)">
+<sc-for list="{{dows}}" as="d" hint-placeholder-count="7"><div style="padding: 8px; font-size: 12px; font-weight: 500; color: rgba(0,0,0,0.6); text-transform: uppercase; text-align: center">{{d}}</div></sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr))">
+<sc-for list="{{cells}}" as="c" hint-placeholder-count="28">
+<div style="min-height: 128px; box-sizing: border-box; padding: 4px; border-right: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08); background: {{c.bg}}; display: flex; flex-direction: column; gap: 3px">
+<div style="display: flex; align-items: center; gap: 4px; padding: 2px"><span style="min-width: 24px; height: 24px; padding: 0 4px; box-sizing: border-box; border-radius: 12px; background: {{c.numBg}}; color: {{c.numFg}}; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500">{{c.label}}</span><span style="font-size: 10px; color: #4F3FB8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.event}}</span></div>
+<sc-for list="{{c.posts}}" as="p" hint-placeholder-count="1">
+<button type="button" onClick="{{p.select}}" title="{{p.title}} · {{p.statusLabel}}" style="width: 100%; text-align: left; box-sizing: border-box; padding: 4px 6px; border-radius: 6px; border: {{p.border}}; background: {{p.bg}}; color: {{p.fg}}; font: inherit; font-size: 11px; line-height: 1.25; cursor: pointer; outline: {{p.ring}}; outline-offset: 1px; opacity: {{p.op}}">
+<span style="display: block; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{p.title}}</span>
+<span style="display: flex; gap: 3px; margin-top: 2px; flex-wrap: wrap"><sc-for list="{{p.plats}}" as="pl" hint-placeholder-count="2"><span style="height: 14px; padding: 0 4px; border-radius: 3px; background: rgba(255,255,255,0.7); border: 1px solid rgba(0,0,0,0.15); font-size: 9px; font-weight: 700; line-height: 13px">{{pl}}</span></sc-for></span>
+</button>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 14px; padding: 10px 14px; font-size: 12px; color: rgba(0,0,0,0.6); border-top: 1px solid rgba(0,0,0,0.08)"><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #6250D6"></span>Classes &amp; challenges from Calendly, Eventbrite and the app</span><span>IG = Instagram feed · Story = Instagram story · FB = Facebook</span></div>
+</section>
+
+<aside style="flex: 1 1 320px; max-width: 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<section aria-label="Post editor" style="background: #FFFFFF; border-radius: 4px; padding: 16px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)">
+<div style="display: flex; align-items: center; gap: 8px"><h2 style="flex: 1; margin: 0; font-size: 18px; font-weight: 500">{{cur.title}}</h2><span style="height: 24px; padding: 0 10px; border-radius: 12px; background: {{cur.bg}}; color: {{cur.fg}}; border: {{cur.border}}; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center">{{cur.statusLabel}}</span></div>
+<ol aria-label="Status" style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="5"><li style="display: flex; flex-direction: column; gap: 4px; font-size: 10px; color: {{s.fg}}; text-align: center"><span style="height: 4px; border-radius: 2px; background: {{s.bar}}"></span>{{s.label}}</li></sc-for>
+</ol>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 14px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.cal}}"></path></svg>{{cur.when}}<span style="flex: 1"></span><a href="#" style="font-size: 13px; font-weight: 500; text-decoration: none">Change</a></div>
+<div role="group" aria-label="Where to post" style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{platOpts}}" as="o" hint-placeholder-count="3"><button type="button" onClick="{{o.toggle}}" aria-pressed="{{o.on}}" style="height: 30px; padding: 0 10px; border-radius: 15px; border: 1px solid {{o.border}}; background: {{o.bg}}; color: {{o.fg}}; font: inherit; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; cursor: pointer">{{o.mark}}{{o.label}}</button></sc-for>
+</div>
+<div style="display: flex; gap: 12px; align-items: center">
+<div style="width: 64px; height: 80px; flex-shrink: 0; border-radius: 4px; background: {{cur.mediaTint}}; color: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.image}}"></path></svg></div>
+<div style="flex: 1; min-width: 0; font-size: 13px"><div style="font-weight: 500">{{cur.media}}</div><div style="color: rgba(0,0,0,0.6); margin-top: 2px">{{cur.mediaNote}}</div><a href="#" style="display: inline-block; margin-top: 6px; font-weight: 500; text-decoration: none">Choose from media library</a></div>
+</div>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: rgba(0,0,0,0.6)">Caption
+<textarea value="{{cur.caption}}" onInput="{{typeCaption}}" rows="5" style="box-sizing: border-box; width: 100%; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; padding: 8px 10px; font: inherit; font-size: 14px; line-height: 1.4; color: rgba(0,0,0,0.87); resize: vertical"></textarea>
+<span style="display: flex; justify-content: space-between"><span>{{cur.linkNote}}</span><span>{{cur.chars}} / 2,200</span></span>
+</label>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{tagSets}}" as="t" hint-placeholder-count="3"><button type="button" onClick="{{t.add}}" style="height: 26px; padding: 0 10px; border-radius: 13px; border: 1px solid #BDBDBD; background: transparent; font: inherit; font-size: 12px; cursor: pointer">+ {{t.label}}</button></sc-for>
+</div>
+<sc-if value="{{cur.consent}}" hint-placeholder-val="{{false}}"><div style="display: flex; gap: 8px; padding: 10px; border-radius: 4px; background: #E3F2EF; font-size: 12px; line-height: 1.45"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#006A60" style="flex-shrink: 0"><path d="{{ic.ok}}"></path></svg>{{cur.consent}}</div></sc-if>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+<button type="button" style="height: 36px; padding: 0 12px; border: 0; border-radius: 4px; background: transparent; color: #006A60; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; display: inline-flex; align-items: center; gap: 4px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.copy}}"></path></svg>Copy</button>
+<button type="button" style="height: 36px; padding: 0 12px; border: 0; border-radius: 4px; background: transparent; color: #006A60; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; display: inline-flex; align-items: center; gap: 4px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.download}}"></path></svg>Image</button>
+<span style="flex: 1"></span>
+<sc-if value="{{cur.next}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{advance}}" style="height: 36px; padding: 0 14px; border: 0; border-radius: 4px; background: #006A60; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer; box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)">{{cur.next}}</button></sc-if>
+</div>
+<div style="font-size: 12px; line-height: 1.45; color: rgba(0,0,0,0.6)">{{cur.help}}</div>
+</section>
+
+<section aria-label="Post ideas" style="background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 10px 16px 4px; font-size: 16px; font-weight: 500; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#6250D6"><path d="{{ic.idea}}"></path></svg>Ideas from the app</h2>
+<sc-for list="{{ideas}}" as="i" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 6px 16px; border-top: 1px solid rgba(0,0,0,0.08)">
+<div style="flex: 1; min-width: 0"><div style="font-size: 14px">{{i.title}}</div><div style="font-size: 12px; color: rgba(0,0,0,0.6); margin-top: 2px">{{i.why}}</div></div>
+<button type="button" onClick="{{i.add}}" disabled="{{i.done}}" style="height: 30px; padding: 0 10px; border-radius: 4px; border: 1px solid {{i.border}}; background: transparent; color: {{i.fg}}; font: inherit; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap; cursor: pointer">{{i.cta}}</button>
+</div>
+</sc-for>
+</section>
+</aside>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const ic = {
+      bell: 'M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z',
+      event: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z',
+      cal: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z',
+      campaign: 'M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z',
+      inbox: 'M19 3H4.99c-1.11 0-1.98.89-1.98 2L3 19c0 1.1.88 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2zm0 12h-4c0 1.66-1.35 3-3 3s-3-1.34-3-3H4.99V5H19v10z',
+      people: 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z',
+      trophy: 'M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z',
+      lock: 'M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z',
+      add: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z',
+      image: 'M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z',
+      ok: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
+      copy: 'M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z',
+      download: 'M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z',
+      idea: 'M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z'
+    };
+    const active = 'Social planner';
+    const nav = [
+      { label: 'Classes & flyers', href: 'M3Admin.dc.html', icon: ic.event },
+      { label: 'Coach calendars', href: 'M3CoachCalendar.dc.html', icon: ic.event },
+      { label: 'Social planner', href: 'M3Social.dc.html', icon: ic.campaign },
+      { label: 'Support inbox', href: '#', icon: ic.inbox },
+      { label: 'Client directory', href: '#', icon: ic.people },
+      { label: 'Challenges', href: 'M3ChallengeBuilder.dc.html', icon: ic.trophy }
+    ].map((n) => ({ ...n, bg: n.label === active ? 'rgba(0,106,96,0.08)' : 'transparent', fg: n.label === active ? '#006A60' : 'rgba(0,0,0,0.54)' }));
+
+    const S = {
+      idea: { label: 'Idea', bg: '#FFFFFF', fg: 'rgba(0,0,0,0.75)', border: '1px dashed rgba(0,0,0,0.38)', next: 'Start draft' },
+      draft: { label: 'Draft', bg: '#ECEFF3', fg: '#3C4250', border: '1px solid transparent', next: 'Send to owner' },
+      review: { label: 'Owner review', bg: '#FFE7C2', fg: '#5A3300', border: '1px solid transparent', next: 'Approve (owner)' },
+      scheduled: { label: 'Scheduled', bg: '#CCE8E2', fg: '#00332D', border: '1px solid transparent', next: 'Mark as posted' },
+      posted: { label: 'Posted', bg: '#F5F5F5', fg: 'rgba(0,0,0,0.55)', border: '1px solid rgba(0,0,0,0.12)', next: '' }
+    };
+    const order = ['idea', 'draft', 'review', 'scheduled', 'posted'];
+    const help = {
+      idea: 'Ideas are private notes. Start a draft when you are ready to write it.',
+      draft: 'The owner gets a notification to review. Nothing is posted without approval.',
+      review: 'Waiting on the owner. They can approve, edit, or send back with a comment.',
+      scheduled: 'At the scheduled time you get a reminder with the caption and image ready to post from your phone or Meta Business Suite.',
+      posted: 'Paste the post link to keep a record of what went out.'
+    };
+
+    const base = [
+      { id: 1, day: 0, time: '7:00 AM', title: 'Monday motivation reel', plats: ['IG'], status: 'posted', media: 'Reel · gym floor clip', mediaTint: '#DAE5E1', caption: 'New week, same plan: show up. 💪 #MarkiewiFitness', link: '' },
+      { id: 2, day: 1, time: '12:00 PM', title: 'Bootcamp: 2 spots left', plats: ['Story'], status: 'scheduled', media: 'Thursday Bootcamp flyer', mediaTint: '#E3E1EC', caption: 'Thursday Bootcamp is almost full. 2 spots left for Oct 29. Book with the link in bio!', link: 'Calendly link in bio' },
+      { id: 3, day: 2, time: '6:00 PM', title: 'Form tip: hip hinge', plats: ['IG', 'FB'], status: 'review', media: 'Carousel · 4 photos', mediaTint: '#DAE5E1', caption: 'Hip hinge 101: push your hips back, keep a long spine, soft knees. Save this for your next deadlift day.', link: '' },
+      { id: 4, day: 3, time: '9:00 AM', title: 'Halloween Sweat flyer', plats: ['IG', 'FB'], status: 'draft', media: 'Halloween Sweat flyer', mediaTint: '#F2E0D9', caption: 'Costumes encouraged 🎃 Halloween Sweat is Sat Oct 31 at 10 AM. Open to everyone, bring a friend!', link: 'Eventbrite link in bio' },
+      { id: 5, day: 5, time: '11:00 AM', title: 'Small group recap', plats: ['IG'], status: 'idea', media: 'No image yet', mediaTint: '#EEEEEE', caption: '', link: '' },
+      { id: 6, day: 7, time: '8:00 AM', title: 'Fall Steps Challenge: join free', plats: ['IG', 'FB'], status: 'draft', media: 'Challenge card (auto-made)', mediaTint: '#E7E3FA', caption: 'Our free Fall Steps Challenge starts Mon Nov 2. 4 weeks, daily steps, friendly leaderboard. Anyone can join!', link: 'Challenge join link in bio' },
+      { id: 7, day: 12, time: '1:00 PM', title: 'Halloween Sweat photos', plats: ['IG', 'FB'], status: 'idea', media: 'Take photos at the class', mediaTint: '#EEEEEE', caption: '', link: '' },
+      { id: 8, day: 14, time: '7:00 AM', title: 'Challenge starts today', plats: ['IG', 'Story', 'FB'], status: 'draft', media: 'Challenge card (auto-made)', mediaTint: '#E7E3FA', caption: 'Day 1 of the Fall Steps Challenge! It is not too late to join.', link: 'Challenge join link in bio' }
+    ];
+    const ideaDefs = [
+      { key: 'last', title: 'Last call: Halloween Sweat', why: 'Sat Oct 31 · 14 booked · no reminder post yet', post: { day: 10, time: '6:00 PM', title: 'Last call: Halloween Sweat', plats: ['Story'], status: 'draft', media: 'Halloween Sweat flyer', mediaTint: '#F2E0D9', caption: 'Halloween Sweat is this Saturday! Grab a spot with the link in bio. 🎃', link: 'Eventbrite link in bio' } },
+      { key: 'spot', title: 'Client spotlight: Jordan R.', why: 'Agreed to be featured · quote and 1 photo shared', post: { day: 17, time: '12:00 PM', title: 'Client spotlight: Jordan R.', plats: ['IG', 'FB'], status: 'draft', media: 'Photo shared by Jordan', mediaTint: '#DAE5E1', caption: '“I never thought I would look forward to leg day.” Meet Jordan, training with us since spring.', link: '', consent: 'Jordan agreed to be featured on Oct 12 and shared this photo and quote. Edit the caption freely, but don’t add other details about Jordan.' } },
+      { key: 'board', title: 'Challenge week 1 leaderboard', why: 'Fall Steps Challenge · first names only, if members opted in', post: { day: 21, time: '9:00 AM', title: 'Challenge week 1 leaderboard', plats: ['Story'], status: 'idea', media: 'Leaderboard card (auto-made)', mediaTint: '#E7E3FA', caption: '', link: '' } }
+    ];
+    const addedIdeas = st.addedIdeas || {};
+    const extra = st.extra || [];
+    const all = [...base, ...ideaDefs.filter((d) => addedIdeas[d.key]).map((d, i) => ({ id: 50 + ideaDefs.indexOf(d), ...d.post })), ...extra];
+    const statusMap = st.statusMap || {};
+    const capMap = st.capMap || {};
+    const platMap = st.platMap || {};
+    const posts = all.map((p) => ({ ...p, status: statusMap[p.id] || p.status, caption: capMap[p.id] !== undefined ? capMap[p.id] : p.caption, plats: platMap[p.id] || p.plats }));
+    const selId = st.sel || 4;
+    const filter = st.filter || 'all';
+
+    const dows = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const dateOf = (i) => (19 + i <= 31 ? { m: 'Oct', d: 19 + i } : { m: 'Nov', d: 19 + i - 31 });
+    const events = { 3: 'Bootcamp', 5: 'Small Group', 10: 'Bootcamp', 12: 'Halloween Sweat', 14: 'Challenge starts', 17: 'Bootcamp', 19: 'Small Group', 24: 'Bootcamp', 26: 'Small Group' };
+    const chip = (p) => ({
+      title: p.title, plats: p.plats, statusLabel: S[p.status].label,
+      bg: S[p.status].bg, fg: S[p.status].fg, border: S[p.status].border,
+      op: p.status === 'posted' ? 0.75 : 1,
+      ring: p.id === selId ? '2px solid #006A60' : '0',
+      select: () => this.setState({ sel: p.id })
+    });
+    const cells = [];
+    for (let i = 0; i < 28; i++) {
+      const dt = dateOf(i);
+      const today = i === 1;
+      cells.push({
+        label: (dt.d === 1 || i === 0 ? dt.m + ' ' : '') + dt.d,
+        event: events[i] || '',
+        bg: today ? '#F4FBF9' : i < 1 ? '#FAFAFA' : '#FFFFFF',
+        numBg: today ? '#006A60' : 'transparent',
+        numFg: today ? '#FFFFFF' : 'rgba(0,0,0,0.75)',
+        posts: posts.filter((p) => p.day === i && (filter === 'all' || p.status === filter)).map(chip)
+      });
+    }
+    const filters = [{ k: 'all', label: 'All posts' }, ...order.map((k) => ({ k, label: S[k].label }))].map((f) => ({
+      label: f.label,
+      n: f.k === 'all' ? posts.length : posts.filter((p) => p.status === f.k).length,
+      on: filter === f.k,
+      bg: filter === f.k ? 'rgba(0,106,96,0.12)' : '#FFFFFF',
+      border: filter === f.k ? '#006A60' : '#BDBDBD',
+      dot: f.k === 'all' ? '#006A60' : S[f.k].bg,
+      dotBorder: f.k === 'all' ? '0' : S[f.k].border.replace('transparent', 'rgba(0,0,0,0.2)'),
+      pick: () => this.setState({ filter: f.k })
+    }));
+
+    const sel = posts.find((p) => p.id === selId) || posts[0];
+    const dt = dateOf(sel.day);
+    const cur = {
+      title: sel.title,
+      statusLabel: S[sel.status].label, bg: S[sel.status].bg, fg: S[sel.status].fg, border: S[sel.status].border,
+      when: dows[sel.day % 7] + ' ' + dt.m + ' ' + dt.d + ' · ' + sel.time,
+      media: sel.media, mediaTint: sel.mediaTint,
+      mediaNote: sel.media.indexOf('flyer') >= 0 ? 'From Classes & flyers · sized for each platform' : sel.media.indexOf('auto-made') >= 0 ? 'Made from the challenge details and brand colours' : 'Photos and video live in the media library',
+      caption: sel.caption,
+      chars: sel.caption.length,
+      linkNote: sel.link || 'No link',
+      consent: sel.consent || '',
+      next: S[sel.status].next,
+      help: help[sel.status]
+    };
+    const steps = order.map((k, i) => {
+      const at = order.indexOf(sel.status);
+      return { label: S[k].label, bar: i <= at ? '#006A60' : '#E0E0E0', fg: i === at ? '#006A60' : 'rgba(0,0,0,0.6)' };
+    });
+    const platOpts = [{ k: 'IG', label: 'Instagram' }, { k: 'Story', label: 'Story' }, { k: 'FB', label: 'Facebook' }].map((o) => {
+      const on = sel.plats.indexOf(o.k) >= 0;
+      return {
+        label: o.label, on, mark: on ? '✓ ' : '',
+        bg: on ? 'rgba(0,106,96,0.12)' : 'transparent', border: on ? '#006A60' : '#BDBDBD', fg: on ? '#00332D' : 'rgba(0,0,0,0.75)',
+        toggle: () => {
+          const m = { ...((this.state && this.state.platMap) || {}) };
+          m[sel.id] = on ? sel.plats.filter((x) => x !== o.k) : [...sel.plats, o.k];
+          this.setState({ platMap: m });
+        }
+      };
+    });
+    const setCaption = (text) => { const m = { ...((this.state && this.state.capMap) || {}) }; m[sel.id] = text; this.setState({ capMap: m }); };
+    const tagSets = [
+      { label: 'Brand tags', text: '#MarkiewiFitness #MichiganFitness' },
+      { label: 'Class tags', text: '#SmallGroupTraining #Bootcamp' },
+      { label: 'Book now', text: 'Book with the link in bio.' }
+    ].map((t) => ({ label: t.label, add: () => setCaption((sel.caption ? sel.caption + ' ' : '') + t.text) }));
+    const ideas = ideaDefs.map((d) => {
+      const done = !!addedIdeas[d.key];
+      return {
+        title: d.title, why: d.why, done,
+        cta: done ? 'Added ✓' : 'Add', border: done ? 'transparent' : 'rgba(0,106,96,0.5)', fg: done ? 'rgba(0,0,0,0.5)' : '#006A60',
+        add: () => { if (done) return; const m = { ...((this.state && this.state.addedIdeas) || {}) }; m[d.key] = true; this.setState({ addedIdeas: m, sel: 50 + ideaDefs.indexOf(d) }); }
+      };
+    });
+    const newPost = () => {
+      const cur2 = (this.state && this.state.extra) || [];
+      const id = 200 + cur2.length;
+      this.setState({ extra: [...cur2, { id, day: 2, time: '12:00 PM', title: 'New post', plats: ['IG'], status: 'idea', media: 'No image yet', mediaTint: '#EEEEEE', caption: '', link: '' }], sel: id, filter: 'all' });
+    };
+    const advance = () => {
+      const i = order.indexOf(sel.status);
+      if (i < 0 || i >= order.length - 1) return;
+      const m = { ...((this.state && this.state.statusMap) || {}) };
+      m[sel.id] = order[i + 1];
+      this.setState({ statusMap: m });
+    };
+    return {
+      ic, nav, dows, cells, filters, cur, steps, platOpts, tagSets, ideas, newPost, advance,
+      typeCaption: (e) => setCaption(e.target.value)
+    };
+  }
+}
+</script>
+</body>
+</html>
