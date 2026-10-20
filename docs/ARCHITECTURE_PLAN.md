@@ -108,10 +108,10 @@ billing — with room to add contract coaches later.
 
 - **Training:** exercise library (open-licensed starter set + own videos), workout and
   program builders, offline-capable workout player, PRs, adherence.
-- **Two kinds of plans:** a *homework program* is what the client does on their own (assigned
+- **Two kinds of plans:** a *program* is what the client does on their own (assigned
   on the calendar, followed in the client app). A *session plan* is only what coach and client
   do together in person; it is built from separate session templates, attached to a Calendly
-  1:1 or semi-private booking, run in coach-led session mode, and never changes the homework
+  1:1 or semi-private booking, run in coach-led session mode, and never changes the
   program. Both feed the client's workout history and PRs.
 - **Program templates:** reusable templates (weeks, days/week, level, equipment, tags) in a
   template library; edit, duplicate, and assign.
@@ -159,7 +159,7 @@ exercises → workout_templates → programs(phases, weeks, client_selectable, t
           → scheduled_workouts → workout_logs → set_logs
 program_requests(client, program, start_date, training_days, status)
 session_templates → session_plans(clients[], external_booking, date, status)
-          → session_logs → set_logs (shared with homework logs for history/PRs)
+          → session_logs → set_logs (shared with program logs for history/PRs)
 session_notes(shared_with_client)
 
 nutrition_targets, meal_plans, foods(cache), food_logs, water_logs
