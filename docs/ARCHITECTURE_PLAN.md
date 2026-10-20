@@ -37,6 +37,7 @@ billing — with room to add contract coaches later.
 | Validation | Zod schemas shared by client and server | |
 | Payments | Stripe Billing, Checkout, Customer Portal | Stripe Connect only if coach payouts are automated (Phase 9) |
 | Exercise media | Short MP4/WebP loops in Supabase Storage (CDN) | Upgrade to Mux/Cloudflare Stream only if needed |
+| Body map / heatmap | Rive (`@rive-app/react-webgl2` on web; React Native Rive runtime, verified in a Phase 2 spike) | Owner-licensed Fitness Visuals anatomy file |
 | Food data | USDA FoodData Central + Open Food Facts (barcodes); FatSecret as fallback | Local cache table; attribution per licences |
 | Wearables | Apple HealthKit (MVP); Google Health Connect, Garmin Health API, Oura API (post-launch) | |
 | Scheduling | Calendly API + webhooks; Eventbrite API + webhooks | Calendly webhooks require Standard plan or higher |
@@ -124,8 +125,10 @@ billing — with room to add contract coaches later.
   front/back body (female or male model) filters exercises by primary muscle, optionally
   including secondary muscles; an equivalent muscle chip list keeps it keyboard/screen-reader
   accessible. Uses the starter dataset's `primaryMuscles`/`secondaryMuscles` tags (17 groups);
-  custom exercises get the same tags. Body artwork: commission simple SVGs or use an
-  open-licensed set (licence check in Phase 2).
+  custom exercises get the same tags. Body artwork: the owner's **Fitness Visuals "Human
+  Anatomy Advanced v3.0" Rive file** (female/male, front/back, 29 tappable muscles, 0–4
+  intensity). Also powers a **program heatmap** (muscles shaded by planned weekly sets).
+  Details: `docs/phase-0/MUSCLE_HEATMAP.md`.
 - **Program templates:** reusable templates (weeks, days/week, level, equipment, tags) in a
   template library; edit, duplicate, and assign.
 - **Calendar assignment:** per-client month/week calendar; drag a template onto a start date,

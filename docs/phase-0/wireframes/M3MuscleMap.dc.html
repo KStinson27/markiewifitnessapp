@@ -12,6 +12,7 @@
 <style>
 body{margin:0}
 a{color:#006A60}a:hover{color:#00504A}
+.hit:focus-visible{outline:2px solid #006A60;outline-offset:1px}
 </style>
 </helmet>
 <div style="min-height: 1000px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
@@ -22,47 +23,53 @@ a{color:#006A60}a:hover{color:#00504A}
 </header>
 
 <main style="width: 100%; max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
-<section style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<section style="flex: 1 1 480px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
-<h2 style="flex: 1; margin: 0; font-size: 18px; font-weight: 500">Tap a muscle</h2>
-<div role="group" aria-label="Body model" style="display: flex; border: 1px solid rgba(0,106,96,0.5); border-radius: 4px; overflow: hidden; height: 36px">
-<button type="button" aria-pressed="{{isFemale}}" onClick="{{setFemale}}" style="padding: 0 14px; border: 0; background: {{femaleBg}}; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer">Female</button>
-<button type="button" aria-pressed="{{isMale}}" onClick="{{setMale}}" style="padding: 0 14px; border: 0; border-left: 1px solid rgba(0,106,96,0.5); background: {{maleBg}}; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer">Male</button>
+<div role="group" aria-label="View" style="display: flex; border: 1px solid rgba(0,106,96,0.5); border-radius: 4px; overflow: hidden; height: 36px">
+<button type="button" aria-pressed="{{isFilter}}" onClick="{{setFilter}}" style="padding: 0 14px; border: 0; background: {{filterBg}}; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer">Find by muscle</button>
+<button type="button" aria-pressed="{{isHeat}}" onClick="{{setHeat}}" style="padding: 0 14px; border: 0; border-left: 1px solid rgba(0,106,96,0.5); background: {{heatBg}}; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer">Program heatmap</button>
+</div>
+<span style="flex: 1"></span>
+<div role="group" aria-label="Body model" style="display: flex; border: 1px solid #BDBDBD; border-radius: 4px; overflow: hidden; height: 36px">
+<button type="button" aria-pressed="{{isFemale}}" onClick="{{setFemale}}" style="padding: 0 12px; border: 0; background: {{femaleBg}}; font: inherit; font-size: 14px; cursor: pointer">Female</button>
+<button type="button" aria-pressed="{{isMale}}" onClick="{{setMale}}" style="padding: 0 12px; border: 0; border-left: 1px solid #BDBDBD; background: {{maleBg}}; font: inherit; font-size: 14px; cursor: pointer">Male</button>
 </div>
 </div>
+<div style="font-size: 14px; color: rgba(0,0,0,0.6)">{{hint}}</div>
 
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
-<sc-for list="{{figures}}" as="f" hint-placeholder-count="2">
-<div style="display: flex; flex-direction: column; align-items: center; gap: 6px">
-<svg role="img" aria-label="{{f.label}} view of the body; selected muscles are highlighted" viewBox="0 0 200 430" style="width: 100%; max-width: 220px; height: auto; display: block">
-<circle cx="100" cy="34" r="20" fill="#EEF0EF"></circle>
-<sc-for list="{{f.sil}}" as="s" hint-placeholder-count="8"><path d="{{s}}" fill="#EEF0EF"></path></sc-for>
-<sc-for list="{{f.paths}}" as="m" hint-placeholder-count="2"><path d="{{m.d}}" fill="{{m.fill}}" stroke="#FFFFFF" stroke-width="1.5" onClick="{{m.pick}}" style="cursor: pointer"><title>{{m.name}}</title></path></sc-for>
-<sc-for list="{{f.rects}}" as="m" hint-placeholder-count="2"><rect x="{{m.x}}" y="{{m.y}}" width="{{m.w}}" height="{{m.h}}" rx="{{m.r}}" fill="{{m.fill}}" stroke="#FFFFFF" stroke-width="1.5" onClick="{{m.pick}}" style="cursor: pointer"><title>{{m.name}}</title></rect></sc-for>
-<sc-for list="{{f.ells}}" as="m" hint-placeholder-count="12"><ellipse cx="{{m.cx}}" cy="{{m.cy}}" rx="{{m.rx}}" ry="{{m.ry}}" fill="{{m.fill}}" stroke="#FFFFFF" stroke-width="1.5" onClick="{{m.pick}}" style="cursor: pointer"><title>{{m.name}}</title></ellipse></sc-for>
-</svg>
-<div style="font-size: 13px; color: rgba(0,0,0,0.6)">{{f.label}}</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{views}}" as="v" hint-placeholder-count="2">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+<div style="position: relative; width: 100%; max-width: 260px; aspect-ratio: 400 / 548">
+<img src="{{v.src}}" alt="{{v.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block">
+<sc-for list="{{v.hits}}" as="h" hint-placeholder-count="20">
+<button type="button" class="hit" aria-label="{{h.label}}" title="{{h.label}}" onClick="{{h.pick}}" style="position: absolute; left: {{h.x}}%; top: {{h.y}}%; width: {{h.w}}%; height: {{h.h}}%; padding: 0; border: 0; border-radius: 40%; background: transparent; cursor: pointer"></button>
+</sc-for>
+</div>
+<div style="font-size: 13px; color: rgba(0,0,0,0.6)">{{v.label}}</div>
 </div>
 </sc-for>
 </div>
+
+<sc-if value="{{isHeat}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 12px; color: rgba(0,0,0,0.7)">
+<span style="font-weight: 500">Weekly sets</span>
+<sc-for list="{{legend}}" as="l" hint-placeholder-count="5"><span style="display: flex; align-items: center; gap: 4px"><span style="width: 14px; height: 14px; border-radius: 3px; background: {{l.c}}"></span>{{l.t}}</span></sc-for>
+</div>
+</sc-if>
 
 <div>
 <div style="font-size: 13px; color: rgba(0,0,0,0.6); margin-bottom: 8px">Or pick from the list</div>
 <div style="display: flex; flex-wrap: wrap; gap: 6px">
-<sc-for list="{{chips}}" as="c" hint-placeholder-count="17">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="14">
 <button type="button" aria-pressed="{{c.on}}" onClick="{{c.pick}}" style="height: 30px; padding: 0 10px; border-radius: 15px; border: 1px solid {{c.border}}; background: {{c.bg}}; color: {{c.fg}}; font: inherit; font-size: 13px; cursor: pointer">{{c.label}}</button>
 </sc-for>
 </div>
 </div>
-<div style="display: flex; align-items: center; gap: 16px; font-size: 13px; color: rgba(0,0,0,0.6)">
-<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 3px; background: {{primary}}"></span>Selected</span>
-<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 3px; background: #9FD3CA"></span>Also worked by results</span>
-<span style="flex: 1"></span>
-<button type="button" onClick="{{clear}}" style="height: 32px; padding: 0 8px; border: 0; background: transparent; color: {{primary}}; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer">Clear</button>
-</div>
+<div style="font-size: 11px; color: rgba(0,0,0,0.6)">Body artwork: Human Anatomy Advanced v3.0 (Rive) by Fitness Visuals, preview renders.</div>
 </section>
 
-<section style="flex: 1 1 520px; min-width: 0; background: #FFFFFF; border-radius: 4px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<section style="flex: 1 1 480px; min-width: 0; background: #FFFFFF; border-radius: 4px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
 <div style="padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; border-bottom: 1px solid rgba(0,0,0,0.12)">
 <label style="display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px">
 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.search}}"></path></svg>
@@ -100,9 +107,10 @@ class Component extends DCLogic {
   renderVals() {
     const primary = this.props.primary ?? '#006A60';
     const st = this.state || {};
-    const sex = st.sex || 'female';
-    const sel = st.sel || ['biceps'];
+    const sex = st.sex || 'Female';
+    const sel = st.sel === undefined ? 'biceps' : st.sel;
     const sec = !!st.sec;
+    const mode = st.mode || 'filter';
     const ic = {
       back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
       search: 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z',
@@ -111,109 +119,83 @@ class Component extends DCLogic {
       image: 'M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'
     };
     const names = {
-      neck: 'Neck', traps: 'Traps', shoulders: 'Shoulders', chest: 'Chest', biceps: 'Biceps', forearms: 'Forearms',
-      abdominals: 'Abs & obliques', quadriceps: 'Quads', adductors: 'Adductors', abductors: 'Abductors', calves: 'Calves',
-      triceps: 'Triceps', lats: 'Lats', 'middle back': 'Middle back', 'lower back': 'Lower back', glutes: 'Glutes', hamstrings: 'Hamstrings'
+      chest: 'Chest', shoulders: 'Shoulders', back: 'Back', traps: 'Traps & neck', biceps: 'Biceps', triceps: 'Triceps', forearms: 'Forearms',
+      abs: 'Abs', obliques: 'Obliques', glutes: 'Glutes', quads: 'Quads', hamstrings: 'Hamstrings', adductors: 'Adductors', calves: 'Calves & shins'
     };
+    const img = {
+      'Female-Front': { abs: '/_blob/aaf43c65b8213af43016b21dc99350ae', biceps: '/_blob/22721eb0d7819041630759b1e3b5b59c', calves: '/_blob/2829f174803b715a30b85167176c6a46', chest: '/_blob/57fec82b7c4e1607e40ad6341f26b791', forearms: '/_blob/18105eb2f383a712e5d0b047d3b83b41', obliques: '/_blob/ac54b1771c55cf4cf6a6742f56a622d4', quads: '/_blob/a7d279278083f8f0651048c6d1feca48', shoulders: '/_blob/5f5f9c0b4fd8cea1638462a76fd70bca', traps: '/_blob/6a4ed975fa01caf130b2c04501ad33bb', none: '/_blob/d8d4a0c06053c1d78cc1b2c213da4f6b', heat: '/_blob/2a3d4af5140081754c098a2b01ce1874' },
+      'Female-Back': { adductors: '/_blob/f8d4abdc701c30e4d423cd2677074148', back: '/_blob/f81df2ed14a0b49b0767c59442b98f6e', calves: '/_blob/df7aa36e480f0ee833529fe234bd6077', forearms: '/_blob/612b265b329ab9ced86bd23d7b1bde06', glutes: '/_blob/70f4d7195b7f940de4b5ca054159f5eb', hamstrings: '/_blob/de0184e429784cf2228812bf0fadb33a', shoulders: '/_blob/6857277a5cc3b4f1c40cd6a0d373517a', traps: '/_blob/3e20fde9693f3f263d872d0ee775c1bb', triceps: '/_blob/a39b13a318af165c5cdf5d8b5c163c6c', none: '/_blob/5ea9321bac3b3a76fb3cabaa51ba777e', heat: '/_blob/8aaab5fd5a53fcf751e8a2e06a772f82' },
+      'Male-Front': { abs: '/_blob/ab4356b317b928ddf4d82510385b0f3e', biceps: '/_blob/b712b246bbda953b29a744354b200120', calves: '/_blob/65379591e1fb8d61c7a3f2af9ee5af1f', chest: '/_blob/bbf4fc7abb1ef3de2e3b331c25960994', forearms: '/_blob/0c6efba2c6c4e01ab7e8fcb1ca66132b', obliques: '/_blob/a4eb40ecea403624288a89772711a55a', quads: '/_blob/c17be23288f7955f95e17f8f3cbdf7e6', shoulders: '/_blob/93429053c2988e31dbb2ab7dbe477a3c', traps: '/_blob/75d29aa16ae68d5d666fff895abe7879', none: '/_blob/c9be4ff1c6c8de9504efe2077c4fb631', heat: '/_blob/0d41097cc9118c40e33a2cd50d904773' },
+      'Male-Back': { adductors: '/_blob/a20f2fe750eb438721606992109a3fbb', back: '/_blob/e87f0505160ccc44a94018e691c1ae88', calves: '/_blob/1f453ffe301a014b8319a65f7b8cdc76', forearms: '/_blob/a341ef89a62f96f3243a291090f1d91b', glutes: '/_blob/26af49dafeb06024e381c2357904c583', hamstrings: '/_blob/a4a3e9ab338292cead1dede8d7c82660', shoulders: '/_blob/8a0b29356ac82f7a3de0c44beda58bb0', traps: '/_blob/5d9583dbb78e21b5ce55980594300ef0', triceps: '/_blob/1fe2e06ef4a6c1bcf1f2f22801206d90', none: '/_blob/d7cfda6faf6b8e72046c0ad1d36cdbba', heat: '/_blob/d440891aa23daae1660031d61be4c440' }
+    };
+    const hits = {"Female-Front":[["quads",53,42.9,11.3,25.4],["quads",36.5,42.9,11.3,25.4],["chest",51.2,19.9,11.5,9.9],["chest",38,19.9,11.5,9.9],["obliques",39.8,28.3,5.3,17.3],["obliques",55.8,28.3,5.3,17.3],["quads",52,44.2,7.8,17.2],["calves",56.3,71.7,4.8,17.9],["calves",39.8,71.7,4.5,17.7],["quads",41,44.2,7.5,17.2],["biceps",32.5,26.8,5.8,10.2],["biceps",62.3,26.8,5.8,10.2],["forearms",29.3,35,4.8,12.2],["abs",50.5,40.5,4.3,9.1],["abs",46,40.5,4.3,9.1],["shoulders",34,19.3,7.5,8.2],["shoulders",59.3,19.3,7.5,8.2],["forearms",66.5,35.2,3.8,11.9],["calves",53.3,73.5,2.5,15.9],["calves",44.8,73.5,2.5,10.4],["quads",37,54.7,5.5,12.6],["traps",51.2,13.9,7.2,6],["traps",42.3,13.7,7.2,6.2],["abs",50.7,29.6,4,3.8],["abs",46,29.6,4,3.8],["forearms",69.3,38.1,2.3,9.1],["abs",50.7,33.4,4,3.3],["abs",50.7,37,4,3.1],["abs",46,37,4,3.3],["abs",46.3,33.4,3.8,3.3],["calves",44.8,82.3,1.3,7.1],["forearms",64.5,37,1.3,3.5]],"Female-Back":[["glutes",50.7,40.9,11.8,12.4],["glutes",37.5,40.9,11.8,12.4],["calves",38.8,67,7.5,20.4],["hamstrings",53.3,52.9,7.5,17],["hamstrings",39.3,52.9,7.5,17],["back",51,26.3,9.8,15],["back",39.3,26.3,9.8,15],["calves",53.8,67,7.5,14.4],["traps",50.5,13.5,8.5,16.2],["traps",40.8,13.5,8.5,16.2],["triceps",32.8,24.3,6,9.5],["triceps",61.3,24.5,6,9.3],["back",53.8,21,8.3,6.2],["back",38,21,8.3,6.2],["shoulders",33.5,19,8,7.8],["shoulders",58.5,19,8,7.8],["forearms",67.3,34.9,4,11.5],["adductors",51,51.6,3.3,10.8],["adductors",45.8,51.6,3.3,10.6],["forearms",29.8,34.9,3,8.8],["forearms",28.7,37.2,2.3,9.1],["calves",57.5,80.7,2.8,6.8],["forearms",32,34.3,4.3,9.5],["forearms",63.7,34.3,3.5,8]],"Male-Front":[["quads",37.8,42.2,9.5,25],["quads",56.3,42.2,6.8,23],["chest",51,19,12.8,9.3],["chest",37.3,19,12.5,9.3],["obliques",55.5,26.1,6.3,18.1],["obliques",39.3,26.3,6,17.9],["forearms",66,34.7,5.3,13.3],["forearms",29.5,34.7,5.5,13.3],["biceps",33,25,5.5,10.2],["biceps",62.3,25,5.8,10.2],["calves",58,70.1,3.8,18.6],["calves",39,70.1,3.8,18.6],["quads",52.5,43.2,5.3,17],["quads",42.8,43.4,5.3,16.8],["calves",54,70.6,3.3,17.9],["shoulders",33.3,18.1,7.2,8.6],["quads",53.5,53.3,4,13.9],["shoulders",60.3,18.1,7.2,8.6],["abs",50.5,39.4,4,8.9],["abs",46.3,39.4,4,8.9],["calves",43.5,70.6,3.3,12.6],["abs",50.7,28.1,4.3,4],["abs",45.8,28.1,4.3,4],["traps",52,12.8,6.8,5.8],["abs",50.5,32.1,4.3,3.5],["traps",42,12.8,6.8,5.8],["abs",50.5,35.8,4.3,3.5],["abs",46,32.1,4,3.5],["abs",46,35.8,4,3.5],["calves",43.5,80.8,1.3,7.7],["forearms",35.5,35.9,1.3,3.6],["forearms",64,35.9,1.3,3.6]],"Male-Back":[["glutes",37.5,41.8,12.3,13],["glutes",50.7,41.8,12,13.1],["calves",37.3,66.8,8,23.4],["calves",55,66.8,8,14.6],["traps",51,12.4,10.3,17.9],["traps",39.3,12.2,10.3,18.1],["back",52,26.1,10.8,10],["back",37.8,26.1,10.8,10],["triceps",30.8,25.2,6.5,10.2],["triceps",63,25.4,6.5,10.2],["hamstrings",38,54.9,5.3,14.6],["hamstrings",57.3,54.9,5,14.4],["hamstrings",53.8,54.2,4,15.5],["hamstrings",42.8,54.4,3.8,15.1],["back",55,21.2,8.8,6.2],["back",36.8,21.2,8.8,6.2],["shoulders",60.5,19.2,8,7.8],["shoulders",32,19.2,8,7.8],["back",52.3,35.6,6.3,6],["back",42,35.4,6.3,6],["forearms",27.3,35.6,7.5,13.7],["forearms",28.5,35.2,3,9.7],["forearms",68.5,35.2,3,9.9],["adductors",46.3,52.6,3,9.9],["adductors",51,52.6,3,9.9],["calves",58.5,80.5,3.5,9.7],["forearms",70.3,37.6,2.8,11.7],["forearms",65.5,35.4,4.3,10]]};
+    const pick = (g) => () => {
+      const cur = (this.state && this.state.sel !== undefined) ? this.state.sel : 'biceps';
+      this.setState({ sel: cur === g ? null : g });
+    };
+    const views = ['Front', 'Back'].map((side) => {
+      const board = sex + '-' + side;
+      const set = img[board];
+      const src = mode === 'heat' ? set.heat : (sel && set[sel] ? set[sel] : set.none);
+      return {
+        label: side, src,
+        alt: sex + ' body, ' + side.toLowerCase() + ' view' + (mode === 'heat' ? ', shaded by weekly training volume' : (sel ? ', ' + names[sel] + ' highlighted' : '')),
+        hits: hits[board].map(([g, x, y, w, h]) => ({ x, y, w, h, label: names[g], pick: pick(g) }))
+      };
+    });
     const library = [
       ['Barbell Curl', 'biceps', ['forearms'], 'Barbell', 'video'],
       ['Hammer Curl', 'biceps', ['forearms'], 'Dumbbells', 'video'],
       ['Incline Dumbbell Curl', 'biceps', [], 'Dumbbells', 'image'],
-      ['Chin-up', 'lats', ['biceps', 'middle back'], 'Bodyweight', 'video'],
-      ['Lat Pulldown', 'lats', ['biceps', 'middle back'], 'Cable', 'image'],
-      ['Seated Cable Row', 'middle back', ['lats', 'biceps'], 'Cable', 'image'],
+      ['Chin-up', 'back', ['biceps'], 'Bodyweight', 'video'],
+      ['Lat Pulldown', 'back', ['biceps'], 'Cable', 'image'],
+      ['Seated Cable Row', 'back', ['biceps', 'shoulders'], 'Cable', 'image'],
       ['Bench Press', 'chest', ['shoulders', 'triceps'], 'Barbell', 'video'],
-      ['Push-up', 'chest', ['shoulders', 'triceps', 'abdominals'], 'Bodyweight', 'video'],
+      ['Push-up', 'chest', ['shoulders', 'triceps', 'abs'], 'Bodyweight', 'video'],
       ['Overhead Press', 'shoulders', ['triceps'], 'Barbell', 'image'],
       ['Lateral Raise', 'shoulders', [], 'Dumbbells', 'image'],
       ['Triceps Pushdown', 'triceps', [], 'Cable', 'image'],
       ['Skull Crusher', 'triceps', [], 'EZ bar', 'image'],
-      ['Barbell Back Squat', 'quadriceps', ['glutes', 'hamstrings', 'lower back'], 'Barbell', 'video'],
-      ['Goblet Squat', 'quadriceps', ['glutes'], 'Kettlebell', 'video'],
-      ['Romanian Deadlift', 'hamstrings', ['glutes', 'lower back'], 'Barbell', 'video'],
+      ['Barbell Back Squat', 'quads', ['glutes', 'hamstrings', 'back'], 'Barbell', 'video'],
+      ['Goblet Squat', 'quads', ['glutes'], 'Kettlebell', 'video'],
+      ['Romanian Deadlift', 'hamstrings', ['glutes', 'back'], 'Barbell', 'video'],
       ['Hip Thrust', 'glutes', ['hamstrings'], 'Barbell', 'video'],
-      ['Back Extension', 'lower back', ['glutes', 'hamstrings'], 'Bench', 'image'],
-      ['Plank', 'abdominals', [], 'Bodyweight', 'image'],
-      ['Hanging Knee Raise', 'abdominals', [], 'Pull-up bar', 'image'],
+      ['Banded Side Walk', 'glutes', [], 'Band', 'image'],
+      ['Back Extension', 'back', ['glutes', 'hamstrings'], 'Bench', 'image'],
+      ['Plank', 'abs', ['obliques'], 'Bodyweight', 'image'],
+      ['Hanging Knee Raise', 'abs', ['obliques'], 'Pull-up bar', 'image'],
+      ['Pallof Press', 'obliques', ['abs'], 'Cable', 'video'],
       ['Standing Calf Raise', 'calves', [], 'Machine', 'image'],
       ['Shrug', 'traps', ['forearms'], 'Dumbbells', 'image'],
-      ['Copenhagen Plank', 'adductors', ['abdominals'], 'Bench', 'video'],
-      ['Banded Side Walk', 'abductors', ['glutes'], 'Band', 'image'],
-      ['Farmer Carry', 'forearms', ['traps', 'abdominals'], 'Dumbbells', 'video'],
-      ['Neck Isometric Hold', 'neck', [], 'Bodyweight', 'image']
+      ['Copenhagen Plank', 'adductors', ['obliques'], 'Bench', 'video'],
+      ['Farmer Carry', 'forearms', ['traps', 'abs'], 'Dumbbells', 'video']
     ];
-    const results = sel.length === 0 ? [] : library
-      .filter(([, p, s]) => sel.includes(p) || (sec && s.some((m) => sel.includes(m))))
-      .sort((a, b) => (sel.includes(b[1]) ? 1 : 0) - (sel.includes(a[1]) ? 1 : 0))
+    const results = !sel ? [] : library
+      .filter(([, p, s]) => p === sel || (sec && s.includes(sel)))
+      .sort((a, b) => (b[1] === sel ? 1 : 0) - (a[1] === sel ? 1 : 0))
       .map(([name, p, s, equip, media]) => ({ name, primary: names[p], secondary: s.map((m) => names[m]), equip, icon: ic[media] }));
-    const alsoWorked = new Set();
-    library.filter(([, p]) => sel.includes(p)).forEach(([, , s]) => s.forEach((m) => { if (!sel.includes(m)) alsoWorked.add(m); }));
-    const toggle = (m) => () => {
-      const cur = (this.state && this.state.sel) || ['biceps'];
-      this.setState({ sel: cur.includes(m) ? cur.filter((x) => x !== m) : [...cur, m] });
-    };
-    const fillFor = (m) => sel.includes(m) ? primary : (alsoWorked.has(m) ? '#9FD3CA' : '#CBD5D2');
-    const g = sex === 'male' ? { sh: 44, hip: 25, leg: 14 } : { sh: 38, hip: 30, leg: 17 };
-    const c = 100;
-    const pair = (m, dx, cy, rx, ry) => [{ m, cx: c - dx, cy, rx, ry }, { m, cx: c + dx, cy, rx, ry }];
-    const sil = [
-      'M' + (c - g.sh) + ' 76 Q' + (c - g.sh) + ' 62 ' + (c - g.sh + 12) + ' 62 L' + (c + g.sh - 12) + ' 62 Q' + (c + g.sh) + ' 62 ' + (c + g.sh) + ' 76 L' + (c + g.hip + 4) + ' 214 L' + (c - g.hip - 4) + ' 214 Z',
-      'M92 50 H108 V66 H92 Z',
-      ...[-1, 1].map((s) => {
-        const x = c + s * (g.sh + 4);
-        return 'M' + (x - 9) + ' 80 Q' + x + ' 70 ' + (x + 9) + ' 80 L' + (x + 8) + ' 168 L' + (x + 7) + ' 252 Q' + x + ' 264 ' + (x - 7) + ' 252 L' + (x - 8) + ' 168 Z';
-      }),
-      ...[-1, 1].map((s) => {
-        const x = c + s * g.leg;
-        return 'M' + (x - 14) + ' 206 L' + (x + 14) + ' 206 L' + (x + 11) + ' 300 L' + (x + 9) + ' 404 Q' + x + ' 414 ' + (x - 9) + ' 404 L' + (x - 11) + ' 300 Z';
-      })
-    ];
-    const frontE = [
-      ...pair('shoulders', g.sh - 2, 82, 12, 14),
-      ...pair('chest', g.sh * 0.42, 100, g.sh * 0.42, 14),
-      ...pair('biceps', g.sh + 4, 120, 7, 22),
-      ...pair('forearms', g.sh + 4, 200, 6.5, 26),
-      ...pair('quadriceps', g.leg, 256, 11, 38),
-      ...pair('adductors', g.leg - 10, 232, 3.5, 16),
-      ...pair('abductors', g.hip + 1, 212, 4.5, 11),
-      ...pair('calves', g.leg, 346, 7.5, 26)
-    ];
-    const frontR = [{ m: 'neck', x: 94, y: 53, w: 12, h: 10, r: 3 }, { m: 'abdominals', x: 88, y: 118, w: 24, h: 72, r: 8 }];
-    const frontP = [-1, 1].map((s) => ({ m: 'traps', d: 'M' + (c + s * 8) + ' 60 L' + (c + s * (g.sh - 12)) + ' 68 L' + (c + s * 8) + ' 70 Z' }));
-    const backE = [
-      ...pair('shoulders', g.sh - 2, 82, 12, 14),
-      ...pair('triceps', g.sh + 4, 122, 7, 22),
-      ...pair('forearms', g.sh + 4, 200, 6.5, 26),
-      ...pair('lats', g.sh * 0.52, 140, 11, 28),
-      ...pair('glutes', g.leg, 216, 14, 14),
-      ...pair('abductors', g.hip + 1, 206, 4.5, 10),
-      ...pair('hamstrings', g.leg, 272, 10, 34),
-      ...pair('calves', g.leg, 346, 9, 28)
-    ];
-    const backR = [{ m: 'neck', x: 94, y: 53, w: 12, h: 8, r: 3 }, { m: 'middle back', x: 92, y: 100, w: 16, h: 42, r: 4 }, { m: 'lower back', x: 90, y: 150, w: 20, h: 38, r: 6 }];
-    const backP = [{ m: 'traps', d: 'M100 56 L' + (c - g.sh + 12) + ' 72 L100 96 L' + (c + g.sh - 12) + ' 72 Z' }];
-    const deco = (list) => list.map((o) => ({ ...o, name: names[o.m], fill: fillFor(o.m), pick: toggle(o.m) }));
-    const figures = [
-      { label: 'Front', sil, ells: deco(frontE), rects: deco(frontR), paths: deco(frontP) },
-      { label: 'Back', sil, ells: deco(backE), rects: deco(backR), paths: deco(backP) }
-    ];
-    const chips = Object.keys(names).map((m) => {
-      const on = sel.includes(m);
-      return { label: names[m], on, pick: toggle(m), bg: on ? primary : 'transparent', fg: on ? '#FFFFFF' : 'rgba(0,0,0,0.87)', border: on ? primary : '#BDBDBD' };
+    const chips = Object.keys(names).map((g) => {
+      const on = sel === g;
+      return { label: names[g], on, pick: pick(g), bg: on ? primary : 'transparent', fg: on ? '#FFFFFF' : 'rgba(0,0,0,0.87)', border: on ? primary : '#BDBDBD' };
     });
-    const selNames = sel.map((m) => names[m]).join(', ');
+    const legend = [['#D3D9D7', '0'], ['#B8E1DA', '1–4'], ['#6FC2B4', '5–8'], ['#1F8F7E', '9–12'], ['#00504A', '13+']].map(([c, t]) => ({ c, t }));
     return {
-      primary, ic, figures, chips, results, sec,
+      primary, ic, views, chips, results, sec, legend,
       count: results.length,
-      summary: sel.length ? (results.length === 1 ? 'exercise' : 'exercises') + ' for ' + selNames + (sec ? ' (incl. secondary)' : ' (primary)') : 'exercises',
-      empty: sel.length === 0,
-      isFemale: sex === 'female', isMale: sex === 'male',
-      femaleBg: sex === 'female' ? 'rgba(0,106,96,0.12)' : 'transparent',
-      maleBg: sex === 'male' ? 'rgba(0,106,96,0.12)' : 'transparent',
-      setFemale: () => this.setState({ sex: 'female' }),
-      setMale: () => this.setState({ sex: 'male' }),
-      toggleSec: () => this.setState({ sec: !((this.state && this.state.sec) || false) }),
-      clear: () => this.setState({ sel: [] })
+      summary: sel ? (results.length === 1 ? 'exercise' : 'exercises') + ' for ' + names[sel] + (sec ? ' (incl. secondary)' : ' (primary)') : 'exercises',
+      empty: !sel,
+      hint: mode === 'heat' ? 'Strength Foundations, week 3: darker = more weekly sets. Tap a muscle to find exercises for it.' : 'Tap a muscle on the body to filter the library. Tap it again to clear.',
+      isFilter: mode === 'filter', isHeat: mode === 'heat',
+      filterBg: mode === 'filter' ? 'rgba(0,106,96,0.12)' : 'transparent',
+      heatBg: mode === 'heat' ? 'rgba(0,106,96,0.12)' : 'transparent',
+      setFilter: () => this.setState({ mode: 'filter' }),
+      setHeat: () => this.setState({ mode: 'heat' }),
+      isFemale: sex === 'Female', isMale: sex === 'Male',
+      femaleBg: sex === 'Female' ? '#EEEEEE' : 'transparent',
+      maleBg: sex === 'Male' ? '#EEEEEE' : 'transparent',
+      setFemale: () => this.setState({ sex: 'Female' }),
+      setMale: () => this.setState({ sex: 'Male' }),
+      toggleSec: () => this.setState({ sec: !((this.state && this.state.sec) || false) })
     };
   }
 }
