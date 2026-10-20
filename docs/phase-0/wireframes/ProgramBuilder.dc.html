@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Program Builder</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0E6B5C}a:hover{color:#0A4F44}
+</style>
+</helmet>
+<div style="min-height: 900px; box-sizing: border-box; background: #F5F5F2; font-family: Inter, system-ui, sans-serif; color: #161616; padding: 32px">
+<div style="max-width: 1216px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+<div><a href="CoachDashboard.dc.html" style="font-size: 14px; text-decoration: none">Programs</a><h1 style="margin: 4px 0 0; font-size: 28px; font-weight: 700">Strength Foundations</h1><div style="font-size: 14px; color: #595959; margin-top: 4px">Template · 3 phases · 12 weeks · 3 days/week</div></div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600">Duplicate week</button>
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 0; background: {{accent}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600">Assign to client</button>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit; font-size: 14px">Phase 1 · W1</button>
+<button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit; font-size: 14px">W2</button>
+<button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 20px; border: 2px solid {{accent}}; background: #E4F0ED; font: inherit; font-size: 14px; font-weight: 600">W3</button>
+<button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit; font-size: 14px">W4 (deload)</button>
+<button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit; font-size: 14px">Phase 2 · W5–8</button>
+<button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit; font-size: 14px">Phase 3 · W9–12</button>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+<aside style="flex: 1 1 260px; min-width: 0; background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px">Exercise library</h2>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 12px; font-weight: 600; color: #595959">Search<input placeholder="Search 800+ exercises" style="height: 40px; border: 1px solid #CFCFC8; border-radius: 10px; padding: 0 12px; font: inherit; font-size: 14px; font-weight: 400; color: #161616"></label>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 12px"><span style="padding: 4px 10px; border-radius: 12px; background: #161616; color: #FFFFFF">My videos</span><span style="padding: 4px 10px; border-radius: 12px; background: #EEEEEA">Legs</span><span style="padding: 4px 10px; border-radius: 12px; background: #EEEEEA">Dumbbell</span></div>
+<div style="display: flex; align-items: center; gap: 10px; min-height: 48px; border-top: 1px solid #EEEEEA; font-size: 14px"><div style="width: 40px; height: 40px; border-radius: 8px; background: #DADAD4"></div><span style="flex: 1">Landmine Press</span><span style="font-size: 11px; color: #595959">video</span></div>
+<div style="display: flex; align-items: center; gap: 10px; min-height: 48px; border-top: 1px solid #EEEEEA; font-size: 14px"><div style="width: 40px; height: 40px; border-radius: 8px; background: #DADAD4"></div><span style="flex: 1">Goblet Squat</span><span style="font-size: 11px; color: #595959">video</span></div>
+<div style="display: flex; align-items: center; gap: 10px; min-height: 48px; border-top: 1px solid #EEEEEA; font-size: 14px"><div style="width: 40px; height: 40px; border-radius: 8px; background: #DADAD4"></div><span style="flex: 1">Bulgarian Split Squat</span><span style="font-size: 11px; color: #595959">image</span></div>
+<div style="font-size: 12px; color: #595959">Drag an exercise into a day</div>
+</aside>
+
+<div style="flex: 3 1 600px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<section style="background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px">Day 1 · Lower A</h2>
+<div style="border: 1px solid #E2E2DD; border-radius: 10px; padding: 10px 12px; font-size: 14px"><div style="font-weight: 600">A1 Barbell Back Squat</div><div style="color: #595959; font-size: 13px">3 × 8 · 65% · 3-1-1 · rest 2:00</div></div>
+<div style="border: 1px solid #C9DED9; background: #F0F5F4; border-radius: 10px; padding: 10px 12px; font-size: 14px"><div style="font-size: 11px; font-weight: 600; color: #595959; text-transform: uppercase; letter-spacing: 0.06em">Superset</div><div style="font-weight: 600">B1 Romanian Deadlift</div><div style="color: #595959; font-size: 13px">3 × 10 · RPE 7</div><div style="font-weight: 600; margin-top: 6px">B2 Walking Lunge</div><div style="color: #595959; font-size: 13px">3 × 12 each · rest 1:30</div></div>
+<div style="border: 1px solid #E2E2DD; border-radius: 10px; padding: 10px 12px; font-size: 14px"><div style="font-weight: 600">C1 Copenhagen Plank</div><div style="color: #595959; font-size: 13px">3 × 20s each</div></div>
+<button type="button" style="min-height: 40px; border-radius: 10px; border: 1px dashed #A8A8A0; background: transparent; font: inherit; font-size: 13px; font-weight: 600">+ Add exercise</button>
+</section>
+<section style="background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px">Day 2 · Upper A</h2>
+<div style="border: 1px solid #E2E2DD; border-radius: 10px; padding: 10px 12px; font-size: 14px"><div style="font-weight: 600">A1 Bench Press</div><div style="color: #595959; font-size: 13px">4 × 6 · 70% · rest 2:30</div></div>
+<div style="border: 1px solid #E2E2DD; border-radius: 10px; padding: 10px 12px; font-size: 14px"><div style="font-weight: 600">B1 Chest-Supported Row</div><div style="color: #595959; font-size: 13px">3 × 10 · RPE 8</div></div>
+<button type="button" style="min-height: 40px; border-radius: 10px; border: 1px dashed #A8A8A0; background: transparent; font: inherit; font-size: 13px; font-weight: 600">+ Add exercise</button>
+</section>
+<section style="background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 16px">Day 3 · Full Body</h2>
+<div style="border: 1px solid #E2E2DD; border-radius: 10px; padding: 10px 12px; font-size: 14px"><div style="font-weight: 600">A1 Trap Bar Deadlift</div><div style="color: #595959; font-size: 13px">4 × 5 · RPE 7</div></div>
+<button type="button" style="min-height: 40px; border-radius: 10px; border: 1px dashed #A8A8A0; background: transparent; font: inherit; font-size: 13px; font-weight: 600">+ Add exercise</button>
+</section>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#0E6B5C","options":["#0E6B5C","#1F4FB8","#B4471B","#161616"]},"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#0E6B5C' };
+  }
+}
+</script>
+</body>
+</html>

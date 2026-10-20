@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Join Challenge</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0E6B5C}a:hover{color:#0A4F44}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F2; font-family: Inter, system-ui, sans-serif; color: #161616">
+<div style="flex: 1; overflow: auto; padding: 24px 20px; display: flex; flex-direction: column; gap: 18px">
+<div style="height: 36px; display: flex; align-items: center; font-size: 15px; font-weight: 700; letter-spacing: 0.04em">[MARKIEWI FITNESS LOGO]</div>
+<div style="height: 160px; border-radius: 16px; background: #DADAD4; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #404040">[Challenge cover image]</div>
+<div>
+<div style="font-size: 13px; color: #595959">Free · Starts Nov 16 · 30 days</div>
+<h1 style="margin: 4px 0 8px; font-size: 26px; font-weight: 700">Holiday Hustle Challenge</h1>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #404040">Build three daily habits with the Markiewi Fitness community. Join solo or get placed on a team.</p>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px; font-size: 14px">
+<div style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #595959">Daily habits</div>
+<div>8,000 steps (syncs from Apple Health, or enter manually)</div>
+<div>Drink 80 oz water</div>
+<div>20 minutes of movement</div>
+</div>
+
+<form style="display: flex; flex-direction: column; gap: 12px">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">First name<input style="height: 48px; border: 1px solid #CFCFC8; border-radius: 12px; padding: 0 14px; font: inherit; font-size: 15px; font-weight: 400; background: #FFFFFF"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Email<input type="email" style="height: 48px; border: 1px solid #CFCFC8; border-radius: 12px; padding: 0 14px; font: inherit; font-size: 15px; font-weight: 400; background: #FFFFFF"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Leaderboard name<input placeholder="e.g. Sam T." style="height: 48px; border: 1px solid #CFCFC8; border-radius: 12px; padding: 0 14px; font: inherit; font-size: 15px; font-weight: 400; background: #FFFFFF"></label>
+<div style="height: 64px; border: 1px dashed #A8A8A0; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #595959">[Cloudflare Turnstile check]</div>
+<label style="display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #404040"><input type="checkbox" style="width: 20px; height: 20px; margin: 0; accent-color: {{accent}}">I agree to the Terms and Privacy Policy and the challenge waiver.</label>
+<button type="button" style="height: 52px; border: 0; border-radius: 12px; background: {{accent}}; color: #FFFFFF; font: inherit; font-size: 16px; font-weight: 600">Join free — email me a sign-in link</button>
+</form>
+<div style="font-size: 13px; color: #595959; text-align: center">Already a client? <a href="Main.dc.html" style="font-weight: 600">Sign in</a></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#0E6B5C","options":["#0E6B5C","#1F4FB8","#B4471B","#161616"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#0E6B5C' };
+  }
+}
+</script>
+</body>
+</html>

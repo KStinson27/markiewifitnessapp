@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Challenge Builder</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0E6B5C}a:hover{color:#0A4F44}
+</style>
+</helmet>
+<div style="min-height: 900px; box-sizing: border-box; background: #F5F5F2; font-family: Inter, system-ui, sans-serif; color: #161616; padding: 32px">
+<div style="max-width: 1216px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+<div><a href="CoachDashboard.dc.html" style="font-size: 14px; text-decoration: none">Challenges</a><h1 style="margin: 4px 0 0; font-size: 28px; font-weight: 700">New challenge</h1></div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600">Clone a past challenge</button>
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600">Save as template</button>
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 0; background: {{accent}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600">Publish</button>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<div style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+<section style="background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-size: 17px">1. Basics</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Name<input value="Holiday Hustle Challenge" style="height: 44px; border: 1px solid #CFCFC8; border-radius: 10px; padding: 0 12px; font: inherit; font-weight: 400"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Starts<input value="Nov 16, 2026" style="height: 44px; border: 1px solid #CFCFC8; border-radius: 10px; padding: 0 12px; font: inherit; font-weight: 400"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600">Ends<input value="Dec 15, 2026" style="height: 44px; border: 1px solid #CFCFC8; border-radius: 10px; padding: 0 12px; font: inherit; font-weight: 400"></label>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px">
+<span style="font-weight: 600; margin-right: 8px; align-self: center">Format</span>
+<button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit">Individual</button>
+<button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 20px; border: 2px solid {{accent}}; background: #E4F0ED; font: inherit; font-weight: 600">Teams (auto-balance)</button>
+<button type="button" style="min-height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit">Community goal</button>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 17px">2. Daily habits &amp; scoring</h2>
+<p style="margin: 0; font-size: 14px; color: #404040; padding: 10px 12px; border-radius: 10px; background: #F0F5F4">Set once. Every participant gets these habits automatically for the full challenge, including people who join late. No per-person setup.</p>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 520px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="text-align: left; color: #595959; font-size: 12px"><th style="padding: 8px 8px 8px 0; font-weight: 600">Habit / metric</th><th style="padding: 8px; font-weight: 600">Target</th><th style="padding: 8px; font-weight: 600">Data source</th><th style="padding: 8px; font-weight: 600">Points / day</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #EEEEEA"><td style="padding: 12px 8px 12px 0">Steps</td><td style="padding: 8px">8,000</td><td style="padding: 8px">Apple Health, or manual</td><td style="padding: 8px">10</td></tr>
+<tr style="border-top: 1px solid #EEEEEA"><td style="padding: 12px 8px 12px 0">Drink water</td><td style="padding: 8px">80 oz</td><td style="padding: 8px">Check-off</td><td style="padding: 8px">5</td></tr>
+<tr style="border-top: 1px solid #EEEEEA"><td style="padding: 12px 8px 12px 0">Movement</td><td style="padding: 8px">20 min</td><td style="padding: 8px">Workout log or Apple Health</td><td style="padding: 8px">10</td></tr>
+<tr style="border-top: 1px solid #EEEEEA"><td style="padding: 12px 8px 12px 0">Class attended (bonus)</td><td style="padding: 8px">—</td><td style="padding: 8px">Calendly / Eventbrite check-in</td><td style="padding: 8px">15</td></tr>
+</tbody>
+</table>
+</div>
+<button type="button" style="align-self: flex-start; min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px dashed #A8A8A0; background: transparent; font: inherit; font-size: 14px; font-weight: 600">+ Add habit or metric</button>
+</section>
+
+<section style="background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 17px">3. Who can join</h2>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px"><input type="checkbox" checked style="width: 20px; height: 20px; accent-color: {{accent}}">Add all active clients (20)</label>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px"><input type="checkbox" style="width: 20px; height: 20px; accent-color: {{accent}}">Add clients tagged: <span style="padding: 3px 8px; border-radius: 10px; background: #EEEEEA; font-size: 12px">Small Group</span></label>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px"><input type="checkbox" checked style="width: 20px; height: 20px; accent-color: {{accent}}">Open to the public with a join link (Community Members)</label>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 12px; border: 1px solid #E2E2DD; border-radius: 10px">
+<div style="width: 88px; height: 88px; background: #DADAD4; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #404040">[QR code]</div>
+<div style="flex: 1; min-width: 200px; font-size: 14px"><div style="font-weight: 600">join.markiewifitness.com/holiday-hustle</div><div style="color: #595959; margin-top: 4px">Share on flyers, Eventbrite listings and social media</div></div>
+<button type="button" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600">Copy link</button>
+</div>
+</section>
+</div>
+
+<aside style="flex: 1 1 280px; min-width: 0; background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
+<h2 style="margin: 0; font-size: 17px">Summary</h2>
+<div style="display: flex; justify-content: space-between"><span style="color: #595959">Length</span><span>30 days</span></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #595959">Max points / day</span><span>40</span></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #595959">Participants</span><span>20 clients + public</span></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #595959">Teams</span><span>4, auto-balanced</span></div>
+<div style="display: flex; justify-content: space-between"><span style="color: #595959">Entry</span><span>Free</span></div>
+<div style="border-top: 1px solid #EEEEEA; padding-top: 10px; color: #404040">Participants get a notification on start day, daily reminders (they can mute them), and a summary when the challenge ends.</div>
+</aside>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#0E6B5C","options":["#0E6B5C","#1F4FB8","#B4471B","#161616"]},"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#0E6B5C' };
+  }
+}
+</script>
+</body>
+</html>

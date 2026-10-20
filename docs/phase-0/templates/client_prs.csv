@@ -1,0 +1,4 @@
+client_email,exercise_name,record_type,value,unit,reps,date,notes
+jane@example.com,Barbell Deadlift,working_weight,185,lb,5,2026-10-01,3x5
+jane@example.com,Barbell Back Squat,one_rep_max,165,lb,1,2026-09-20,
+jane@example.com,Body Weight,measurement,162,lb,,2026-10-15,

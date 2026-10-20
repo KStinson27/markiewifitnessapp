@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Coach Dashboard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0E6B5C}a:hover{color:#0A4F44}
+</style>
+</helmet>
+<div style="min-height: 900px; box-sizing: border-box; display: flex; flex-wrap: wrap; background: #F5F5F2; font-family: Inter, system-ui, sans-serif; color: #161616">
+<nav aria-label="Dashboard" style="flex: 1 1 220px; max-width: 100%; box-sizing: border-box; padding: 24px 16px; background: #FFFFFF; border-right: 1px solid #E2E2DD; display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 15px; font-weight: 700; letter-spacing: 0.04em; padding: 0 12px 16px">[MARKIEWI FITNESS]</div>
+<a href="CoachDashboard.dc.html" style="min-height: 40px; display: flex; align-items: center; padding: 0 12px; border-radius: 8px; background: #E4F0ED; color: #0A4F44; font-weight: 600; font-size: 14px; text-decoration: none">Home</a>
+<a href="#" style="min-height: 40px; display: flex; align-items: center; padding: 0 12px; font-size: 14px; color: #404040; text-decoration: none">Clients</a>
+<a href="ProgramBuilder.dc.html" style="min-height: 40px; display: flex; align-items: center; padding: 0 12px; font-size: 14px; color: #404040; text-decoration: none">Programs</a>
+<a href="#" style="min-height: 40px; display: flex; align-items: center; padding: 0 12px; font-size: 14px; color: #404040; text-decoration: none">Exercise library</a>
+<a href="ChallengeBuilder.dc.html" style="min-height: 40px; display: flex; align-items: center; padding: 0 12px; font-size: 14px; color: #404040; text-decoration: none">Challenges</a>
+<a href="#" style="min-height: 40px; display: flex; align-items: center; padding: 0 12px; font-size: 14px; color: #404040; text-decoration: none">Messages</a>
+<a href="#" style="min-height: 40px; display: flex; align-items: center; padding: 0 12px; font-size: 14px; color: #404040; text-decoration: none">Billing</a>
+<a href="#" style="min-height: 40px; display: flex; align-items: center; padding: 0 12px; font-size: 14px; color: #404040; text-decoration: none">Settings</a>
+</nav>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+<h1 style="margin: 0; font-size: 28px; font-weight: 700">Good morning, Coach</h1>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid #CFCFC8; background: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600">Invite client</button>
+<button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 0; background: {{accent}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600">Broadcast message</button>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 16px"><div style="font-size: 13px; color: #595959">Active clients</div><div style="font-size: 30px; font-weight: 700; margin-top: 4px">20</div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 16px"><div style="font-size: 13px; color: #595959">Check-ins to review</div><div style="font-size: 30px; font-weight: 700; margin-top: 4px">5</div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 16px"><div style="font-size: 13px; color: #595959">Unread messages</div><div style="font-size: 30px; font-weight: 700; margin-top: 4px">3</div></div>
+<div style="background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 16px"><div style="font-size: 13px; color: #595959">Needs attention</div><div style="font-size: 30px; font-weight: 700; margin-top: 4px; color: #A33A12">2</div></div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<section style="flex: 2 1 480px; min-width: 0; background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 20px">
+<h2 style="margin: 0 0 12px; font-size: 17px">Clients</h2>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 560px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="text-align: left; color: #595959; font-size: 12px"><th style="padding: 8px 8px 8px 0; font-weight: 600">Client</th><th style="padding: 8px; font-weight: 600">Program</th><th style="padding: 8px; font-weight: 600">Workouts (7d)</th><th style="padding: 8px; font-weight: 600">Nutrition</th><th style="padding: 8px; font-weight: 600">Last active</th><th style="padding: 8px; font-weight: 600">Flag</th></tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #EEEEEA"><td style="padding: 12px 8px 12px 0; font-weight: 600">Jordan R.</td><td style="padding: 8px">Strength Foundations · W3</td><td style="padding: 8px">3 / 3</td><td style="padding: 8px">Macros · 6/7 days</td><td style="padding: 8px">Today</td><td style="padding: 8px">—</td></tr>
+<tr style="border-top: 1px solid #EEEEEA"><td style="padding: 12px 8px 12px 0; font-weight: 600">Alicia W.</td><td style="padding: 8px">Fat Loss · W6</td><td style="padding: 8px">2 / 4</td><td style="padding: 8px">Portions · 4/7 days</td><td style="padding: 8px">Yesterday</td><td style="padding: 8px">—</td></tr>
+<tr style="border-top: 1px solid #EEEEEA"><td style="padding: 12px 8px 12px 0; font-weight: 600">Chris M.</td><td style="padding: 8px">Return to Run · W2</td><td style="padding: 8px">0 / 3</td><td style="padding: 8px">Habits · 1/7 days</td><td style="padding: 8px">6 days ago</td><td style="padding: 8px"><span style="font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 10px; background: #FBE7DE; color: #8A2E0C">Inactive</span></td></tr>
+<tr style="border-top: 1px solid #EEEEEA"><td style="padding: 12px 8px 12px 0; font-weight: 600">Dana K.</td><td style="padding: 8px">Hybrid · W1</td><td style="padding: 8px">2 / 3</td><td style="padding: 8px">Macros · 7/7 days</td><td style="padding: 8px">Today</td><td style="padding: 8px"><span style="font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 10px; background: #FBE7DE; color: #8A2E0C">Past due</span></td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 1px solid #E2E2DD; border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 17px">Review inbox</h2>
+<div style="border-bottom: 1px solid #EEEEEA; padding-bottom: 12px"><div style="font-weight: 600; font-size: 14px">Weekly check-in · Alicia W.</div><div style="font-size: 13px; color: #595959">Energy 3/5 · sleep down · 2 photos</div></div>
+<div style="border-bottom: 1px solid #EEEEEA; padding-bottom: 12px"><div style="font-weight: 600; font-size: 14px">New PR · Jordan R.</div><div style="font-size: 13px; color: #595959">Back squat 160 × 8</div></div>
+<div style="border-bottom: 1px solid #EEEEEA; padding-bottom: 12px"><div style="font-weight: 600; font-size: 14px">Message · Dana K.</div><div style="font-size: 13px; color: #595959">"Can we swap Thursday's run for…"</div></div>
+<a href="#" style="font-size: 14px; font-weight: 600; min-height: 44px; display: flex; align-items: center; text-decoration: none; color: {{accent}}">Open inbox</a>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#0E6B5C","options":["#0E6B5C","#1F4FB8","#B4471B","#161616"]},"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#0E6B5C' };
+  }
+}
+</script>
+</body>
+</html>

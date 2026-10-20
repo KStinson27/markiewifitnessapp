@@ -1,0 +1,4 @@
+program_name,phase,week,day,workout_name,order,group,exercise_name,sets,reps,load,tempo,rest_seconds,rpe,notes
+Strength Foundations,1,1,1,Lower A,1,A1,Barbell Back Squat,3,8,65%,3-1-1,120,7,
+Strength Foundations,1,1,1,Lower A,2,B1,Romanian Deadlift,3,10,,,,7,Superset with B2
+Strength Foundations,1,1,1,Lower A,3,B2,Walking Lunge,3,12 each,DB 20 lb,,90,,
