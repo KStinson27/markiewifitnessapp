@@ -120,6 +120,10 @@ billing — with room to add contract coaches later.
   each with plan status (not planned / draft / ready / done); plan from a session template,
   by copying the client's last session, or blank. **Couples sessions** use one shared plan
   with weights set per person; each person's results go only to their own profile.
+- **Coach calendar & to-dos:** one Day/Week/Month calendar per coach combining Calendly 1:1 and
+  couples sessions (with session-plan status), classes from Calendly/Eventbrite (with bookings),
+  and the coach's own to-dos (all-day or timed, optionally linked to a client, with reminders);
+  filters per type; a to-do list beside it with quick add and done/undo.
 - **Session results for clients:** after a session, the client sees it under *My profile →
   Sessions*: their own sets and weights, PRs, and the coach notes marked as shared. Results
   are released only after the coach reviews them ("End & review" → share).
@@ -181,6 +185,7 @@ session_templates(audience: 1:1 | couple | any)
           → session_participants(client, per-exercise load overrides)
           → session_logs(per participant) → set_logs (shared with program logs for history/PRs)
 session_notes(participant | all, shared_with_client)   -- RLS: a client reads only their own logs
+coach_tasks(coach, title, due_date, due_time?, all_day, client?, reminder_at?, done_at)
 
 nutrition_targets, meal_plans, foods(cache), food_logs, water_logs
 habits(scope: client | challenge) → habit_assignments → habit_logs
