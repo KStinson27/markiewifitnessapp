@@ -113,6 +113,12 @@ billing — with room to add contract coaches later.
   do together in person; it is built from separate session templates, attached to a Calendly
   1:1 or semi-private booking, run in coach-led session mode, and never changes the
   program. Both feed the client's workout history and PRs.
+- **Session planner:** week view of Calendly sessions (a client may have several per week),
+  each with plan status (not planned / draft / ready / done); plan from a session template,
+  by copying the client's last session, or blank. **Couples sessions** use one shared plan
+  with weights set per person; each person's results go only to their own profile.
+- **Session results for clients:** after a session, the client sees it under *My profile →
+  Sessions*: their own sets and weights, PRs, and the coach notes marked as shared.
 - **Program templates:** reusable templates (weeks, days/week, level, equipment, tags) in a
   template library; edit, duplicate, and assign.
 - **Calendar assignment:** per-client month/week calendar; drag a template onto a start date,
@@ -158,9 +164,11 @@ exercises → workout_templates → programs(phases, weeks, client_selectable, t
           → program_assignments(start_date, training_days, overlap_mode, source: coach | client_request)
           → scheduled_workouts → workout_logs → set_logs
 program_requests(client, program, start_date, training_days, status)
-session_templates → session_plans(clients[], external_booking, date, status)
-          → session_logs → set_logs (shared with program logs for history/PRs)
-session_notes(shared_with_client)
+session_templates(audience: 1:1 | couple | any)
+          → session_plans(external_booking, date, focus, status: none | draft | ready | done)
+          → session_participants(client, per-exercise load overrides)
+          → session_logs(per participant) → set_logs (shared with program logs for history/PRs)
+session_notes(participant | all, shared_with_client)   -- RLS: a client reads only their own logs
 
 nutrition_targets, meal_plans, foods(cache), food_logs, water_logs
 habits(scope: client | challenge) → habit_assignments → habit_logs

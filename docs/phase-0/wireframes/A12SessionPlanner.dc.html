@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Session Planner</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 1000px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 24px; background: {{primary}}; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.event}}"></path></svg>
+<div style="flex: 1; font-size: 20px; font-weight: 500">Session planner</div>
+<span style="font-size: 13px; opacity: 0.9; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.sync}}"></path></svg>Synced from Calendly · 3 min ago</span>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 24px; background: #FFFFFF; border-bottom: 1px solid rgba(0,0,0,0.12)">
+<button type="button" aria-label="Previous week" style="width: 40px; height: 40px; border: 0; border-radius: 20px; background: transparent; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.left}}"></path></svg></button>
+<h1 style="margin: 0; font-size: 20px; font-weight: 500">Oct 19 – 25, 2026</h1>
+<button type="button" aria-label="Next week" style="width: 40px; height: 40px; border: 0; border-radius: 20px; background: transparent; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.right}}"></path></svg></button>
+<span style="font-size: 14px; color: rgba(0,0,0,0.6)">6 sessions · 2 not planned</span>
+<span style="flex: 1"></span>
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{f.on}}" style="height: 32px; padding: 0 12px; border-radius: 16px; border: 1px solid {{f.border}}; background: {{f.bg}}; color: {{f.fg}}; font: inherit; font-size: 13px">{{f.label}}</button>
+</sc-for>
+</div>
+
+<main style="width: 100%; max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<div style="flex: 3 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="5">
+<section style="background: #FFFFFF; border-radius: 4px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 12px 16px; font-size: 14px; font-weight: 500; color: rgba(0,0,0,0.6); text-transform: uppercase; letter-spacing: 0.04em">{{d.label}}</h2>
+<sc-for list="{{d.sessions}}" as="s" hint-placeholder-count="2">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; min-height: 72px; padding: 8px 16px; border-top: 1px solid rgba(0,0,0,0.12); background: {{s.rowBg}}">
+<div style="width: 72px; font-size: 14px; font-weight: 500">{{s.time}}</div>
+<div style="display: flex; flex-shrink: 0">
+<sc-for list="{{s.people}}" as="p" hint-placeholder-count="1"><span style="width: 36px; height: 36px; border-radius: 18px; border: 2px solid #FFFFFF; margin-right: -8px; background: {{p.bg}}; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500">{{p.i}}</span></sc-for>
+</div>
+<div style="flex: 1 1 200px; min-width: 0; padding-left: 8px">
+<div style="font-size: 15px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap">{{s.who}}<sc-if value="{{s.couple}}" hint-placeholder-val="{{false}}"><span style="height: 22px; padding: 0 8px; border-radius: 11px; background: #E3E1EC; color: #2E2A47; font-size: 12px; font-weight: 500; display: flex; align-items: center">Couple</span></sc-if></div>
+<div style="font-size: 13px; color: rgba(0,0,0,0.6)">{{s.sub}}</div>
+</div>
+<span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 13px; background: {{s.chipBg}}; color: {{s.chipFg}}; font-size: 13px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{s.chipIcon}}"></path></svg>{{s.status}}</span>
+<button type="button" style="height: 36px; min-width: 88px; padding: 0 12px; border-radius: 4px; border: {{s.btnBorder}}; background: {{s.btnBg}}; color: {{s.btnFg}}; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase">{{s.action}}</button>
+</div>
+</sc-for>
+</section>
+</sc-for>
+</div>
+
+<div style="flex: 2 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<section style="background: #FFFFFF; border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)">
+<div><div style="font-size: 13px; color: rgba(0,0,0,0.6)">Tue Oct 20 · 6:30 PM · Couple session</div><h2 style="margin: 2px 0 0; font-size: 20px; font-weight: 500">Plan · Alex &amp; Sam Chen</h2></div>
+<div role="group" aria-label="Start from" style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" style="height: 32px; padding: 0 12px; border-radius: 16px; border: 0; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 13px">Template: Partner circuit</button>
+<button type="button" style="height: 32px; padding: 0 12px; border-radius: 16px; border: 1px solid #BDBDBD; background: transparent; font: inherit; font-size: 13px">Copy last session (Oct 16)</button>
+<button type="button" style="height: 32px; padding: 0 12px; border-radius: 16px; border: 1px solid #BDBDBD; background: transparent; font: inherit; font-size: 13px">Blank</button>
+</div>
+<label style="position: relative; display: block"><span style="position: absolute; top: -8px; left: 10px; padding: 0 4px; background: #FFFFFF; font-size: 12px; color: rgba(0,0,0,0.6)">Focus for today</span><input value="Hinge pattern + conditioning finisher" style="width: 100%; box-sizing: border-box; height: 48px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; padding: 0 14px; font: inherit; font-size: 15px"></label>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 340px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="text-align: left"><th style="padding: 8px 8px 8px 0; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Exercise</th><th style="padding: 8px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Sets × reps</th><th style="padding: 8px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Alex</th><th style="padding: 8px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Sam</th></tr></thead>
+<tbody>
+<sc-for list="{{plan}}" as="x" hint-placeholder-count="4">
+<tr><td style="padding: 10px 8px 10px 0; border-bottom: 1px solid rgba(0,0,0,0.12)">{{x.name}}</td><td style="padding: 10px 8px; border-bottom: 1px solid rgba(0,0,0,0.12); color: rgba(0,0,0,0.6)">{{x.rx}}</td><td style="padding: 10px 8px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{x.a}}</td><td style="padding: 10px 8px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{x.b}}</td></tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<button type="button" style="align-self: flex-start; height: 32px; padding: 0 8px; border: 0; background: transparent; color: {{primary}}; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.add}}"></path></svg>Add exercise</button>
+<div style="display: flex; gap: 10px; padding: 10px 12px; border-radius: 4px; background: #E5F6FD; color: #014361; font-size: 13px; line-height: 1.45"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#0288D1" style="flex-shrink: 0"><path d="{{ic.info}}"></path></svg>One shared plan, with weights set per person. Each person's results go to their own profile, and neither sees the other's numbers.</div>
+<label style="display: flex; align-items: center; gap: 10px; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: {{primary}}">Share results &amp; notes with clients after the session</label>
+<div style="display: flex; justify-content: flex-end; gap: 8px">
+<button type="button" style="height: 36px; padding: 0 14px; border: 0; border-radius: 4px; background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase">Save as template</button>
+<button type="button" style="height: 36px; padding: 0 16px; border: 0; border-radius: 4px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase">Mark ready</button>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="display: flex; align-items: center; padding: 8px 8px 8px 16px"><h2 style="flex: 1; margin: 0; font-size: 16px; font-weight: 500">Session templates</h2><button type="button" style="height: 32px; padding: 0 8px; border: 0; background: transparent; color: {{primary}}; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em">New</button></div>
+<sc-for list="{{templates}}" as="t" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 16px; border-top: 1px solid rgba(0,0,0,0.12)"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{t.icon}}"></path></svg><div style="flex: 1; min-width: 0"><div style="font-size: 14px">{{t.name}}</div><div style="font-size: 12px; color: rgba(0,0,0,0.6)">{{t.meta}}</div></div></div>
+</sc-for>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      event: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z',
+      sync: 'M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z',
+      left: 'M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z',
+      right: 'M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z',
+      ok: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
+      edit: 'M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z',
+      empty: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z',
+      done: 'M18 7l-1.41-1.41-6.34 6.34 1.41 1.41L18 7zm4.24-1.41L11.66 16.17 7.48 12l-1.41 1.41L11.66 19l12-12-1.42-1.41zM.41 13.41L6 19l1.41-1.41L1.83 12 .41 13.41z',
+      add: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z',
+      info: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z',
+      fitness: 'M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z',
+      people: 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z',
+      spa: 'M8.55 12c-1.07-.71-2.25-1.27-3.53-1.61 1.28.34 2.46.9 3.53 1.61zm10.43-1.61c-1.29.34-2.49.91-3.57 1.64 1.08-.73 2.28-1.3 3.57-1.64zM15.49 9.63c-.18-2.79-1.31-5.51-3.43-7.63-2.14 2.14-3.32 4.86-3.55 7.63 1.28.68 2.46 1.56 3.49 2.63 1.03-1.06 2.21-1.94 3.49-2.63zM12 15.45C9.85 12.17 6.18 10 2 10c0 5.32 3.36 9.82 8.03 11.49.63.23 1.29.4 1.97.51.68-.12 1.33-.29 1.97-.51C18.64 19.82 22 15.32 22 10c-4.18 0-7.85 2.17-10 5.45z',
+      assess: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z'
+    };
+    const filters = ['All', 'Not planned', 'Couples', '1:1'].map((label, i) => ({
+      label, on: i === 0, bg: i === 0 ? primary : 'transparent', fg: i === 0 ? '#FFFFFF' : 'rgba(0,0,0,0.87)', border: i === 0 ? primary : '#BDBDBD'
+    }));
+    const st = {
+      done: { status: 'Done · results shared', chipBg: '#EEEEEE', chipFg: 'rgba(0,0,0,0.75)', chipIcon: ic.done, action: 'View', btnBorder: '1px solid #BDBDBD', btnBg: 'transparent', btnFg: 'rgba(0,0,0,0.87)' },
+      ready: { status: 'Ready', chipBg: '#E8F5E9', chipFg: '#1B5E20', chipIcon: ic.ok, action: 'Edit', btnBorder: '1px solid rgba(0,106,96,0.5)', btnBg: 'transparent', btnFg: primary },
+      draft: { status: 'Draft', chipBg: '#E5F6FD', chipFg: '#014361', chipIcon: ic.edit, action: 'Edit', btnBorder: '1px solid rgba(0,106,96,0.5)', btnBg: 'transparent', btnFg: primary },
+      none: { status: 'Not planned', chipBg: '#FFF4E5', chipFg: '#663C00', chipIcon: ic.empty, action: 'Plan', btnBorder: '0', btnBg: primary, btnFg: '#FFFFFF' }
+    };
+    const jr = { i: 'JR', bg: '#9EF2E4' }, ms = { i: 'MS', bg: '#E3E1EC' }, ac = { i: 'AC', bg: '#F2E0D9' }, sc = { i: 'SC', bg: '#FFE0B2' };
+    const mk = (time, people, who, sub, state, extra) => ({ time, people, who, sub, couple: people.length > 1, rowBg: (extra && extra.selected) ? '#E3F2EF' : 'transparent', ...st[state] });
+    const days = [
+      { label: 'Mon, Oct 19', sessions: [
+        mk('6:00 AM', [ms], 'Maria S.', '1st of 2 this week · Upper strength', 'done'),
+        mk('7:00 AM', [jr], 'Jordan R.', '1st of 2 this week · Lower body strength', 'done')
+      ] },
+      { label: 'Tue, Oct 20 · Today', sessions: [
+        mk('6:30 PM', [ac, sc], 'Alex & Sam Chen', '1st of 2 this week · Partner circuit', 'draft', { selected: true })
+      ] },
+      { label: 'Wed, Oct 21', sessions: [
+        mk('6:00 AM', [ms], 'Maria S.', '2nd of 2 this week', 'none')
+      ] },
+      { label: 'Thu, Oct 22', sessions: [
+        mk('7:00 AM', [jr], 'Jordan R.', '2nd of 2 this week · Lower body strength', 'ready')
+      ] },
+      { label: 'Fri, Oct 23', sessions: [
+        mk('5:30 PM', [ac, sc], 'Alex & Sam Chen', '2nd of 2 this week', 'none')
+      ] }
+    ];
+    const plan = [
+      { name: 'Kettlebell Deadlift', rx: '3 × 10', a: '53 lb', b: '35 lb' },
+      { name: 'Partner Med-ball Pass', rx: '3 × 40 s', a: '14 lb', b: '10 lb' },
+      { name: 'Single-leg RDL', rx: '3 × 8 each', a: '25 lb', b: '15 lb' },
+      { name: 'Sled Push relay', rx: '4 × 20 m', a: '+90 lb', b: '+50 lb' }
+    ];
+    const templates = [
+      { name: 'Lower body strength', meta: '1:1 · 6 exercises · 55 min', icon: ic.fitness },
+      { name: 'Upper strength', meta: '1:1 · 6 exercises · 55 min', icon: ic.fitness },
+      { name: 'Partner circuit', meta: 'Couples · 5 exercises · per-person weights', icon: ic.people },
+      { name: 'Mobility & recovery', meta: 'Any · 40 min', icon: ic.spa },
+      { name: 'Assessment session', meta: 'New clients · tests & baseline measurements', icon: ic.assess }
+    ];
+    return { primary, ic, filters, days, plan, templates };
+  }
+}
+</script>
+</body>
+</html>

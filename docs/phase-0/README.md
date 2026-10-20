@@ -64,3 +64,5 @@ Two versions, both with a placeholder teal accent until the brand kit arrives. F
 | A9 · Units & account (export, deletion) | `A9Account.dc.html` |
 | A10 · Business reports | `A10Reports.dc.html` |
 | A11 · Email & domain (SPF/DKIM/DMARC) | `A11EmailDomain.dc.html` |
+| A12 · Session planner (week view, couples, session templates) | `A12SessionPlanner.dc.html` |
+| A13 · Client: session results & notes | `A13SessionResults.dc.html` |

@@ -21,6 +21,8 @@ leaving Trainerize will need. Grouped by recommendation.
 | A9 | **Units & profile settings** — lb/kg, in/cm, time zone, account deletion, data export | Required by Apple (deletion) and privacy laws (export). Online clients are in other time zones. |
 | A10 | **Basic business reports** — active clients, adherence, check-in completion, churn, revenue per coach | Answers "how is the business doing?" without a spreadsheet. |
 | A11 | **Email deliverability setup** — SPF/DKIM/DMARC on the domain for receipts and magic links | Without it, sign-in links go to spam. Small, but blocks login if missed. |
+| A12 | **Session planner** — week of Calendly sessions with plan status, session templates, couples sessions with per-person weights | Several sessions per client per week and couples clients need planning ahead of time |
+| A13 | **Session results for clients** — each client sees their own results and shared coach notes after a session | Clients keep a record of in-person work; partners never see each other's numbers |
 
 ## B. Recommend shortly after launch
 
