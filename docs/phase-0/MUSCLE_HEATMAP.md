@@ -3,9 +3,9 @@
 Source asset: **Human Anatomy Advanced v3.0** (`human_anatomy_advanced_v3.0.riv`, Rive) by
 Fitness Visuals, supplied by the owner with sample apps (Next.js, SwiftUI, Kotlin, Flutter).
 
-> **Licence:** confirm the purchase licence covers use in a commercial app distributed through
-> the App Store / Play Store and storage in our private repository. The `.riv` file is **not
-> committed** until that is confirmed. The wireframe canvas uses preview renders only.
+> **Licence:** the owner confirmed (2026-10-20) the purchase covers commercial app use. The
+> file is stored at `assets/rive/human_anatomy_advanced_v3.0.riv`; do not redistribute it
+> outside this project.
 
 ## What the file provides
 - Four artboards: `Male-Front`, `Male-Back`, `Female-Front`, `Female-Back`.
