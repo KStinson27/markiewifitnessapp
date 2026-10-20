@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Challenge · Material</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4FBF8; font-family: Roboto, system-ui, sans-serif; color: #161D1C">
+<header style="display: flex; align-items: center; gap: 4px; height: 64px; padding: 0 4px; flex-shrink: 0">
+<a href="M3Today.dc.html" aria-label="Back" style="width: 48px; height: 48px; border-radius: 24px; color: #161D1C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></a>
+<h1 style="flex: 1; margin: 0; font-size: 22px; font-weight: 400">Fall Reset Challenge</h1>
+<button type="button" aria-label="Share challenge" style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: transparent; color: #3F4947; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.share}}"></path></svg></button>
+</header>
+
+<div style="flex: 1; overflow: auto; padding: 4px 16px 16px; display: flex; flex-direction: column; gap: 12px">
+<section style="background: {{primary}}; color: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 12px"><svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.trophy}}"></path></svg><div style="flex: 1"><div style="font-size: 14px; opacity: 0.9">Team Kettlebell · Rank #4 of 23</div><div style="font-size: 24px">231 pts</div></div></div>
+<div style="height: 4px; border-radius: 2px; background: rgba(255,255,255,0.35)"><div style="width: 30%; height: 4px; border-radius: 2px; background: #FFFFFF"></div></div>
+<div style="font-size: 13px; opacity: 0.9">Day 9 of 30 · Oct 12 – Nov 10</div>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 16px; padding: 8px 0; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="display: flex; justify-content: space-between; padding: 8px 16px; font-size: 14px; font-weight: 500; color: #3F4947"><span>Today</span><span>10 / 30 pts</span></div>
+<div style="display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 0 16px"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.walk}}"></path></svg><div style="flex: 1"><div style="font-size: 16px">10,000 steps</div><div style="height: 4px; border-radius: 2px; background: #DAE5E1; margin-top: 8px"><div style="width: 64%; height: 4px; border-radius: 2px; background: {{primary}}"></div></div></div><span style="font-size: 12px; color: #3F4947">6,412 · auto</span></div>
+<label style="display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 0 16px"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.food}}"></path></svg><span style="flex: 1; font-size: 16px">Log all meals · 10 pts</span><input type="checkbox" checked style="width: 20px; height: 20px; accent-color: {{primary}}"></label>
+<label style="display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 0 16px"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.mobility}}"></path></svg><span style="flex: 1; font-size: 16px">10 min mobility · 10 pts</span><input type="checkbox" style="width: 20px; height: 20px; accent-color: {{primary}}"></label>
+</section>
+
+<div role="group" aria-label="Leaderboard view" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border: 1px solid #6F7977; border-radius: 20px; overflow: hidden; height: 40px">
+<button type="button" style="border: 0; border-right: 1px solid #6F7977; background: #CCE8E2; color: #051F1C; font: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.check}}"></path></svg>Individuals</button>
+<button type="button" style="border: 0; background: transparent; color: #161D1C; font: inherit; font-size: 14px; font-weight: 500">Teams</button>
+</div>
+
+<section style="background: #FFFFFF; border-radius: 16px; padding: 4px 0; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<sc-for list="{{board}}" as="p" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 14px; min-height: 56px; padding: 0 16px; background: {{p.bg}}">
+<span style="width: 20px; font-size: 14px; font-weight: 500; color: #3F4947">{{p.rank}}</span>
+<span style="width: 36px; height: 36px; border-radius: 18px; background: {{p.avatar}}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500">{{p.initials}}</span>
+<span style="flex: 1; font-size: 16px">{{p.name}}<span style="font-size: 12px; color: #3F4947">{{p.tag}}</span></span>
+<span style="font-size: 16px; font-weight: 500">{{p.pts}}</span>
+</div>
+</sc-for>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="display: flex; align-items: center; gap: 12px"><span style="width: 36px; height: 36px; border-radius: 18px; background: #E3E1EC; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500">MS</span><div style="flex: 1"><div style="font-size: 14px; font-weight: 500">Maria S.</div><div style="font-size: 12px; color: #3F4947">2h ago</div></div></div>
+<div style="font-size: 14px">Hit a 7-day streak on all three habits!</div>
+<div style="display: flex; gap: 8px">
+<button type="button" style="height: 32px; padding: 0 12px 0 8px; border-radius: 8px; border: 1px solid #6F7977; background: transparent; font: inherit; font-size: 14px; font-weight: 500; color: #3F4947; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#B3261E"><path d="{{ic.heart}}"></path></svg>8</button>
+<button type="button" style="height: 32px; padding: 0 12px 0 8px; border-radius: 8px; border: 1px solid #6F7977; background: transparent; font: inherit; font-size: 14px; font-weight: 500; color: #3F4947; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.chat}}"></path></svg>Comment</button>
+</div>
+</section>
+
+<label style="display: flex; align-items: center; gap: 12px; min-height: 56px; font-size: 16px"><span style="flex: 1">Show me on the leaderboard</span><input type="checkbox" role="switch" checked style="width: 22px; height: 22px; accent-color: {{primary}}"></label>
+</div>
+
+<nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 80px; background: #E9EFEC; flex-shrink: 0; padding-bottom: 8px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<a href="{{t.href}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #3F4947; font-size: 12px; font-weight: 500">
+<span style="width: 64px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: {{t.bg}}; color: {{t.fg}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{t.icon}}"></path></svg></span>{{t.label}}</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      share: 'M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z',
+      trophy: 'M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z',
+      walk: 'M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7',
+      food: 'M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z',
+      mobility: 'M20.5 6c-2.61.7-5.67 1-8.5 1s-5.89-.3-8.5-1L3 8c1.86.5 4 .83 6 1v13h2v-6h2v6h2V9c2-.17 4.14-.5 6-1l-.5-2zM12 6c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z',
+      check: 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z',
+      heart: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
+      chat: 'M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z',
+      fitness: 'M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z',
+      home: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z',
+      event: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z'
+    };
+    const board = [
+      { rank: 1, initials: 'MS', name: 'Maria S.', tag: '', pts: 262, avatar: '#E3E1EC', bg: 'transparent' },
+      { rank: 2, initials: 'DP', name: 'Dev P.', tag: ' · community', pts: 255, avatar: '#F2E0D9', bg: 'transparent' },
+      { rank: 3, initials: 'AW', name: 'Alicia W.', tag: '', pts: 240, avatar: '#DAE5E1', bg: 'transparent' },
+      { rank: 4, initials: 'JR', name: 'You', tag: '', pts: 231, avatar: '#9EF2E4', bg: '#E3F2EF' }
+    ];
+    const active = 'Challenges';
+    const tabs = [
+      { label: 'Today', href: 'M3Today.dc.html', icon: ic.home },
+      { label: 'Train', href: 'M3Workout.dc.html', icon: ic.fitness },
+      { label: 'Food', href: 'M3Food.dc.html', icon: ic.food },
+      { label: 'Challenges', href: 'M3Challenge.dc.html', icon: ic.trophy },
+      { label: 'Classes', href: 'M3Classes.dc.html', icon: ic.event }
+    ].map((t) => ({ ...t, bg: t.label === active ? '#CCE8E2' : 'transparent', fg: t.label === active ? '#051F1C' : '#3F4947' }));
+    return { primary: this.props.primary ?? '#006A60', ic, board, tabs };
+  }
+}
+</script>
+</body>
+</html>

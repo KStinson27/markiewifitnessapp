@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Food Log · Material</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4FBF8; font-family: Roboto, system-ui, sans-serif; color: #161D1C; position: relative">
+<div style="padding: 12px 16px 8px; flex-shrink: 0">
+<label style="display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 4px 0 16px; border-radius: 28px; background: #E3EAE7">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.search}}"></path></svg>
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden">Search foods</span>
+<input placeholder="Search foods" style="flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font: inherit; font-size: 16px">
+<button type="button" aria-label="Scan barcode" style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: transparent; color: #3F4947; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.barcode}}"></path></svg></button>
+<button type="button" aria-label="Log with photo" style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: transparent; color: #3F4947; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.camera}}"></path></svg></button>
+</label>
+</div>
+
+<div style="flex: 1; overflow: auto; padding: 8px 16px 96px; display: flex; flex-direction: column; gap: 12px">
+<section style="background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; align-items: center; gap: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="width: 96px; height: 96px; border-radius: 48px; background: conic-gradient({{primary}} 0 65%, #DAE5E1 65% 100%); display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<div style="width: 80px; height: 80px; border-radius: 40px; background: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 20px">660</span><span style="font-size: 11px; color: #3F4947">kcal left</span></div>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: #3F4947">
+<div>Protein 98 / 150 g<div style="height: 4px; border-radius: 2px; background: #DAE5E1; margin-top: 4px"><div style="width: 65%; height: 4px; border-radius: 2px; background: {{primary}}"></div></div></div>
+<div>Carbs 110 / 190 g<div style="height: 4px; border-radius: 2px; background: #DAE5E1; margin-top: 4px"><div style="width: 58%; height: 4px; border-radius: 2px; background: {{primary}}"></div></div></div>
+<div>Fat 42 / 63 g<div style="height: 4px; border-radius: 2px; background: #DAE5E1; margin-top: 4px"><div style="width: 67%; height: 4px; border-radius: 2px; background: {{primary}}"></div></div></div>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 16px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#2F6CA8"><path d="{{ic.water}}"></path></svg>
+<div style="flex: 1"><div style="font-size: 16px">Water</div><div style="font-size: 13px; color: #3F4947">64 of 100 oz</div></div>
+<button type="button" aria-label="Add 8 oz water" style="height: 40px; padding: 0 16px; border-radius: 20px; border: 0; background: #CCE8E2; color: #051F1C; font: inherit; font-size: 14px; font-weight: 500">+ 8 oz</button>
+</section>
+
+<sc-for list="{{meals}}" as="m" hint-placeholder-count="3">
+<section style="background: #FFFFFF; border-radius: 16px; padding: 4px 0; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 16px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#3F4947"><path d="{{m.icon}}"></path></svg><span style="flex: 1; font-size: 14px; font-weight: 500">{{m.name}}</span><span style="font-size: 14px; color: #3F4947">{{m.kcal}}</span></div>
+<sc-for list="{{m.items}}" as="it" hint-placeholder-count="2">
+<div style="display: flex; justify-content: space-between; min-height: 40px; align-items: center; padding: 0 16px 0 48px; font-size: 14px; border-top: 1px solid #EEF2F0"><span>{{it.n}}</span><span style="color: #3F4947">{{it.k}}</span></div>
+</sc-for>
+</section>
+</sc-for>
+<div style="font-size: 11px; color: #3F4947">Food data: USDA FoodData Central; Open Food Facts (ODbL).</div>
+</div>
+
+<button type="button" style="position: absolute; right: 16px; bottom: 96px; height: 56px; padding: 0 20px 0 16px; border: 0; border-radius: 16px; background: #9EF2E4; color: #00201C; font: inherit; font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 8px 3px rgba(0,0,0,0.15)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.add}}"></path></svg>Log food</button>
+
+<nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 80px; background: #E9EFEC; flex-shrink: 0; padding-bottom: 8px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<a href="{{t.href}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #3F4947; font-size: 12px; font-weight: 500">
+<span style="width: 64px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: {{t.bg}}; color: {{t.fg}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{t.icon}}"></path></svg></span>{{t.label}}</a>
+</sc-for>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ic = {
+      search: 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z',
+      barcode: 'M9.5 6.5v3h-3v-3h3M11 5H5v6h6V5zm-1.5 9.5v3h-3v-3h3M11 13H5v6h6v-6zm6.5-6.5v3h-3v-3h3M19 5h-6v6h6V5zm-6 8h1.5v1.5H13V13zm1.5 1.5H16V16h-1.5v-1.5zM16 13h1.5v1.5H16V13zm-3 3h1.5v1.5H13V16zm1.5 1.5H16V19h-1.5v-1.5zM16 16h1.5v1.5H16V16zm1.5-1.5H19V16h-1.5v-1.5zm0 3H19V19h-1.5v-1.5zM22 7h-2V4h-3V2h5v5zm0 15v-5h-2v3h-3v2h5zM2 22h5v-2H4v-3H2v5zM2 2v5h2V4h3V2H2z',
+      camera: 'M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zM9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z',
+      water: 'M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z',
+      add: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z',
+      sun: 'M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z',
+      lunch: 'M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z',
+      moon: 'M9.37 5.51c-.18.64-.27 1.31-.27 1.99 0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27C17.45 17.19 14.93 19 12 19c-3.86 0-7-3.14-7-7 0-2.93 1.81-5.45 4.37-6.49zM12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z',
+      fitness: 'M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z',
+      trophy: 'M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z',
+      food: 'M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z',
+      home: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z',
+      event: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z'
+    };
+    const meals = [
+      { name: 'Breakfast', kcal: '420 kcal', icon: ic.sun, items: [{ n: 'Greek yogurt, plain, 1 cup', k: '150' }, { n: 'Blueberries, 3/4 cup', k: '63' }, { n: 'Granola, 1/2 cup', k: '207' }] },
+      { name: 'Lunch', kcal: '820 kcal', icon: ic.lunch, items: [{ n: 'Chicken burrito bowl (photo)', k: '820' }] },
+      { name: 'Dinner', kcal: '—', icon: ic.moon, items: [] }
+    ];
+    const active = 'Food';
+    const tabs = [
+      { label: 'Today', href: 'M3Today.dc.html', icon: ic.home },
+      { label: 'Train', href: 'M3Workout.dc.html', icon: ic.fitness },
+      { label: 'Food', href: 'M3Food.dc.html', icon: ic.food },
+      { label: 'Challenges', href: 'M3Challenge.dc.html', icon: ic.trophy },
+      { label: 'Classes', href: 'M3Classes.dc.html', icon: ic.event }
+    ].map((t) => ({ ...t, bg: t.label === active ? '#CCE8E2' : 'transparent', fg: t.label === active ? '#051F1C' : '#3F4947' }));
+    return { primary: this.props.primary ?? '#006A60', ic, meals, tabs };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Join Challenge · Material</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4FBF8; font-family: Roboto, system-ui, sans-serif; color: #161D1C">
+<div style="flex: 1; overflow: auto; display: flex; flex-direction: column">
+<div style="height: 180px; background: #DAE5E1; color: #3F4947; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex-shrink: 0; position: relative">
+<svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.image}}"></path></svg><span style="font-size: 12px">[Challenge cover image]</span>
+<div style="position: absolute; top: 16px; left: 16px; height: 32px; padding: 0 12px; border-radius: 16px; background: rgba(255,255,255,0.92); display: flex; align-items: center; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: #161D1C">[MARKIEWI FITNESS]</div>
+</div>
+
+<div style="padding: 20px 16px; display: flex; flex-direction: column; gap: 16px">
+<div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<span style="height: 28px; padding: 0 10px; border-radius: 8px; background: #CCE8E2; color: #051F1C; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 4px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.check}}"></path></svg>Free</span>
+<span style="height: 28px; padding: 0 10px; border-radius: 8px; border: 1px solid #6F7977; color: #3F4947; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 4px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.event}}"></path></svg>Starts Nov 16 · 30 days</span>
+</div>
+<h1 style="margin: 12px 0 8px; font-size: 28px; font-weight: 400">Holiday Hustle Challenge</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #3F4947">Build three daily habits with the Markiewi Fitness community. Join solo or get placed on a team.</p>
+</div>
+
+<section style="background: #FFFFFF; border-radius: 16px; padding: 8px 0; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="display: flex; align-items: center; gap: 16px; min-height: 52px; padding: 0 16px"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.walk}}"></path></svg><span style="font-size: 15px">8,000 steps (Apple Health or manual)</span></div>
+<div style="display: flex; align-items: center; gap: 16px; min-height: 52px; padding: 0 16px"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.water}}"></path></svg><span style="font-size: 15px">Drink 80 oz water</span></div>
+<div style="display: flex; align-items: center; gap: 16px; min-height: 52px; padding: 0 16px"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.timer}}"></path></svg><span style="font-size: 15px">20 minutes of movement</span></div>
+</section>
+
+<form style="display: flex; flex-direction: column; gap: 18px; padding-top: 6px">
+<sc-for list="{{fields}}" as="f" hint-placeholder-count="3">
+<label style="position: relative; display: block">
+<span style="position: absolute; top: -8px; left: 12px; padding: 0 4px; background: #F4FBF8; font-size: 12px; color: #3F4947">{{f.label}}</span>
+<input type="{{f.type}}" placeholder="{{f.hint}}" style="width: 100%; box-sizing: border-box; height: 56px; border: 1px solid #6F7977; border-radius: 4px; padding: 0 16px; font: inherit; font-size: 16px; background: transparent">
+</label>
+</sc-for>
+<div style="height: 64px; border: 1px dashed #6F7977; border-radius: 4px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 12px; color: #3F4947"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.shield}}"></path></svg>[Cloudflare Turnstile check]</div>
+<label style="display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #3F4947; line-height: 1.4"><input type="checkbox" style="width: 20px; height: 20px; margin: 0; flex-shrink: 0; accent-color: {{primary}}">I agree to the Terms, Privacy Policy and challenge waiver.</label>
+<button type="button" style="height: 48px; border: 0; border-radius: 24px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.mail}}"></path></svg>Join free, email me a sign-in link</button>
+</form>
+<div style="font-size: 14px; color: #3F4947; text-align: center; padding-bottom: 8px">Already a client? <a href="M3Today.dc.html" style="font-weight: 500">Sign in</a></div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ic = {
+      image: 'M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z',
+      check: 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z',
+      event: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z',
+      walk: 'M13.5 5.5c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zM9.8 8.9L7 23h2.1l1.8-8 2.1 2v6h2v-7.5l-2.1-2 .6-3C14.8 12 16.8 13 19 13v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1L6 8.3V13h2V9.6l1.8-.7',
+      water: 'M12 2c-5.33 4.55-8 8.48-8 11.8 0 4.98 3.8 8.2 8 8.2s8-3.22 8-8.2c0-3.32-2.67-7.25-8-11.8z',
+      timer: 'M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z',
+      shield: 'M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z',
+      mail: 'M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'
+    };
+    const fields = [
+      { label: 'First name', type: 'text', hint: '' },
+      { label: 'Email', type: 'email', hint: '' },
+      { label: 'Leaderboard name', type: 'text', hint: 'e.g. Sam T.' }
+    ];
+    return { primary: this.props.primary ?? '#006A60', ic, fields };
+  }
+}
+</script>
+</body>
+</html>

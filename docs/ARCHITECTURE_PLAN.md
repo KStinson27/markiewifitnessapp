@@ -29,6 +29,9 @@ billing — with room to add contract coaches later.
 |---|---|---|
 | Mobile | React Native + Expo (EAS Build/Submit/Update) | One TypeScript codebase for iOS + Android |
 | Web | Next.js (React) on Cloudflare Pages / Workers | Coach/Admin dashboard and client web portal |
+| UI — web | **MUI (Material UI)** + MUI X Data Grid; `@mui/icons-material` | Material Design components for the staff dashboard and client web portal |
+| UI — mobile | **React Native Paper** (Material Design 3) + Material icons via `@expo/vector-icons` | MUI is web-only; Paper gives the same Material look on iOS/Android |
+| Design tokens | One shared theme package (colors, type, shape) feeding both MUI and Paper | Brand colors swapped in once the brand kit arrives |
 | Monorepo | Turborepo + pnpm | `apps/mobile`, `apps/web`, `packages/*` (types, validation, UI, api client) |
 | Backend | Supabase: Postgres, Auth, Storage, Realtime, Edge Functions | Standard Postgres, no lock-in |
 | Validation | Zod schemas shared by client and server | |
@@ -112,6 +115,9 @@ billing — with room to add contract coaches later.
 - **Communication:** private coach chat; shared Support inbox (Owner + Admins); broadcasts; push/email.
 - **Schedule:** Upcoming Classes synced from Calendly + Eventbrite with "Book" deep-links;
   1:1 sessions shown from Calendly.
+- **Class flyers:** Owner/Admin upload a flyer (JPG/PNG/PDF, ≤10 MB) per class or per recurring
+  class; the original is stored and a small thumbnail is generated for the class list; tapping
+  opens the full flyer. Challenges can also carry a cover image/flyer.
 - **Class packages:** balance per client, auto-decrement from bookings matched by email,
   admin attendance/no-show/manual adjust, low-balance alert and renewal link.
 - **Challenges:** challenge-scoped habits auto-applied to all participants for the challenge's
@@ -136,7 +142,8 @@ checkin_forms → checkin_responses; body_metrics; progress_photos
 conversations(kind: coach | support) → messages; notifications
 challenges → challenge_teams, challenge_participants, challenge_metrics,
              challenge_points, challenge_feed_items, reactions
-external_events(source: calendly | eventbrite) → external_bookings
+external_events(source: calendly | eventbrite, series_key) → external_bookings
+class_flyers(series_key | event_id, original_path, thumb_path)
 class_packages → package_ledger(purchase | booking | attendance | adjust | expiry)
 billing_customers, products, prices, subscriptions, payments(coach_id), invoices
 health_samples(source: apple_health | manual | garmin | oura)
@@ -197,7 +204,7 @@ MVP = Phases 0–7. Each task ships as its own reviewable pull request.
 ### Phase 5 — Communication & schedule
 - P5-1 Coach chat; Support inbox; broadcasts
 - P5-2 Push & email notifications
-- P5-3 Calendly + Eventbrite sync; Upcoming Classes
+- P5-3 Calendly + Eventbrite sync; Upcoming Classes; class flyer upload + thumbnails
 - P5-4 Class package tracker
 - P5-5 Review inbox & at-risk flags
 

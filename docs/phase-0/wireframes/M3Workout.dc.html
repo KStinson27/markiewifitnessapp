@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workout Player · Material</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4FBF8; font-family: Roboto, system-ui, sans-serif; color: #161D1C">
+<header style="display: flex; align-items: center; gap: 4px; height: 64px; padding: 0 4px; flex-shrink: 0">
+<a href="M3Today.dc.html" aria-label="Close workout" style="width: 48px; height: 48px; border-radius: 24px; color: #161D1C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.close}}"></path></svg></a>
+<div style="flex: 1"><div style="font-size: 18px">Lower Body A</div><div style="font-size: 12px; color: #3F4947">1 of 6 · 12:40 elapsed</div></div>
+<button type="button" style="height: 40px; padding: 0 12px; border: 0; border-radius: 20px; background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500">Finish</button>
+</header>
+<div style="height: 4px; background: #DAE5E1; flex-shrink: 0"><div style="width: 17%; height: 4px; background: {{primary}}"></div></div>
+
+<div style="flex: 1; overflow: auto; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+<div style="height: 190px; border-radius: 16px; background: #DAE5E1; color: #3F4947; display: flex; align-items: center; justify-content: center; position: relative">
+<div style="width: 56px; height: 56px; border-radius: 28px; background: rgba(255,255,255,0.9); display: flex; align-items: center; justify-content: center; color: {{primary}}"><svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.play}}"></path></svg></div>
+<span style="position: absolute; bottom: 10px; left: 12px; font-size: 12px">[Exercise video loop]</span>
+</div>
+<div>
+<span style="display: inline-flex; align-items: center; height: 24px; padding: 0 8px; border-radius: 8px; background: #CCE8E2; color: #051F1C; font-size: 12px; font-weight: 500">A1</span>
+<h1 style="margin: 6px 0 4px; font-size: 22px; font-weight: 400">Barbell Back Squat</h1>
+<div style="font-size: 14px; color: #3F4947">3 × 8 · Tempo 3-1-1 · Rest 2:00 · RPE 7</div>
+<div style="display: flex; gap: 8px; margin-top: 10px; padding: 12px; border-radius: 12px; background: #E9EFEC; font-size: 14px; color: #3F4947"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink: 0"><path d="{{ic.note}}"></path></svg>Brace before each rep, depth to parallel.</div>
+</div>
+
+<section style="background: #FFFFFF; border-radius: 16px; padding: 4px 12px; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="display: grid; grid-template-columns: 32px minmax(0, 1fr) 80px 64px 40px; gap: 8px; align-items: center; font-size: 12px; color: #3F4947; padding: 10px 0">
+<span>Set</span><span>Previous</span><span>lb</span><span>Reps</span><span></span>
+</div>
+<sc-for list="{{sets}}" as="s" hint-placeholder-count="3">
+<div style="display: grid; grid-template-columns: 32px minmax(0, 1fr) 80px 64px 40px; gap: 8px; align-items: center; min-height: 60px; border-top: 1px solid #DAE5E1">
+<span style="font-size: 16px; font-weight: 500">{{s.n}}</span><span style="font-size: 14px; color: #3F4947">{{s.prev}}</span>
+<input aria-label="Set {{s.n}} weight" value="{{s.lb}}" placeholder="160" style="height: 44px; border: 1px solid #6F7977; border-radius: 4px; padding: 0 10px; font: inherit; font-size: 16px; width: 100%; box-sizing: border-box; background: transparent">
+<input aria-label="Set {{s.n}} reps" value="{{s.reps}}" placeholder="8" style="height: 44px; border: 1px solid #6F7977; border-radius: 4px; padding: 0 10px; font: inherit; font-size: 16px; width: 100%; box-sizing: border-box; background: transparent">
+<span style="width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; background: {{s.bg}}; color: {{s.fg}}"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.check}}"></path></svg></span>
+</div>
+</sc-for>
+</section>
+
+<section style="display: flex; align-items: center; gap: 12px; background: #2B3231; color: #ECF2EF; border-radius: 16px; padding: 14px 16px">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.timer}}"></path></svg>
+<div style="flex: 1"><div style="font-size: 12px; color: #BEC9C6">Rest</div><div style="font-size: 26px">1:24</div></div>
+<button type="button" style="height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #899390; background: transparent; color: #ECF2EF; font: inherit; font-size: 14px; font-weight: 500">+30s</button>
+<button type="button" style="height: 40px; padding: 0 16px; border-radius: 20px; border: 0; background: #82D5C8; color: #003731; font: inherit; font-size: 14px; font-weight: 500">Skip</button>
+</section>
+
+<div style="display: flex; align-items: center; gap: 12px; min-height: 56px; font-size: 14px; color: #3F4947"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.next}}"></path></svg><span style="flex: 1">Up next: B1 Romanian Deadlift + B2 Walking Lunge</span></div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #3F4947"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.offline}}"></path></svg>Works offline · syncs when you reconnect</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      close: 'M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z',
+      play: 'M8 5v14l11-7z',
+      check: 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z',
+      timer: 'M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z',
+      note: 'M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z',
+      next: 'M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z',
+      offline: 'M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM10 17l-3.5-3.5 1.41-1.41L10 14.17 15.18 9l1.41 1.41L10 17z'
+    };
+    const sets = [
+      { n: 1, prev: '155 × 8', lb: '160', reps: '8', done: true },
+      { n: 2, prev: '155 × 8', lb: '160', reps: '', done: false },
+      { n: 3, prev: '155 × 7', lb: '', reps: '', done: false }
+    ].map((s) => ({ ...s, bg: s.done ? primary : '#E9EFEC', fg: s.done ? '#FFFFFF' : '#6F7977' }));
+    return { primary, ic, sets };
+  }
+}
+</script>
+</body>
+</html>

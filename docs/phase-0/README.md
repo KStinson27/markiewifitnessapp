@@ -25,8 +25,13 @@ parallel once the GitHub organization and Supabase account exist.
   weights, programs and custom exercises via spreadsheet templates.
 
 ## Wireframes
-Low-fidelity, brand-neutral (placeholder teal accent until the brand kit arrives).
-Files in `wireframes/` are the canvas source (`.dc.html`).
+Two versions, both with a placeholder teal accent until the brand kit arrives. Files in
+`wireframes/` are the canvas source (`.dc.html`).
+
+- **v1 low-fi** — the files without a prefix.
+- **v2 Material UI** (`M3*.dc.html`) — owner feedback: Material look, icons, and class flyers.
+  Mobile screens follow Material Design 3 (React Native Paper); staff web pages follow MUI defaults.
+  Adds flyer thumbnails on the client Classes and Today screens, and flyer upload on the admin page.
 
 | Screen | File |
 |---|---|
