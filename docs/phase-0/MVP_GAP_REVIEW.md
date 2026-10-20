@@ -1,7 +1,7 @@
 # MVP Gap Review
 
-Status: **proposed — awaiting owner decisions** (2026-10-20). Views for A1–A11 are drafted on the
-wireframe canvas ("MVP additions" page; files `wireframes/A*.dc.html`).
+Status: **approved — A1–A13 and D1–D7 are in the MVP** (owner, 2026-10-20; phases rebuilt in
+`ARCHITECTURE_PLAN.md` v4). Views for A1–A13 are drafted on the wireframe canvas ("MVP additions" page; files `wireframes/A*.dc.html`).
 
 Features the approved plan does not cover yet (or covers only implicitly) that a business
 leaving Trainerize will need. Grouped by recommendation.
@@ -24,13 +24,29 @@ leaving Trainerize will need. Grouped by recommendation.
 | A12 | **Session planner** — week of Calendly sessions with plan status, session templates, couples sessions with per-person weights | Several sessions per client per week and couples clients need planning ahead of time |
 | A13 | **Session results for clients** — each client sees their own results and shared coach notes after a session | Clients keep a record of in-person work; partners never see each other's numbers |
 
+## D. Added after the second review (approved for the MVP)
+
+| # | Feature | Phase task |
+|---|---|---|
+| D1 | Coach onboarding, contractor agreement, commission rules, monthly payout report | P0-7, P8-5 |
+| D2 | Coach offboarding and client handoff (history, programs and notes kept) | P8-6 |
+| D3 | Admin support tools: resend invite, reset MFA, account status, all audited, no health data | P6-7 |
+| D4 | Client offboarding and data retention: 90-day read-only access, automatic export, archive | P4-8 |
+| D5 | Emergency contact; guardian consent and waiver for clients under 18 | P1-4, P2-1 |
+| D6 | Package and cancellation rules: expiry, late-cancel window, no-show, optional late fee | P0-8, P4-7 |
+| D7 | Leads list and "book a consult" link; challenge and promo-code conversion tracking (was B3) | P8-1 |
+
+Also added as process steps: a Trainerize **test import** before anything is cancelled (P0-2),
+and starting Meta and Google app approvals early (P0-9). Android clients' Garmin data still
+waits for Google Health Connect (Phase 10); they enter steps by hand until then.
+
 ## B. Recommend shortly after launch
 
 | # | Feature | Notes |
 |---|---|---|
-| B1 | Automations (welcome sequence, "haven't logged in 5 days" nudges) | Planned for Phase 9; consider moving earlier |
+| B1 | Automations (welcome sequence, "haven't logged in 5 days" nudges) | Phase 11 |
 | B2 | Habit and check-in templates library | Speeds up setup as coaches are added |
-| B3 | Referral tracking / promo codes for challenge sign-ups that become clients | Measures how challenges grow the business |
+| B3 | ~~Referral tracking / promo codes~~ | Moved into the MVP as D7 |
 | B4 | In-app help / FAQ | Cuts admin support load |
 | B5 | Dark mode and larger-text accessibility pass | Material supports both; it's mostly design QA |
 
@@ -41,7 +57,7 @@ leaving Trainerize will need. Grouped by recommendation.
 | In-app video calls | Online clients can use Zoom/FaceTime via a link |
 | On-demand video library / paid content | Not sold today; would also trigger Apple in-app purchase rules |
 | AI meal-photo estimation, AI coaching assistants | Nice later; adds cost and review overhead |
-| Native Garmin/Oura APIs | Apple Health covers iPhone users (Phase 8) |
+| Native Garmin/Oura APIs | Apple Health covers iPhone users (Phase 10) |
 | Multi-location / franchise features | Not needed for one business |
 
 ## Decisions needed from the owner

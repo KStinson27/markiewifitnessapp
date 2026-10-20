@@ -1,6 +1,6 @@
 # Markiewi Fitness Platform — Architecture Plan
 
-**Status:** Approved (v3, 2026-10-20) · **Owner:** Markiewi Fitness LLC
+**Status:** Approved (v3, 2026-10-20) · MVP scope expanded and phases rebuilt (v4, 2026-10-20) · **Owner:** Markiewi Fitness LLC
 **Built by:** Claude · **Maintained by:** contracted developer
 
 A private coaching platform (iOS, Android, web) that replaces Trainerize for a
@@ -35,7 +35,7 @@ billing — with room to add contract coaches later.
 | Monorepo | Turborepo + pnpm | `apps/mobile`, `apps/web`, `packages/*` (types, validation, UI, api client) |
 | Backend | Supabase: Postgres, Auth, Storage, Realtime, Edge Functions | Standard Postgres, no lock-in |
 | Validation | Zod schemas shared by client and server | |
-| Payments | Stripe Billing, Checkout, Customer Portal | Stripe Connect only if coach payouts are automated (Phase 9) |
+| Payments | Stripe Billing, Checkout, Customer Portal | Stripe Connect only if coach payouts are automated (Phase 11) |
 | Exercise media | Short MP4/WebP loops in Supabase Storage (CDN) | Upgrade to Mux/Cloudflare Stream only if needed |
 | Body map / heatmap | Rive (`@rive-app/react-webgl2` on web; React Native Rive runtime, verified in a Phase 2 spike) | Owner-licensed Fitness Visuals anatomy file |
 | Charts (trends, macros, reports) | MUI X Charts on web; a React Native chart library (e.g. Victory Native) on mobile | Orion (Setproduct) styling explored and shelved for now |
@@ -204,6 +204,33 @@ billing — with room to add contract coaches later.
   feed, reactions, badges; templates and clone; bulk add; "upgrade to coaching" CTA. Free.
 - **Apple Health:** steps, workouts, sleep, weight, heart rate, active energy.
 
+- **Coaches (contractors):** coach onboarding (invite, MFA, signed contractor agreement,
+  profile and bio); per-coach commission rules (percent or flat amount per product); a monthly
+  payout report per coach for the accountant (paid outside the app at first); **coach
+  offboarding**: access ends at once, and their clients move to another coach with history,
+  programs and private notes kept.
+- **Admin support tools (no health data):** resend an invite or sign-in link, reset a client's
+  MFA or lost device, and see account status (active, paused, payment failed, last login,
+  app version). Every action is written to the audit log.
+- **Client offboarding & data retention:** when a client cancels, they keep read-only access to
+  their history for 90 days, get an automatic data export by email, and then their account
+  is archived. Health data is deleted after the retention period the owner sets (default
+  3 years for liability), sooner on request. Former clients can be re-activated.
+- **Safety in onboarding:** emergency contact (shown to the coach in session mode); date of
+  birth, and for clients under 18 a parent or guardian account with guardian consent and a
+  guardian-signed waiver.
+- **Package & cancellation rules:** per package: sessions included, expiry, late-cancel window
+  (e.g. 12 h), whether a late cancel or no-show uses a credit, and an optional late fee
+  charged through Stripe with owner approval.
+- **Leads & consults:** challenge members, Eventbrite attendees and website sign-ups who are
+  not clients appear in a simple lead list (source, status: new / contacted / consult booked /
+  client / not now) with a "book a consult" Calendly link; converting a lead creates the client
+  invite. Challenge and promo-code tracking shows which challenges bring in clients.
+- **Already designed (A1–A13):** client onboarding, coach-led session mode, client profile hub
+  and private notes, workout history and PRs, swaps and form checks, announcements, membership
+  pause, notification settings, units and account settings, business reports, email domain
+  setup, session planner, session results. See `docs/phase-0/MVP_GAP_REVIEW.md`.
+
 ## 6. Core data model
 
 ```
@@ -231,6 +258,14 @@ approval_rules(post_type: class | challenge | event_free | general, auto_approve
 studio_events(kind: once | weekly, name, starts_at, capacity, price_cents?, flyer, description,
               eventbrite_event_id?, eventbrite_series_id?, status: draft | review | live | cancelled)
 meta_links(instagram_account_id, page_id, token_expires_at)  -- tokens encrypted
+coach_profiles(status: invited | active | offboarded, agreement_signed_at, bio)
+commission_rules(coach, product?, percent | flat_cents) → payout_reports(coach, month, lines)
+client_handoffs(client, from_coach, to_coach, at)
+emergency_contacts(client, name, phone, relation); guardians(client, guardian_profile, consent_at)
+package_policies(package, sessions, expires_days, late_cancel_hours, late_cancel_uses_credit,
+                 no_show_uses_credit, late_fee_cents?)
+leads(name, email, source: challenge | eventbrite | website | instagram, status, notes, client?)
+retention_settings(health_data_years, readonly_days); data_exports(client, requested_at, file)
 
 nutrition_targets, meal_plans, foods(cache), food_logs, water_logs
 habits(scope: client | challenge) → habit_assignments → habit_logs
@@ -250,85 +285,115 @@ audit_log, stripe_events, webhook_events
 
 ## 7. Phases
 
-MVP = Phases 0–7. Each task ships as its own reviewable pull request.
+MVP = Phases 0–9 (rebuilt in v4 so every feature designed so far is in the MVP). Each task
+ships as its own reviewable pull request. **Beta checkpoint:** after Phase 7, 3–5 clients move
+off Trainerize while Phases 8–9 are built, so the core is proven before full cutover.
 
 ### Phase 0 — Discovery & accounts
 - P0-1 Business accounts under the LLC (D-U-N-S, Apple, Google Play, GitHub org, Supabase, Stripe, Cloudflare, domain email)
-- P0-2 Trainerize export audit
+- P0-2 Trainerize export audit, including a **test import** of 2–3 clients before cancelling anything
 - P0-3 Stripe/card migration assessment
 - P0-4 Licence checks: exercise dataset, food sources, integrations
 - P0-5 Wireframes for key flows
 - P0-6 Brand kit (logo, colors, fonts)
-- P0-7 Privacy policy, terms, waiver (attorney review)
+- P0-7 Privacy policy, terms, waiver, guardian waiver, coach contractor agreement (attorney review)
+- P0-8 Owner policies: package and cancellation rules, data retention, coach commission
+  structure, whether minors are trained
+- P0-9 Start long-lead approvals: Meta app review and Business Verification, Google OAuth
+  verification (both need the live privacy policy)
 
 ### Phase 1 — Foundation & IAM
 - P1-1 Monorepo, tooling, shared packages
 - P1-2 Supabase environments (dev/staging/prod), migrations in git
 - P1-3 Auth methods; mandatory staff MFA
-- P1-4 Roles, coach assignment, invites
+- P1-4 Roles, coach assignment, invites; guardian accounts for minors
 - P1-5 RLS on every table + pgTAP policy tests
 - P1-6 Audit log
 - P1-7 CI/CD (Actions, Cloudflare previews, EAS internal builds)
 - P1-8 Sentry, PostHog, secrets management
 - P1-9 App shells (client mobile, client web, staff dashboard)
-- P1-10 Developer handbook & runbooks
+- P1-10 Email domain setup: SPF, DKIM, DMARC for sign-in links and receipts (A11)
+- P1-11 Developer handbook & runbooks
 
 ### Phase 2 — Clients & training
-- P2-1 Profiles, goals, intake, e-signed waivers
+- P2-1 Client onboarding (A1): goals, PAR-Q, injuries, emergency contact, date of birth and
+  guardian consent, e-signed waivers, baseline weight/measurements/photos, permissions
 - P2-2 Exercise library (seed + uploads, business vs coach scope, muscle tags, muscle-map filter)
 - P2-3 Workout builder
-- P2-4 Program builder & template library (tags, duplicate, client-selectable switch)
+- P2-4 Program builder & template library (tags, duplicate, client-selectable switch, program heatmap)
 - P2-5 Calendar assignment (month/week view, drag to start date, training days, overlap handling)
 - P2-5b Client program browsing, self-start requests, coach approval queue
 - P2-6 Workout player (offline sync, rest timer, PRs)
-- P2-7 Adherence views
+- P2-7 Workout history, PRs and "last time" weights for clients (A4)
+- P2-8 Exercise swaps & form-check videos (A5)
+- P2-9 Client profile hub with private coach notes (A3); adherence views
+- P2-10 Units & account settings, account deletion, data export (A9)
 
-### Phase 3 — Billing
-- P3-1 Products & prices from dashboard
-- P3-2 Checkout: subscriptions, pay-in-full, add-ons, class packages
-- P3-3 Webhooks + billing mirror
-- P3-4 Entitlements, grace period, dunning emails
-- P3-5 Customer Portal, invoices
-- P3-6 Revenue dashboard with coach attribution
-- P3-7 PCI SAQ A
+### Phase 3 — In-person sessions & calendar
+- P3-1 Session templates and session planner (A12), including couples sessions
+- P3-2 Coach-led session mode on tablet (A2) with goals, emergency contact and inline logging
+- P3-3 Session review and results shared with clients (A13)
+- P3-4 Coach calendar & to-dos; admin view of coach calendars
+- P3-5 Google Calendar sync (dedicated calendar, free/busy, watch channels)
 
-### Phase 4 — Nutrition, habits & progress
-- P4-1 Nutrition modes
-- P4-2 Food search, barcode, custom foods, cache
-- P4-3 Meal plans, photos, water
-- P4-4 Habit engine (ongoing + challenge-scoped), streaks
-- P4-5 Check-in forms
-- P4-6 Body metrics & progress photos: client logging, coach logging, Apple Health weight import,
+### Phase 4 — Billing & packages
+- P4-1 Products & prices from dashboard
+- P4-2 Checkout: subscriptions, pay-in-full, add-ons, class packages
+- P4-3 Webhooks + billing mirror
+- P4-4 Entitlements, grace period, dunning emails
+- P4-5 Customer Portal, invoices
+- P4-6 Membership pause / freeze (A7)
+- P4-7 Package & cancellation rules (expiry, late cancel, no-show, optional late fee)
+- P4-8 Client offboarding: read-only period, automatic export, archive, retention clean-up job
+- P4-9 PCI SAQ A
+
+### Phase 5 — Nutrition, habits & progress
+- P5-1 Nutrition modes
+- P5-2 Food search, barcode, custom foods, cache
+- P5-3 Meal plans, photos, water
+- P5-4 Habit engine (ongoing + challenge-scoped), streaks
+- P5-5 Check-in forms
+- P5-6 Body metrics & progress photos: client logging, coach logging, Apple Health weight import,
   Today weight card, client Progress screen, coach Progress tab with trends, tracking settings
 
-### Phase 5 — Communication & schedule
-- P5-1 Coach chat; Support inbox; broadcasts
-- P5-2 Push & email notifications
-- P5-3 Calendly + Eventbrite sync; Upcoming Classes; class flyer upload + thumbnails
-- P5-4 Class package tracker
-- P5-5 Review inbox & at-risk flags
-- P5-6 Social media planner: content calendar, post editor, owner approval and auto-approve
-  rules, idea suggestions, client "feature me" consent, Instagram Graph API publishing
-  (reminder fallback until Meta app review is approved)
-- P5-7 New class/event form → Eventbrite publish (event, ticket class, banner, publish;
-  weekly series), booking webhooks, auto-drafted Instagram posts
+### Phase 6 — Communication, schedule & support
+- P6-1 Coach chat; Support inbox
+- P6-2 Announcements to all clients or groups (A6)
+- P6-3 Push & email notifications; notification settings and quiet hours (A8)
+- P6-4 Calendly + Eventbrite sync; Upcoming Classes; class flyer upload + thumbnails
+- P6-5 Class package tracker (uses the P4-7 rules)
+- P6-6 Review inbox & at-risk flags
+- P6-7 Admin support tools: resend invite, reset MFA, account status (no health data)
 
-### Phase 6 — Challenges & Apple Health
-- P6-1 Challenge engine (types, metrics, scoring)
-- P6-2 Community Member join flow (link/QR, Turnstile)
-- P6-3 Teams, leaderboard, feed, reactions, badges
-- P6-4 Templates, clone, bulk add, upgrade CTA
-- P6-5 Apple HealthKit sync + manual entry
+### Phase 7 — Challenges & Apple Health
+- P7-1 Challenge engine (types, metrics, scoring)
+- P7-2 Community Member join flow (link/QR, Turnstile)
+- P7-3 Teams, leaderboard, feed, reactions, badges
+- P7-4 Templates, clone, bulk add, upgrade CTA
+- P7-5 Apple HealthKit sync + manual entry
+- P7-6 **Beta checkpoint:** import the beta clients, 3–5 clients move off Trainerize
 
-### Phase 7 — Migration & launch
-- P7-1 Import clients, goals, history
-- P7-2 Import exercise library & programs
-- P7-3 Billing cutover
-- P7-4 Security pass, backup restore drill
-- P7-5 Store listings, privacy labels, review
-- P7-6 Beta (3–5 clients) → full cutover → cancel Trainerize
+### Phase 8 — Marketing, events, coaches & reports
+- P8-1 Leads list and "book a consult" link; promo-code and challenge conversion tracking
+- P8-2 Social media planner, approval rules, client "feature me" consent
+- P8-3 Instagram Graph API publishing (reminder fallback until Meta approves)
+- P8-4 New class/event form → Eventbrite publish (event, ticket class, banner, weekly series),
+  booking webhooks, auto-drafted Instagram posts
+- P8-5 Coach onboarding, contractor agreement e-sign, commission rules, monthly payout report
+- P8-6 Coach offboarding and client handoff
+- P8-7 Business reports (A10): active clients, adherence, churn, revenue per coach, lead conversion
+
+### Phase 9 — Migration & launch
+- P9-1 Import all clients, goals, history
+- P9-2 Import exercise library & programs
+- P9-3 Billing cutover
+- P9-4 Security pass, backup restore drill
+- P9-5 Store listings, privacy labels, review
+- P9-6 Full cutover → cancel Trainerize
 
 ### Post-launch
-- **Phase 8 — Wearables+:** Google Health Connect; direct Garmin and Oura APIs
-- **Phase 9 — Multi-coach:** coach onboarding, per-coach dashboards, contractor payouts
-  (reports or Stripe Connect with 1099s), automations
+- **Phase 10 — Wearables+:** Google Health Connect (Android clients' Garmin data; until then
+  they enter steps by hand); direct Garmin and Oura APIs
+- **Phase 11 — Automations & polish:** welcome sequences and nudges (B1), habit and check-in
+  template library (B2), in-app help/FAQ (B4), dark mode and large-text pass (B5);
+  Stripe Connect payouts with 1099s if coach payouts outgrow the monthly report

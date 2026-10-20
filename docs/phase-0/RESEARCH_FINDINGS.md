@@ -83,7 +83,7 @@ Google Play: organization account, $25 one-time, also requires a D-U-N-S number 
   Stripe account**, and the new app can reuse them — no card re-entry.
 - Caveat: subscriptions created by Trainerize may be configured in ways specific to Trainerize.
   Plan is to create new subscriptions in our system against the **same customers/cards** and
-  cancel the Trainerize ones at cutover (Phase 7), timed to avoid double-billing.
+  cancel the Trainerize ones at cutover (Phase 9), timed to avoid double-billing.
 - If any cards are *not* in your account, Stripe supports account-to-account card data
   migration on request ([Stripe guide](https://stripe.com/guides/five-steps-to-accelerate-your-data-migration-to-stripe));
   fallback is an emailed "update card" link.
@@ -119,7 +119,7 @@ Google Play: organization account, $25 one-time, also requires a D-U-N-S number 
 - **Eventbrite:** REST API v3 with private token (single account) or OAuth. Organization
   events list and per-event attendee list (with check-in status); webhooks for orders and
   check-ins ([integration overview](https://docs.nexla.com/user-guides/connectors/eventbrite_api))
-  **(re-verify against official Eventbrite docs during Phase 5)**.
+  **(re-verify against official Eventbrite docs during Phase 8)**.
 - Matching bookings to clients is by email address; unmatched bookings appear in an admin
   review queue.
 
@@ -140,7 +140,7 @@ sleep (workouts/weight per secondary sources); Readiness/Sleep scores stay in Ou
 iPhone for steps, workouts, sleep, heart rate and weight — sufficient for challenges.
 Onboarding includes "enable Garmin/Oura → Apple Health" instructions and a reminder that
 Garmin users should open Garmin Connect to sync before a challenge deadline.
-Direct Garmin Health API (requires business application/approval) and Oura API are Phase 8.
+Direct Garmin Health API (requires business application/approval) and Oura API are Phase 10.
 
 ## 9. Hosting & budget (re-verify at sign-up)
 

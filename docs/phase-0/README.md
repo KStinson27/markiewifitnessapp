@@ -8,7 +8,9 @@
 | P0-4 Licence & integration research | [`RESEARCH_FINDINGS.md`](RESEARCH_FINDINGS.md) | Done |
 | P0-5 Wireframes | [`wireframes/`](wireframes/) — interactive canvas shared with the owner for comments | Awaiting owner review |
 | P0-6 Brand kit | [`OWNER_CHECKLIST.md`](OWNER_CHECKLIST.md) §D | Waiting on owner |
-| P0-7 Legal drafts | [`legal/`](legal/) | Awaiting attorney review |
+| P0-7 Legal drafts | [`legal/`](legal/) | Awaiting attorney review; contractor agreement and guardian waiver still to draft |
+| P0-8 Owner policies | [`OWNER_CHECKLIST.md`](OWNER_CHECKLIST.md) §D | Waiting on owner |
+| P0-9 Meta & Google app approvals | [`OWNER_CHECKLIST.md`](OWNER_CHECKLIST.md) §B rows 11–12 | Start once the privacy policy is live |
 
 Phase 0 is complete when every row is done; Phase 1 (foundation & IAM) can start in
 parallel once the GitHub organization and Supabase account exist.

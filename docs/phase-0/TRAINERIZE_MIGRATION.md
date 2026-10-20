@@ -2,7 +2,7 @@
 
 Goal: move **client history/goals, programs, and the personal exercise library** (plus
 billing) out of Trainerize with no data loss and no double-billing. Keep the Trainerize
-subscription active until the Phase 7 cutover.
+subscription active until the Phase 9 full cutover (beta clients move at the end of Phase 7).
 
 ## 1. In-account export audit (owner, ~45 minutes)
 
@@ -38,7 +38,7 @@ export option. Take screenshots of what's available — that's enough for me to 
 | Messages | Not migrated | Clients keep Trainerize access until cutover |
 | Billing | Reuse existing Stripe customers & cards (research §4) | "Update card" email link |
 
-Imports are run by an import tool in Phase 7 (P7-1/P7-2) that validates every row,
+Imports are run by an import tool in Phase 9 (P9-1/P9-2; beta clients first at P7-6) that validates every row,
 reports errors, and can be re-run safely.
 
 ## 3. Email to Trainerize Support
@@ -67,7 +67,7 @@ reports errors, and can be re-run safely.
 > Thank you,
 > [Name], Markiewi Fitness LLC
 
-## 4. Cutover sequence (Phase 7, for reference)
+## 4. Cutover sequence (Phase 9, for reference)
 
 1. Import clients, PRs, programs, exercises into the new app (staging → production).
 2. Beta: 3–5 clients use both apps for ~2 weeks.

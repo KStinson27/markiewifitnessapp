@@ -62,9 +62,17 @@ Log into the Stripe dashboard that Trainerize is connected to and record:
 - [ ] **Waiver** currently signed by clients, if any.
 - [ ] **Package rules**: sessions per package, expiry, cancellation/no-show policy.
 - [ ] **Failed payment policy**: how many days before access is paused?
+- [ ] **Cancellation policy**: late-cancel window (e.g. 12 hours), whether late cancels and
+      no-shows use a session credit, and whether to charge a late fee.
+- [ ] **Data retention**: how long to keep a former client's health data (default 3 years —
+      confirm with your attorney and insurer).
+- [ ] **Coach pay**: commission or revenue share per product for contract coaches.
+- [ ] **Minors**: do you train anyone under 18? If yes, we add guardian accounts and a
+      guardian waiver.
 - [ ] **Challenge examples** you've run (name, length, habits, scoring) — used as templates.
 - [ ] Review the **wireframes** and leave comments.
-- [ ] Have an attorney review the **legal drafts** in `legal/` (Michigan-licensed).
+- [ ] Have an attorney review the **legal drafts** in `legal/` (Michigan-licensed), plus a
+      **coach contractor agreement** and, if you train minors, a **guardian waiver**.
 
 ## E. Progress tracker
 
@@ -76,4 +84,6 @@ Log into the Stripe dashboard that Trainerize is connected to and record:
 | P0-4 Licence & integration research | Claude | ✅ `RESEARCH_FINDINGS.md` |
 | P0-5 Wireframes | Claude → Owner review | ✅ drafted, awaiting review |
 | P0-6 Brand kit | Owner | ☐ |
-| P0-7 Legal drafts | Claude → attorney review | ✅ drafted, awaiting attorney |
+| P0-7 Legal drafts | Claude → attorney review | ✅ drafted, awaiting attorney (contractor agreement & guardian waiver to draft) |
+| P0-8 Owner policies (cancellation, retention, coach pay, minors) | Owner | ☐ |
+| P0-9 Meta & Google app approvals | Owner (guided) | ☐ |
