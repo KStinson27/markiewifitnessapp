@@ -41,15 +41,15 @@ a{color:#006A60}a:hover{color:#00504A}
 </sc-for>
 <line x1="34" x2="320" y1="{{chart.goalY}}" y2="{{chart.goalY}}" stroke="#5B6563" stroke-width="1" stroke-dasharray="4 4"></line>
 <text x="318" y="{{chart.goalTy}}" text-anchor="end" font-size="10" fill="#3F4947">Goal 155</text>
-<path d="{{chart.path}}" fill="none" stroke="{{primary}}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
-<circle cx="{{chart.lastX}}" cy="{{chart.lastY}}" r="5" fill="{{primary}}" stroke="#FFFFFF" stroke-width="2"></circle>
+<path d="{{chart.path}}" fill="none" stroke="#2A78D6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+<circle cx="{{chart.lastX}}" cy="{{chart.lastY}}" r="5" fill="#2A78D6" stroke="#FFFFFF" stroke-width="2"></circle>
 <sc-for list="{{chart.xlabels}}" as="x" hint-placeholder-count="3">
 <text x="{{x.x}}" y="154" text-anchor="middle" font-size="10" fill="#5B6563">{{x.label}}</text>
 </sc-for>
 </svg>
 <div style="display: flex; gap: 8px; margin-top: 4px">
 <button type="button" style="flex: 1; height: 40px; border: 0; border-radius: 20px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.add}}"></path></svg>Log weight</button>
-<button type="button" style="flex: 1; height: 40px; border: 0; border-radius: 20px; background: #CCE8E2; color: #051F1C; font: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.ruler}}"></path></svg>Measurements</button>
+<button type="button" style="flex: 1; height: 40px; border: 0; border-radius: 20px; background: #E8F1FC; color: #0B2A55; font: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.ruler}}"></path></svg>Measurements</button>
 </div>
 </section>
 
@@ -94,7 +94,7 @@ class Component extends DCLogic {
       bell: 'M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z'
     };
     const ranges = ['1M', '3M', '6M', 'All'].map((label, i) => ({
-      label, on: i === 1, bg: i === 1 ? '#CCE8E2' : 'transparent', fg: i === 1 ? '#051F1C' : '#161D1C', divider: i === 0 ? '0' : '1px solid #6F7977'
+      label, on: i === 1, bg: i === 1 ? '#E8F1FC' : 'transparent', fg: i === 1 ? '#0B2A55' : '#161D1C', divider: i === 0 ? '0' : '1px solid #6F7977'
     }));
     const pts = [166.0, 165.4, 165.1, 164.2, 164.5, 163.6, 163.0, 162.4];
     const labels = ['Sep 1', '', '', '', 'Sep 29', '', '', 'Oct 20'];

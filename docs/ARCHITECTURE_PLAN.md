@@ -38,7 +38,8 @@ billing — with room to add contract coaches later.
 | Payments | Stripe Billing, Checkout, Customer Portal | Stripe Connect only if coach payouts are automated (Phase 9) |
 | Exercise media | Short MP4/WebP loops in Supabase Storage (CDN) | Upgrade to Mux/Cloudflare Stream only if needed |
 | Body map / heatmap | Rive (`@rive-app/react-webgl2` on web; React Native Rive runtime, verified in a Phase 2 spike) | Owner-licensed Fitness Visuals anatomy file |
-| Charts (trends, macros, reports) | Visual style from **Orion** (Setproduct Figma kit, owner-supplied); built with MUI X Charts on web and a React Native chart library (e.g. Victory Native) on mobile | Orion is design-only; components are recreated in code to match it |
+| Charts (trends, macros, reports) | MUI X Charts on web; a React Native chart library (e.g. Victory Native) on mobile | Orion (Setproduct) styling explored and shelved for now |
+| Colour roles | Teal = brand, main actions, navigation · Blue `#2A78D6` = charts & progress data · Violet `#6250D6` = challenges & community · Orange `#EB6834` = nutrition (carbs) · Amber = personal records · Macros: protein blue, carbs orange, fat green `#1BAF7A` | Shared theme tokens for MUI and React Native Paper |
 | Food data | USDA FoodData Central + Open Food Facts (barcodes); FatSecret as fallback | Local cache table; attribution per licences |
 | Wearables | Apple HealthKit (MVP); Google Health Connect, Garmin Health API, Oura API (post-launch) | |
 | Scheduling | Calendly API + webhooks; Eventbrite API + webhooks | Calendly webhooks require Standard plan or higher |

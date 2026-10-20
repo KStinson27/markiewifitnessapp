@@ -45,7 +45,7 @@ a{color:#006A60}a:hover{color:#00504A}
 <sc-for list="{{bars.grid}}" as="g" hint-placeholder-count="3"><line x1="36" x2="512" y1="{{g.y}}" y2="{{g.y}}" stroke="#ECECEC" stroke-width="1"></line><text x="28" y="{{g.ty}}" text-anchor="end" font-size="12" fill="rgba(0,0,0,0.6)">{{g.label}}</text></sc-for>
 <line x1="36" x2="512" y1="200" y2="200" stroke="#BDBDBD" stroke-width="1"></line>
 <sc-for list="{{bars.items}}" as="b" hint-placeholder-count="6">
-<path d="{{b.d}}" fill="{{primary}}"></path>
+<path d="{{b.d}}" fill="#2A78D6"></path>
 <text x="{{b.cx}}" y="222" text-anchor="middle" font-size="12" fill="rgba(0,0,0,0.6)">{{b.label}}</text>
 </sc-for>
 <text x="{{bars.lastX}}" y="{{bars.lastY}}" text-anchor="middle" font-size="12" font-weight="500" fill="rgba(0,0,0,0.87)">20</text>
@@ -57,8 +57,8 @@ a{color:#006A60}a:hover{color:#00504A}
 <div style="font-size: 13px; color: rgba(0,0,0,0.6); margin-bottom: 12px">% of assigned workouts completed, by week</div>
 <svg role="img" aria-label="Workout adherence by week rising from 72% to 84% over 8 weeks" viewBox="0 0 520 240" style="display: block; width: 100%; height: auto">
 <sc-for list="{{line.grid}}" as="g" hint-placeholder-count="3"><line x1="44" x2="512" y1="{{g.y}}" y2="{{g.y}}" stroke="#ECECEC" stroke-width="1"></line><text x="36" y="{{g.ty}}" text-anchor="end" font-size="12" fill="rgba(0,0,0,0.6)">{{g.label}}</text></sc-for>
-<path d="{{line.path}}" fill="none" stroke="{{primary}}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
-<circle cx="{{line.lastX}}" cy="{{line.lastY}}" r="5" fill="{{primary}}" stroke="#FFFFFF" stroke-width="2"></circle>
+<path d="{{line.path}}" fill="none" stroke="#2A78D6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+<circle cx="{{line.lastX}}" cy="{{line.lastY}}" r="5" fill="#2A78D6" stroke="#FFFFFF" stroke-width="2"></circle>
 <text x="{{line.lastX}}" y="{{line.lastTy}}" text-anchor="end" font-size="12" font-weight="500" fill="rgba(0,0,0,0.87)">84%</text>
 <sc-for list="{{line.xlabels}}" as="x" hint-placeholder-count="4"><text x="{{x.x}}" y="222" text-anchor="middle" font-size="12" fill="rgba(0,0,0,0.6)">{{x.label}}</text></sc-for>
 </svg>

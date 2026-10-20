@@ -61,7 +61,7 @@ a{color:#006A60}a:hover{color:#00504A}
 <tr>
 <td style="padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)"><div style="display: flex; align-items: center; gap: 12px"><span style="width: 32px; height: 32px; border-radius: 16px; background: #BDBDBD; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px">{{c.initials}}</span>{{c.name}}</div></td>
 <td style="padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{c.program}}</td>
-<td style="padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)"><div style="display: flex; align-items: center; gap: 8px">{{c.done}}<div style="width: 64px; height: 4px; border-radius: 2px; background: #E0E0E0"><div style="width: {{c.pct}}; height: 4px; border-radius: 2px; background: {{primary}}"></div></div></div></td>
+<td style="padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)"><div style="display: flex; align-items: center; gap: 8px">{{c.done}}<div style="width: 64px; height: 4px; border-radius: 2px; background: #E0E0E0"><div style="width: {{c.pct}}; height: 4px; border-radius: 2px; background: #2A78D6"></div></div></div></td>
 <td style="padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{c.nutrition}}</td>
 <td style="padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)"><span style="display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 12px; font-size: 13px; background: {{c.chipBg}}; color: {{c.chipFg}}">{{c.status}}</span></td>
 </tr>
@@ -119,9 +119,9 @@ class Component extends DCLogic {
       { label: 'Billing', href: '#', icon: ic.payments }
     ].map((n) => ({ ...n, bg: n.label === active ? 'rgba(0,106,96,0.08)' : 'transparent', fg: n.label === active ? primary : 'rgba(0,0,0,0.54)' }));
     const stats = [
-      { label: 'Active clients', value: '20', icon: ic.people, bg: '#E3F2EF', fg: primary },
-      { label: 'Check-ins to review', value: '5', icon: ic.assignment, bg: '#E3F2EF', fg: primary },
-      { label: 'Unread messages', value: '3', icon: ic.chat, bg: '#E3F2EF', fg: primary },
+      { label: 'Active clients', value: '20', icon: ic.people, bg: '#E8F1FC', fg: '#1A5BA8' },
+      { label: 'Check-ins to review', value: '5', icon: ic.assignment, bg: '#EFECFC', fg: '#4F3FB8' },
+      { label: 'Unread messages', value: '3', icon: ic.chat, bg: '#FDEEE6', fg: '#A8431A' },
       { label: 'Needs attention', value: '2', icon: ic.warn, bg: '#FDECEA', fg: '#B3261E' }
     ];
     const ok = { chipBg: '#E8F5E9', chipFg: '#1B5E20' };

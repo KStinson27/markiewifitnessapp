@@ -61,9 +61,9 @@ a{color:#006A60}a:hover{color:#00504A}
 <text x="40" y="{{chart.goalTy}}" text-anchor="end" font-size="12" fill="rgba(0,0,0,0.6)">155</text>
 <text x="744" y="{{chart.goalLy}}" text-anchor="end" font-size="12" fill="rgba(0,0,0,0.7)">Goal 155 lb</text>
 <line x1="{{chart.hoverX}}" x2="{{chart.hoverX}}" y1="16" y2="244" stroke="#9E9E9E" stroke-width="1"></line>
-<path d="{{chart.path}}" fill="none" stroke="{{primary}}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
-<circle cx="{{chart.hoverX}}" cy="{{chart.hoverY}}" r="5" fill="{{primary}}" stroke="#FFFFFF" stroke-width="2"></circle>
-<circle cx="{{chart.lastX}}" cy="{{chart.lastY}}" r="5" fill="{{primary}}" stroke="#FFFFFF" stroke-width="2"></circle>
+<path d="{{chart.path}}" fill="none" stroke="#2A78D6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+<circle cx="{{chart.hoverX}}" cy="{{chart.hoverY}}" r="5" fill="#2A78D6" stroke="#FFFFFF" stroke-width="2"></circle>
+<circle cx="{{chart.lastX}}" cy="{{chart.lastY}}" r="5" fill="#2A78D6" stroke="#FFFFFF" stroke-width="2"></circle>
 <text x="{{chart.lastX}}" y="{{chart.lastTy}}" text-anchor="end" font-size="12" font-weight="500" fill="rgba(0,0,0,0.87)">162.4</text>
 <sc-for list="{{chart.xlabels}}" as="x" hint-placeholder-count="8">
 <text x="{{x.x}}" y="266" text-anchor="middle" font-size="12" fill="rgba(0,0,0,0.6)">{{x.label}}</text>
@@ -100,7 +100,7 @@ a{color:#006A60}a:hover{color:#00504A}
 <td style="padding: 10px 16px; border-bottom: 1px solid rgba(0,0,0,0.12); color: rgba(0,0,0,0.6)">{{m.start}}</td>
 <td style="padding: 10px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{m.now}}</td>
 <td style="padding: 10px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{m.delta}}</td>
-<td style="padding: 6px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)"><svg role="img" aria-label="{{m.name}} trend" width="96" height="28" viewBox="0 0 96 28"><path d="{{m.spark}}" fill="none" stroke="{{primary}}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path></svg></td>
+<td style="padding: 6px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)"><svg role="img" aria-label="{{m.name}} trend" width="96" height="28" viewBox="0 0 96 28"><path d="{{m.spark}}" fill="none" stroke="#2A78D6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path></svg></td>
 </tr>
 </sc-for>
 </tbody>
