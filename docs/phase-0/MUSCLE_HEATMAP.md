@@ -23,7 +23,8 @@ Fitness Visuals, supplied by the owner with sample apps (Next.js, SwiftUI, Kotli
 
 Palette: a single-hue teal ramp (sequential, light → dark) instead of the sample's multi-hue
 "Classic Heat", so intensity reads as "more" and stays colour-blind safe:
-`#D3D9D7` (0), `#B8E1DA`, `#6FC2B4`, `#1F8F7E`, `#00504A` (4). Swapped for brand colours later.
+`#A3ACBA` (0, a mid grey so unselected muscle outlines stay visible against the light body),
+`#7CCBBE`, `#3FA897`, `#167E6F`, `#00504A` (4). Swapped for brand colours later.
 
 ## Muscle → group mapping (14 groups)
 | Group | Rive muscles | Exercise-library tags (`free-exercise-db`) |
