@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Client Trends · Orion-style charts (alt)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 1060px; box-sizing: border-box; display: flex; flex-direction: column; background: #F7F8FA; font-family: Roboto, system-ui, sans-serif; color: #161D1C">
+<header style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 24px; background: #006A60; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14)">
+<span style="width: 40px; height: 40px; border-radius: 20px; background: rgba(255,255,255,0.24); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 500">JR</span>
+<div style="flex: 1"><div style="font-size: 20px; font-weight: 500">Jordan Rivera</div><div style="font-size: 13px; opacity: 0.85">Strength Foundations · Week 3 · Full Macros</div></div>
+</header>
+<div role="tablist" aria-label="Client sections" style="display: flex; overflow-x: auto; background: #FFFFFF; border-bottom: 1px solid #E6E9F0; padding: 0 16px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="7"><span role="tab" aria-selected="{{t.on}}" style="flex-shrink: 0; min-height: 48px; padding: 0 16px; display: flex; align-items: center; border-bottom: 2px solid {{t.line}}; color: {{t.fg}}; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase">{{t.l}}</span></sc-for>
+</div>
+
+<main style="width: 100%; max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<h1 style="flex: 1; margin: 0; font-size: 24px; font-weight: 500">Progress &amp; trends</h1>
+<div role="group" aria-label="Time range" style="display: flex; gap: 4px; padding: 4px; border-radius: 10px; background: #EDF0F5">
+<sc-for list="{{ranges}}" as="r" hint-placeholder-count="4"><button type="button" aria-pressed="{{r.on}}" style="height: 30px; padding: 0 14px; border: 0; border-radius: 7px; background: {{r.bg}}; box-shadow: {{r.sh}}; font: inherit; font-size: 13px; font-weight: 500; color: {{r.fg}}">{{r.label}}</button></sc-for>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+<div style="background: #FFFFFF; border: 1px solid #ECEEF3; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 1px 2px rgba(16,24,40,0.05)">
+<div style="font-size: 13px; font-weight: 500; color: #5B6170">{{k.label}}</div>
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 8px">
+<div><div style="font-size: 28px; font-weight: 700; letter-spacing: -0.02em">{{k.value}}</div><span style="display: inline-flex; margin-top: 6px; height: 22px; padding: 0 8px; border-radius: 11px; background: {{k.pillBg}}; color: {{k.pillFg}}; font-size: 12px; font-weight: 500; align-items: center">{{k.pill}}</span></div>
+<svg role="img" aria-label="{{k.label}} trend" viewBox="0 0 88 36" width="88" height="36"><path d="{{k.p}}" fill="none" stroke="#2A78D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+</div>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
+<section style="flex: 2 1 600px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEEF3; border-radius: 16px; padding: 20px; box-shadow: 0 1px 2px rgba(16,24,40,0.05)">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-bottom: 8px">
+<div><h2 style="margin: 0; font-size: 16px; font-weight: 500">Weight</h2><div style="font-size: 13px; color: #5B6170">Weekly average, lb</div></div>
+<div style="display: flex; gap: 16px; font-size: 12px; color: #5B6170; align-items: center"><span style="display: flex; align-items: center; gap: 6px"><span style="width: 16px; height: 3px; border-radius: 2px; background: #2A78D6"></span>Weight</span><span style="display: flex; align-items: center; gap: 6px"><span style="width: 16px; border-top: 2px dashed #1BAF7A"></span>Goal 155 lb</span></div>
+</div>
+<div style="position: relative">
+<svg role="img" aria-label="Weight fell from 166.0 lb on Sep 1 to 162.4 lb on Oct 20; goal 155 lb" viewBox="0 0 760 300" style="display: block; width: 100%; height: auto">
+<defs><linearGradient id="ocw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A78D6" stop-opacity="0.18"></stop><stop offset="1" stop-color="#2A78D6" stop-opacity="0"></stop></linearGradient></defs>
+<sc-for list="{{w.grid}}" as="g" hint-placeholder-count="3"><line x1="48" x2="752" y1="{{g.y}}" y2="{{g.y}}" stroke="#E6E9F0" stroke-dasharray="4 5"></line><text x="40" y="{{g.ty}}" text-anchor="end" font-size="12" fill="#5B6170">{{g.l}}</text></sc-for>
+<line x1="48" x2="752" y1="{{w.goal}}" y2="{{w.goal}}" stroke="#1BAF7A" stroke-width="1.5" stroke-dasharray="7 5"></line>
+<path d="{{w.area}}" fill="url(#ocw)"></path>
+<path d="{{w.line}}" fill="none" stroke="#2A78D6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"></path>
+<line x1="{{w.hx}}" x2="{{w.hx}}" y1="12" y2="256" stroke="#C5CBD6" stroke-dasharray="3 4"></line>
+<circle cx="{{w.hx}}" cy="{{w.hy}}" r="6" fill="#FFFFFF" stroke="#2A78D6" stroke-width="3"></circle>
+<sc-for list="{{w.x}}" as="x" hint-placeholder-count="8"><text x="{{x.x}}" y="284" text-anchor="middle" font-size="12" fill="#5B6170">{{x.l}}</text></sc-for>
+</svg>
+<div role="tooltip" style="position: absolute; left: {{w.tipLeft}}; top: 4%; background: #1B1F2B; color: #FFFFFF; border-radius: 10px; padding: 10px 12px; font-size: 13px; line-height: 1.45; box-shadow: 0 8px 24px rgba(16,24,40,0.18)"><div style="opacity: 0.75">Tue, Oct 13</div><div style="font-weight: 600; font-size: 15px">163.0 lb</div><div style="opacity: 0.75">−0.6 vs prior week</div></div>
+</div>
+</section>
+
+<section style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border: 1px solid #ECEEF3; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 1px 2px rgba(16,24,40,0.05)">
+<div><h2 style="margin: 0; font-size: 16px; font-weight: 500">Macro split</h2><div style="font-size: 13px; color: #5B6170">7-day average · 1,840 kcal</div></div>
+<div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap">
+<div style="position: relative; width: 150px; height: 150px">
+<svg role="img" aria-label="Average calories: protein 31 percent, carbs 44 percent, fat 25 percent" viewBox="0 0 150 150" width="150" height="150">
+<circle cx="75" cy="75" r="58" fill="none" stroke="#EEF1F6" stroke-width="16"></circle>
+<sc-for list="{{donut}}" as="d" hint-placeholder-count="3"><circle cx="75" cy="75" r="58" fill="none" stroke="{{d.c}}" stroke-width="16" stroke-linecap="round" stroke-dasharray="{{d.dash}}" stroke-dashoffset="{{d.off}}" transform="rotate(-90 75 75)"></circle></sc-for>
+</svg>
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 22px; font-weight: 700">1,840</span><span style="font-size: 12px; color: #5B6170">kcal / day</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 120px">
+<sc-for list="{{donut}}" as="d" hint-placeholder-count="3"><div style="display: flex; align-items: center; gap: 8px; font-size: 14px"><span style="width: 10px; height: 10px; border-radius: 5px; background: {{d.c}}"></span><span style="flex: 1">{{d.n}}</span><strong style="font-weight: 600">{{d.pct}}</strong></div></sc-for>
+</div>
+</div>
+<div style="border-top: 1px solid #F0F2F6; padding-top: 12px">
+<div style="font-size: 13px; font-weight: 500; color: #5B6170; margin-bottom: 8px">Calories vs target (1,900)</div>
+<div style="position: relative; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; align-items: end; height: 90px">
+<div style="position: absolute; left: 0; right: 0; bottom: {{target}}; border-top: 1.5px dashed #5B6170"></div>
+<sc-for list="{{cals}}" as="c" hint-placeholder-count="7"><div title="{{c.t}}" style="height: {{c.h}}; border-radius: 6px 6px 2px 2px; background: {{c.c}}"></div></sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; margin-top: 4px"><sc-for list="{{cals}}" as="c" hint-placeholder-count="7"><span style="font-size: 11px; text-align: center; color: #5B6170">{{c.d}}</span></sc-for></div>
+</div>
+</section>
+</div>
+
+<section style="background: #FFFFFF; border: 1px solid #ECEEF3; border-radius: 16px; box-shadow: 0 1px 2px rgba(16,24,40,0.05)">
+<h2 style="margin: 0; padding: 18px 20px 10px; font-size: 16px; font-weight: 500">Measurements</h2>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="text-align: left; font-size: 12px; color: #5B6170"><th style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid #ECEEF3">Measure</th><th style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid #ECEEF3">Sep 1</th><th style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid #ECEEF3">Oct 19</th><th style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid #ECEEF3">Change</th><th style="padding: 10px 20px 10px 12px; font-weight: 500; border-bottom: 1px solid #ECEEF3">Trend</th></tr></thead>
+<tbody>
+<sc-for list="{{meas}}" as="m" hint-placeholder-count="6">
+<tr><td style="padding: 10px 20px; border-bottom: 1px solid #F3F4F7">{{m.n}}</td><td style="padding: 10px 12px; border-bottom: 1px solid #F3F4F7; color: #5B6170">{{m.a}}</td><td style="padding: 10px 12px; border-bottom: 1px solid #F3F4F7; font-weight: 500">{{m.b}}</td>
+<td style="padding: 10px 12px; border-bottom: 1px solid #F3F4F7"><span style="height: 22px; padding: 0 8px; border-radius: 11px; background: #F2F4F8; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center">{{m.d}}</span></td>
+<td style="padding: 6px 20px 6px 12px; border-bottom: 1px solid #F3F4F7"><svg role="img" aria-label="{{m.n}} trend" viewBox="0 0 120 30" width="120" height="30"><path d="{{m.p}}" fill="none" stroke="#2A78D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="{{m.ex}}" cy="{{m.ey}}" r="3" fill="#2A78D6"></circle></svg></td></tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const pts = [166.0, 165.4, 165.1, 164.2, 164.5, 163.6, 163.0, 162.4];
+    const dates = ['Sep 1', 'Sep 8', 'Sep 15', 'Sep 22', 'Sep 29', 'Oct 6', 'Oct 13', 'Oct 20'];
+    const x0 = 64, x1 = 736, yT = 16, yB = 256, lo = 154, hi = 167;
+    const sx = (i) => x0 + i * (x1 - x0) / 7;
+    const sy = (v) => yB - (v - lo) / (hi - lo) * (yB - yT);
+    const line = pts.map((v, i) => (i ? 'L' : 'M') + sx(i).toFixed(1) + ' ' + sy(v).toFixed(1)).join(' ');
+    const w = {
+      line, area: line + ' L' + sx(7).toFixed(1) + ' ' + yB + ' L' + sx(0).toFixed(1) + ' ' + yB + ' Z',
+      hx: sx(6), hy: sy(163.0), tipLeft: ((sx(6) + 16) / 760 * 100).toFixed(1) + '%',
+      goal: sy(155),
+      grid: [155, 160, 165].map((v) => ({ y: sy(v), ty: sy(v) + 4, l: String(v) })),
+      x: dates.map((l, i) => ({ l, x: sx(i) }))
+    };
+    const sp = (vals, W, H) => {
+      const mn = Math.min(...vals), mx = Math.max(...vals), s = mx - mn || 1;
+      const X = (i) => 4 + i * (W - 8) / (vals.length - 1), Y = (v) => H - 4 - (v - mn) / s * (H - 8);
+      return { p: vals.map((v, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1)).join(' '), ex: X(vals.length - 1), ey: Y(vals[vals.length - 1]) };
+    };
+    const pos = { pillBg: '#E8F1FC', pillFg: '#1A5BA8' };
+    const kpis = [
+      { label: 'Current weight', value: '162.4 lb', pill: '−3.6 lb since Sep 1', ...pos, ...sp(pts, 88, 36) },
+      { label: 'Average rate', value: '−0.5 lb/wk', pill: 'On pace for goal by Jan 30', ...pos, ...sp([0.6, 0.3, 0.9, -0.3, 0.9, 0.6, 0.6], 88, 36) },
+      { label: 'Workout adherence', value: '92%', pill: '+8 pts vs last month', ...pos, ...sp([70, 76, 80, 84, 88, 90, 92], 88, 36) },
+      { label: 'Protein target hit', value: '6 / 7 days', pill: 'Last 7 days', pillBg: '#F2F4F8', pillFg: '#161D1C', ...sp([4, 5, 5, 6, 5, 6, 6], 88, 36) }
+    ];
+    const C = 2 * Math.PI * 58, gap = 6;
+    const split = [['Protein', 0.31, '#2A78D6'], ['Carbs', 0.44, '#EB6834'], ['Fat', 0.25, '#1BAF7A']];
+    let acc = 0;
+    const donut = split.map(([n, f, c]) => {
+      const len = Math.max(0, f * C - gap);
+      const d = { n, c, pct: Math.round(f * 100) + '%', dash: len.toFixed(1) + ' ' + C.toFixed(1), off: (-acc * C).toFixed(1) };
+      acc += f; return d;
+    });
+    const kc = [1850, 1920, 1760, 2050, 1810, 1700, 1790];
+    const max = 2200;
+    const cals = ['Wed', 'Thu', 'Fri', 'Sat', 'Sun', 'Mon', 'Tue'].map((d, i) => ({
+      d, h: Math.round(kc[i] / max * 100) + '%', t: d + ': ' + kc[i].toLocaleString() + ' kcal',
+      c: i === 6 ? '#2A78D6' : '#C9DCF4'
+    }));
+    const meas = [
+      ['Waist', '34.0 in', '32.5 in', '−1.5 in', [34.0, 33.6, 33.1, 32.5]],
+      ['Hips', '41.0 in', '40.2 in', '−0.8 in', [41.0, 40.8, 40.5, 40.2]],
+      ['Chest', '39.5 in', '39.0 in', '−0.5 in', [39.5, 39.4, 39.1, 39.0]],
+      ['Arm (right)', '13.0 in', '13.2 in', '+0.2 in', [13.0, 13.0, 13.1, 13.2]],
+      ['Thigh (right)', '23.5 in', '23.0 in', '−0.5 in', [23.5, 23.4, 23.2, 23.0]],
+      ['Body fat', '28.0%', '26.1%', '−1.9 pts', [28.0, 27.4, 26.8, 26.1]]
+    ].map(([n, a, b, d, s]) => ({ n, a, b, d, ...sp(s, 120, 30) }));
+    const tabs = ['Overview', 'Sessions', 'Program', 'Nutrition', 'Progress', 'Check-ins', 'Messages'].map((l) => {
+      const on = l === 'Progress';
+      return { l, on, line: on ? '#006A60' : 'transparent', fg: on ? '#006A60' : '#5B6170' };
+    });
+    const ranges = ['1M', '3M', '6M', 'All'].map((label, i) => ({
+      label, on: i === 1, bg: i === 1 ? '#FFFFFF' : 'transparent', sh: i === 1 ? '0 1px 2px rgba(16,24,40,0.12)' : 'none', fg: i === 1 ? '#161D1C' : '#5B6170'
+    }));
+    return { w, kpis, donut, cals, target: Math.round(1900 / max * 100) + '%', meas, tabs, ranges };
+  }
+}
+</script>
+</body>
+</html>

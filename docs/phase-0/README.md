@@ -67,3 +67,7 @@ Two versions, both with a placeholder teal accent until the brand kit arrives. F
 | A11 · Email & domain (SPF/DKIM/DMARC) | `A11EmailDomain.dc.html` |
 | A12 · Session planner (week view, couples, session templates) | `A12SessionPlanner.dc.html` |
 | A13 · Client: session results & notes | `A13SessionResults.dc.html` |
+| Alt (not adopted yet) · Today, Orion-style charts | `OTodayAlt.dc.html` |
+| Alt (not adopted yet) · Progress, Orion-style charts | `OProgressAlt.dc.html` |
+| Alt (not adopted yet) · Coach client trends, Orion-style charts | `OClientProgressAlt.dc.html` |
+| Alt (not adopted yet) · Reports, Orion-style charts | `OReportsAlt.dc.html` |
