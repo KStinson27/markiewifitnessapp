@@ -64,6 +64,16 @@ a{color:#006A60}a:hover{color:#00504A}
 
 <aside style="width: 300px; flex-shrink: 0; border-left: 1px solid #E3E6E5; padding: 16px; display: flex; flex-direction: column; gap: 14px; overflow: auto">
 <div style="display: flex; gap: 10px; padding: 12px; border-radius: 12px; background: #FFF4E5; color: #663C00; font-size: 14px; line-height: 1.4"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#ED6C02" style="flex-shrink: 0"><path d="{{ic.warn}}"></path></svg>Left knee: meniscus repair 2023. Avoid deep lunges.</div>
+<div style="padding: 12px; border-radius: 12px; background: #F5F5F5; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="{{primary}}"><path d="{{ic.flag}}"></path></svg>Jordan's goals</div>
+<sc-for list="{{goals}}" as="g" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; justify-content: space-between; gap: 8px; font-size: 13px"><span>{{g.name}}</span><span style="color: #3F4947">{{g.status}}</span></div>
+<div style="height: 4px; border-radius: 2px; background: #DAE5E1"><div style="width: {{g.pct}}; height: 4px; border-radius: 2px; background: {{primary}}"></div></div>
+<sc-if value="{{g.today}}" hint-placeholder-val="{{false}}"><div style="font-size: 12px; color: #00504A">Today's session works on this</div></sc-if>
+</div>
+</sc-for>
+</div>
 <div style="padding: 12px; border-radius: 12px; border: 1px solid #BEC9C6; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="{{primary}}"><path d="{{ic.home}}"></path></svg>Program</div>
 <div style="font-size: 13px; color: #3F4947; line-height: 1.4">Strength Foundations · Week 3<br>2 of 3 program workouts done this week · next: Full Body (Fri)</div>
@@ -96,6 +106,7 @@ class Component extends DCLogic {
       timer: 'M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z',
       warn: 'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z',
       home: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z',
+      flag: 'M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z',
       cloud: 'M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM10 17l-3.5-3.5 1.41-1.41L10 14.17 15.18 9l1.41 1.41L10 17z'
     };
     const clients = [
@@ -121,7 +132,12 @@ class Component extends DCLogic {
     ].map((s) => ({ ...s, bg: s.n === 2 ? '#E3F2EF' : '#F5F5F5', doneBg: s.done ? primary : '#FFFFFF', doneFg: s.done ? '#FFFFFF' : '#6F7977' }));
     const scale = (picked) => [1, 2, 3, 4, 5].map((n) => ({ n, bg: n === picked ? primary : '#FFFFFF', fg: n === picked ? '#FFFFFF' : '#161D1C' }));
     const readiness = [{ label: 'Sleep', dots: scale(4) }, { label: 'Energy', dots: scale(3) }];
-    return { primary, ic, clients, exercises, sets, readiness };
+    const goals = [
+      { name: 'Deadlift 225 lb', status: 'Best 205 × 5', pct: '91%', today: true },
+      { name: 'Lose 15 lb', status: '3.6 of 15 lb', pct: '24%', today: false },
+      { name: 'Run a 5K in spring', status: 'Starts Phase 2', pct: '0%', today: false }
+    ];
+    return { primary, ic, clients, exercises, sets, readiness, goals };
   }
 }
 </script>
