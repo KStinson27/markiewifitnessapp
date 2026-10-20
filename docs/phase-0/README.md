@@ -53,7 +53,8 @@ Two versions, both with a placeholder teal accent until the brand kit arrives. F
 | Client · Choose a program (v2) | `M3ClientPrograms.dc.html` |
 | Coach · Exercise library muscle map (clickable prototype) | `M3MuscleMap.dc.html` |
 | Coach · My calendar & to-dos (clickable prototype) | `M3CoachCalendar.dc.html` |
-| Admin · Social media planner (clickable prototype) | `M3Social.dc.html` |
+| Admin · Social media planner & approval rules (clickable prototype) | `M3Social.dc.html` |
+| Admin · New class or event → Eventbrite & Instagram (clickable prototype) | `M3EventNew.dc.html` |
 | Client · Progress: weight & measurements (v2) | `M3Progress.dc.html` |
 | Coach · Client progress & trends (v2) | `M3ClientProgress.dc.html` |
 | A1 · Client onboarding (health check step) | `A1Onboarding.dc.html` |

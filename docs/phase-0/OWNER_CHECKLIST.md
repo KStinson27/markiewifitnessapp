@@ -32,8 +32,9 @@ Legend: ⏱ = long lead time, start first · 💲 = costs money
 | 7 | Expo | Free | Organization account |
 | 8 | Resend, Sentry, PostHog | Free | Can be created during Phase 1 |
 | 9 | 💲 Calendly | Standard or higher | Needed for booking webhooks |
-| 10 | Eventbrite | Existing | Need organizer account access for an API token |
+| 10 | Eventbrite | Existing | Organizer account for an API token (lets the app create and publish events). Payout details needed for paid events |
 | 11 | Google Cloud project (for Google Calendar sync) | Free | OAuth consent screen in the LLC's name; calendar scopes need Google's app verification (allow a few weeks; needs the live privacy policy URL and verified domain) |
+| 12 | Instagram **Business** account linked to a Facebook Page + Meta Business account | Free | Needed for posting to Instagram from the app. Meta Business Verification uses the LLC's documents; app review can take a few weeks |
 
 Turn on **two-factor authentication** for every one of these accounts. Add the
 developer/Claude-operated service accounts as team members — don't share your login.

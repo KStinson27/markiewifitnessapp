@@ -97,6 +97,18 @@ a{color:#006A60}a:hover{color:#00504A}
 <sc-if value="{{cur.next}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{advance}}" style="height: 36px; padding: 0 14px; border: 0; border-radius: 4px; background: #006A60; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer; box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)">{{cur.next}}</button></sc-if>
 </div>
 <div style="font-size: 12px; line-height: 1.45; color: rgba(0,0,0,0.6)">{{cur.help}}</div>
+<div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 500; color: #00504A"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.rule}}"></path></svg>{{cur.ruleNote}}</div>
+</section>
+
+<section aria-label="Approval rules" style="background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="padding: 10px 16px 4px; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#006A60"><path d="{{ic.rule}}"></path></svg><h2 style="flex: 1; margin: 0; font-size: 16px; font-weight: 500">Approval rules</h2><span style="font-size: 12px; color: rgba(0,0,0,0.6)">Owner sets these</span></div>
+<sc-for list="{{ruleRows}}" as="r" hint-placeholder-count="5">
+<button type="button" role="switch" aria-checked="{{r.on}}" onClick="{{r.toggle}}" style="width: 100%; display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 6px 16px; border: 0; border-top: 1px solid rgba(0,0,0,0.08); background: transparent; font: inherit; text-align: left; cursor: pointer; opacity: {{r.op}}">
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14px; color: rgba(0,0,0,0.87)">{{r.label}}</span><span style="display: block; font-size: 12px; color: rgba(0,0,0,0.6); margin-top: 2px">{{r.note}} · {{r.state}}</span></span>
+<span aria-hidden="true" style="position: relative; width: 38px; height: 22px; flex-shrink: 0; border-radius: 11px; background: {{r.track}}"><span style="position: absolute; top: 2px; left: {{r.knob}}; width: 18px; height: 18px; border-radius: 9px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(0,0,0,0.3)"></span></span>
+</button>
+</sc-for>
+<div style="padding: 8px 16px 6px; font-size: 12px; line-height: 1.45; color: rgba(0,0,0,0.6); border-top: 1px solid rgba(0,0,0,0.08)">Auto-approved posts still show on your dashboard, and you can pull one back any time before it goes out.</div>
 </section>
 
 <section aria-label="Post ideas" style="background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
@@ -132,6 +144,7 @@ class Component extends DCLogic {
       ok: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
       copy: 'M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z',
       download: 'M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z',
+      rule: 'M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z',
       idea: 'M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7z'
     };
     const active = 'Social planner';
@@ -156,24 +169,24 @@ class Component extends DCLogic {
       idea: 'Ideas are private notes. Start a draft when you are ready to write it.',
       draft: 'The owner gets a notification to review. Nothing is posted without approval.',
       review: 'Waiting on the owner. They can approve, edit, or send back with a comment.',
-      scheduled: 'At the scheduled time you get a reminder with the caption and image ready to post from your phone or Meta Business Suite.',
+      scheduled: 'Once Instagram is connected, this posts itself at the scheduled time. Until then you get a reminder with the caption and image ready to post.',
       posted: 'Paste the post link to keep a record of what went out.'
     };
 
     const base = [
-      { id: 1, day: 0, time: '7:00 AM', title: 'Monday motivation reel', plats: ['IG'], status: 'posted', media: 'Reel · gym floor clip', mediaTint: '#DAE5E1', caption: 'New week, same plan: show up. 💪 #MarkiewiFitness', link: '' },
-      { id: 2, day: 1, time: '12:00 PM', title: 'Bootcamp: 2 spots left', plats: ['Story'], status: 'scheduled', media: 'Thursday Bootcamp flyer', mediaTint: '#E3E1EC', caption: 'Thursday Bootcamp is almost full. 2 spots left for Oct 29. Book with the link in bio!', link: 'Calendly link in bio' },
-      { id: 3, day: 2, time: '6:00 PM', title: 'Form tip: hip hinge', plats: ['IG', 'FB'], status: 'review', media: 'Carousel · 4 photos', mediaTint: '#DAE5E1', caption: 'Hip hinge 101: push your hips back, keep a long spine, soft knees. Save this for your next deadlift day.', link: '' },
-      { id: 4, day: 3, time: '9:00 AM', title: 'Halloween Sweat flyer', plats: ['IG', 'FB'], status: 'draft', media: 'Halloween Sweat flyer', mediaTint: '#F2E0D9', caption: 'Costumes encouraged 🎃 Halloween Sweat is Sat Oct 31 at 10 AM. Open to everyone, bring a friend!', link: 'Eventbrite link in bio' },
-      { id: 5, day: 5, time: '11:00 AM', title: 'Small group recap', plats: ['IG'], status: 'idea', media: 'No image yet', mediaTint: '#EEEEEE', caption: '', link: '' },
-      { id: 6, day: 7, time: '8:00 AM', title: 'Fall Steps Challenge: join free', plats: ['IG', 'FB'], status: 'draft', media: 'Challenge card (auto-made)', mediaTint: '#E7E3FA', caption: 'Our free Fall Steps Challenge starts Mon Nov 2. 4 weeks, daily steps, friendly leaderboard. Anyone can join!', link: 'Challenge join link in bio' },
-      { id: 7, day: 12, time: '1:00 PM', title: 'Halloween Sweat photos', plats: ['IG', 'FB'], status: 'idea', media: 'Take photos at the class', mediaTint: '#EEEEEE', caption: '', link: '' },
-      { id: 8, day: 14, time: '7:00 AM', title: 'Challenge starts today', plats: ['IG', 'Story', 'FB'], status: 'draft', media: 'Challenge card (auto-made)', mediaTint: '#E7E3FA', caption: 'Day 1 of the Fall Steps Challenge! It is not too late to join.', link: 'Challenge join link in bio' }
+      { id: 1, cat: 'general', day: 0, time: '7:00 AM', title: 'Monday motivation reel', plats: ['IG'], status: 'posted', media: 'Reel · gym floor clip', mediaTint: '#DAE5E1', caption: 'New week, same plan: show up. 💪 #MarkiewiFitness', link: '' },
+      { id: 2, cat: 'class', day: 1, time: '12:00 PM', title: 'Bootcamp: 2 spots left', plats: ['Story'], status: 'scheduled', media: 'Thursday Bootcamp flyer', mediaTint: '#E3E1EC', caption: 'Thursday Bootcamp is almost full. 2 spots left for Oct 29. Book with the link in bio!', link: 'Calendly link in bio' },
+      { id: 3, cat: 'general', day: 2, time: '6:00 PM', title: 'Form tip: hip hinge', plats: ['IG', 'FB'], status: 'review', media: 'Carousel · 4 photos', mediaTint: '#DAE5E1', caption: 'Hip hinge 101: push your hips back, keep a long spine, soft knees. Save this for your next deadlift day.', link: '' },
+      { id: 4, cat: 'class', day: 3, time: '9:00 AM', title: 'Halloween Sweat flyer', plats: ['IG', 'FB'], status: 'draft', media: 'Halloween Sweat flyer', mediaTint: '#F2E0D9', caption: 'Costumes encouraged 🎃 Halloween Sweat is Sat Oct 31 at 10 AM. Open to everyone, bring a friend!', link: 'Eventbrite link in bio' },
+      { id: 5, cat: 'general', day: 5, time: '11:00 AM', title: 'Small group recap', plats: ['IG'], status: 'idea', media: 'No image yet', mediaTint: '#EEEEEE', caption: '', link: '' },
+      { id: 6, cat: 'challenge', day: 7, time: '8:00 AM', title: 'Fall Steps Challenge: join free', plats: ['IG', 'FB'], status: 'draft', media: 'Challenge card (auto-made)', mediaTint: '#E7E3FA', caption: 'Our free Fall Steps Challenge starts Mon Nov 2. 4 weeks, daily steps, friendly leaderboard. Anyone can join!', link: 'Challenge join link in bio' },
+      { id: 7, cat: 'general', day: 12, time: '1:00 PM', title: 'Halloween Sweat photos', plats: ['IG', 'FB'], status: 'idea', media: 'Take photos at the class', mediaTint: '#EEEEEE', caption: '', link: '' },
+      { id: 8, cat: 'challenge', day: 14, time: '7:00 AM', title: 'Challenge starts today', plats: ['IG', 'Story', 'FB'], status: 'draft', media: 'Challenge card (auto-made)', mediaTint: '#E7E3FA', caption: 'Day 1 of the Fall Steps Challenge! It is not too late to join.', link: 'Challenge join link in bio' }
     ];
     const ideaDefs = [
-      { key: 'last', title: 'Last call: Halloween Sweat', why: 'Sat Oct 31 · 14 booked · no reminder post yet', post: { day: 10, time: '6:00 PM', title: 'Last call: Halloween Sweat', plats: ['Story'], status: 'draft', media: 'Halloween Sweat flyer', mediaTint: '#F2E0D9', caption: 'Halloween Sweat is this Saturday! Grab a spot with the link in bio. 🎃', link: 'Eventbrite link in bio' } },
-      { key: 'spot', title: 'Client spotlight: Jordan R.', why: 'Agreed to be featured · quote and 1 photo shared', post: { day: 17, time: '12:00 PM', title: 'Client spotlight: Jordan R.', plats: ['IG', 'FB'], status: 'draft', media: 'Photo shared by Jordan', mediaTint: '#DAE5E1', caption: '“I never thought I would look forward to leg day.” Meet Jordan, training with us since spring.', link: '', consent: 'Jordan agreed to be featured on Oct 12 and shared this photo and quote. Edit the caption freely, but don’t add other details about Jordan.' } },
-      { key: 'board', title: 'Challenge week 1 leaderboard', why: 'Fall Steps Challenge · first names only, if members opted in', post: { day: 21, time: '9:00 AM', title: 'Challenge week 1 leaderboard', plats: ['Story'], status: 'idea', media: 'Leaderboard card (auto-made)', mediaTint: '#E7E3FA', caption: '', link: '' } }
+      { key: 'last', title: 'Last call: Halloween Sweat', why: 'Sat Oct 31 · 14 booked · no reminder post yet', post: { cat: 'class', day: 10, time: '6:00 PM', title: 'Last call: Halloween Sweat', plats: ['Story'], status: 'draft', media: 'Halloween Sweat flyer', mediaTint: '#F2E0D9', caption: 'Halloween Sweat is this Saturday! Grab a spot with the link in bio. 🎃', link: 'Eventbrite link in bio' } },
+      { key: 'spot', title: 'Client spotlight: Jordan R.', why: 'Agreed to be featured · quote and 1 photo shared', post: { cat: 'spotlight', day: 17, time: '12:00 PM', title: 'Client spotlight: Jordan R.', plats: ['IG', 'FB'], status: 'draft', media: 'Photo shared by Jordan', mediaTint: '#DAE5E1', caption: '“I never thought I would look forward to leg day.” Meet Jordan, training with us since spring.', link: '', consent: 'Jordan agreed to be featured on Oct 12 and shared this photo and quote. Edit the caption freely, but don’t add other details about Jordan.' } },
+      { key: 'board', title: 'Challenge week 1 leaderboard', why: 'Fall Steps Challenge · first names only, if members opted in', post: { cat: 'challenge', day: 21, time: '9:00 AM', title: 'Challenge week 1 leaderboard', plats: ['Story'], status: 'idea', media: 'Leaderboard card (auto-made)', mediaTint: '#E7E3FA', caption: '', link: '' } }
     ];
     const addedIdeas = st.addedIdeas || {};
     const extra = st.extra || [];
@@ -219,8 +232,28 @@ class Component extends DCLogic {
       pick: () => this.setState({ filter: f.k })
     }));
 
+    const ruleDefs = [
+      { k: 'class', label: 'Class promos & reminders', note: 'Posts made from a class flyer' },
+      { k: 'challenge', label: 'Challenge announcements', note: 'Free challenges · auto-made cards' },
+      { k: 'event', label: 'Free Eventbrite listings', note: 'Paid events always need you' },
+      { k: 'general', label: 'Tips, motivation & recaps', note: 'Anything written from scratch' },
+      { k: 'spotlight', label: 'Client spotlights', note: 'Always needs your approval', locked: true }
+    ];
+    const rules = st.rules || { class: true, challenge: true, event: true, general: false, spotlight: false };
+    const ruleRows = ruleDefs.map((r) => {
+      const on = !!rules[r.k] && !r.locked;
+      return {
+        label: r.label, note: r.note, locked: !!r.locked, on,
+        state: r.locked ? 'Always review' : on ? 'Auto-approve' : 'Review',
+        track: on ? '#006A60' : '#BDBDBD', knob: on ? '18px' : '2px', op: r.locked ? 0.5 : 1,
+        toggle: () => { if (r.locked) return; const m = { ...((this.state && this.state.rules) || rules) }; m[r.k] = !m[r.k]; this.setState({ rules: m }); }
+      };
+    });
+    const autoOk = (p) => !!rules[p.cat] && p.cat !== 'spotlight';
+
     const sel = posts.find((p) => p.id === selId) || posts[0];
     const dt = dateOf(sel.day);
+    const selAuto = autoOk(sel);
     const cur = {
       title: sel.title,
       statusLabel: S[sel.status].label, bg: S[sel.status].bg, fg: S[sel.status].fg, border: S[sel.status].border,
@@ -231,8 +264,9 @@ class Component extends DCLogic {
       chars: sel.caption.length,
       linkNote: sel.link || 'No link',
       consent: sel.consent || '',
-      next: S[sel.status].next,
-      help: help[sel.status]
+      next: sel.status === 'draft' && selAuto ? 'Schedule' : S[sel.status].next,
+      help: sel.status === 'draft' && selAuto ? 'This kind of post is set to auto-approve, so it skips owner review. The owner can still see and edit it until it goes out.' : help[sel.status],
+      ruleNote: selAuto ? 'Auto-approve: ' + ruleDefs.find((r) => r.k === sel.cat).label : sel.cat === 'spotlight' ? 'Client spotlight · always needs owner approval' : 'Needs owner approval'
     };
     const steps = order.map((k, i) => {
       const at = order.indexOf(sel.status);
@@ -267,17 +301,17 @@ class Component extends DCLogic {
     const newPost = () => {
       const cur2 = (this.state && this.state.extra) || [];
       const id = 200 + cur2.length;
-      this.setState({ extra: [...cur2, { id, day: 2, time: '12:00 PM', title: 'New post', plats: ['IG'], status: 'idea', media: 'No image yet', mediaTint: '#EEEEEE', caption: '', link: '' }], sel: id, filter: 'all' });
+      this.setState({ extra: [...cur2, { id, cat: 'general', day: 2, time: '12:00 PM', title: 'New post', plats: ['IG'], status: 'idea', media: 'No image yet', mediaTint: '#EEEEEE', caption: '', link: '' }], sel: id, filter: 'all' });
     };
     const advance = () => {
       const i = order.indexOf(sel.status);
       if (i < 0 || i >= order.length - 1) return;
       const m = { ...((this.state && this.state.statusMap) || {}) };
-      m[sel.id] = order[i + 1];
+      m[sel.id] = sel.status === 'draft' && selAuto ? 'scheduled' : order[i + 1];
       this.setState({ statusMap: m });
     };
     return {
-      ic, nav, dows, cells, filters, cur, steps, platOpts, tagSets, ideas, newPost, advance,
+      ic, nav, dows, cells, filters, cur, steps, platOpts, tagSets, ideas, newPost, advance, ruleRows,
       typeCaption: (e) => setCaption(e.target.value)
     };
   }

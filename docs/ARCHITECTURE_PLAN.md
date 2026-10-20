@@ -132,18 +132,33 @@ billing — with room to add contract coaches later.
   grey "Busy" blocks. Calendly bookings are not re-sent (Calendly already writes them to Google);
   events are de-duplicated by Calendly event ID. Changes flow both ways for synced to-dos via
   Google push notifications (watch channels) handled by an Edge Function.
-- **Social media planner (admin role, optional per admin):** a 4-week content calendar of posts
-  for Instagram feed, Instagram Story and Facebook, shown next to classes and challenges.
-  Statuses: idea → draft → owner review → scheduled → posted. Nothing is approved without the
-  owner. The post editor has the caption, a character count, hashtag sets, and media from the
-  flyer library or auto-made challenge cards. "Ideas from the app" suggests posts: classes with
-  no promo post, challenge launches, and client spotlights. **Client content needs consent:**
-  a client must opt in to being featured and share the photo and quote themselves. Admins never
-  see progress photos, body metrics or other health data. **Publishing:** in the MVP, the admin
-  gets a reminder at the scheduled time and posts from their phone or Meta Business Suite (free),
-  using the copy-caption and download-image buttons. Direct publishing through the Instagram and
-  Facebook APIs comes later; it needs a Business Instagram account linked to a Facebook Page and
-  Meta app review.
+- **Social media planner (admin role):** a 4-week content calendar of posts for Instagram
+  (feed and Stories) and Facebook, shown next to classes and challenges. Statuses: idea → draft →
+  owner review → scheduled → posted. The post editor has the caption, a character count,
+  hashtag sets, and media from the flyer library or auto-made challenge cards. "Ideas from the
+  app" suggests posts: classes with no promo post, challenge launches, and client spotlights.
+- **Approval rules (owner only):** auto-approve or review, set per post type: class promos and
+  reminders, challenge announcements, free Eventbrite listings, and general posts. **Client
+  spotlights and paid Eventbrite events always need the owner.** Auto-approved posts still show
+  on the owner's dashboard and can be pulled back until they go out.
+- **Client content needs consent:** a client must opt in to being featured and share the photo
+  and quote themselves. Admins never see progress photos, body metrics or other health data.
+- **Instagram publishing:** through the Instagram Graph API (Content Publishing) for a
+  professional (Business) Instagram account. Media must be hosted at a public URL (Supabase
+  Storage signed URL), and publishing has two steps: create a media container, then publish it.
+  This needs Meta app review for `instagram_business_content_publish` plus Meta Business
+  Verification. Until that approval arrives, the fallback is a reminder at the scheduled time
+  with copy-caption and download-image buttons. Story publishing support should be confirmed
+  in a spike.
+- **Create classes and events in the app, publish to Eventbrite:** the "New class or event"
+  form (one-time event or weekly class) has toggles for the app's Classes tab (always on),
+  Eventbrite, and auto-drafted Instagram posts (go-live post, a story 2 days before, and a
+  last-call story if spots remain). Eventbrite API v3 calls, in order: create the event under
+  the organization → add a ticket class (free, or paid with a cost) → upload the flyer as the
+  banner → publish. Weekly classes become Eventbrite series dates 8 weeks ahead (series API
+  to be confirmed in a spike). Bookings come back through Eventbrite webhooks
+  (`order.placed`, `attendee.updated`), with a 15-minute poll as backup. Edits and
+  cancellations in the app update Eventbrite. Calendly classes are still set up in Calendly.
 - **Session results for clients:** after a session, the client sees it under *My profile →
   Sessions*: their own sets and weights, PRs, and the coach notes marked as shared. Results
   are released only after the coach reviews them ("End & review" → share).
@@ -212,6 +227,10 @@ social_posts(title, platforms[], scheduled_at, status: idea | draft | review | s
              caption, media[], link_note, linked_class? | linked_challenge?, featured_client?,
              approved_by?, posted_url?)
 marketing_consents(client, granted_at, revoked_at?, shared_media[], quote)  -- client-owned; revoking hides drafts
+approval_rules(post_type: class | challenge | event_free | general, auto_approve)  -- owner-only RLS; spotlight & paid events fixed to review
+studio_events(kind: once | weekly, name, starts_at, capacity, price_cents?, flyer, description,
+              eventbrite_event_id?, eventbrite_series_id?, status: draft | review | live | cancelled)
+meta_links(instagram_account_id, page_id, token_expires_at)  -- tokens encrypted
 
 nutrition_targets, meal_plans, foods(cache), food_logs, water_logs
 habits(scope: client | challenge) → habit_assignments → habit_logs
@@ -288,8 +307,11 @@ MVP = Phases 0–7. Each task ships as its own reviewable pull request.
 - P5-3 Calendly + Eventbrite sync; Upcoming Classes; class flyer upload + thumbnails
 - P5-4 Class package tracker
 - P5-5 Review inbox & at-risk flags
-- P5-6 Social media planner: content calendar, post editor, owner approval, idea suggestions,
-  posting reminders, client "feature me" consent (direct Meta publishing deferred)
+- P5-6 Social media planner: content calendar, post editor, owner approval and auto-approve
+  rules, idea suggestions, client "feature me" consent, Instagram Graph API publishing
+  (reminder fallback until Meta app review is approved)
+- P5-7 New class/event form → Eventbrite publish (event, ticket class, banner, publish;
+  weekly series), booking webhooks, auto-drafted Instagram posts
 
 ### Phase 6 — Challenges & Apple Health
 - P6-1 Challenge engine (types, metrics, scoring)
