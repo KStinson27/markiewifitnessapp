@@ -45,3 +45,6 @@ Two versions, both with a placeholder teal accent until the brand kit arrives. F
 | Staff · Challenge builder | `ChallengeBuilder.dc.html` |
 | Coach · Program builder | `ProgramBuilder.dc.html` |
 | Admin · Schedule, packages & support | `AdminView.dc.html` |
+| Coach · Program templates (v2) | `M3ProgramLibrary.dc.html` |
+| Coach · Assign program on calendar (v2) | `M3ProgramCalendar.dc.html` |
+| Client · Choose a program (v2) | `M3ClientPrograms.dc.html` |

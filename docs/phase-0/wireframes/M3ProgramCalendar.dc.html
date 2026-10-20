@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Assign Program on Calendar · Material UI</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 1060px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 16px; background: {{primary}}; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<a href="M3ProgramLibrary.dc.html" aria-label="Back to program templates" style="width: 40px; height: 40px; border-radius: 20px; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></a>
+<div style="flex: 1; font-size: 20px; font-weight: 500">Program calendar</div>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 24px; background: #FFFFFF; border-bottom: 1px solid rgba(0,0,0,0.12)">
+<label style="position: relative; display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 12px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; min-width: 220px">
+<span style="position: absolute; top: -9px; left: 8px; padding: 0 4px; background: #FFFFFF; font-size: 12px; color: rgba(0,0,0,0.6)">Client</span>
+<span style="width: 28px; height: 28px; border-radius: 14px; background: #BDBDBD; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 12px">JR</span>
+<select style="flex: 1; border: 0; outline: 0; background: transparent; font: inherit; font-size: 15px; appearance: none"><option>Jordan R.</option><option>Alicia W.</option><option>Chris M.</option></select>
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.drop}}"></path></svg>
+</label>
+<div role="group" aria-label="Calendar view" style="display: flex; border: 1px solid rgba(0,106,96,0.5); border-radius: 4px; overflow: hidden; height: 36px">
+<button type="button" style="padding: 0 14px; border: 0; background: rgba(0,106,96,0.12); color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em">Month</button>
+<button type="button" style="padding: 0 14px; border: 0; border-left: 1px solid rgba(0,106,96,0.5); background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em">Week</button>
+</div>
+<span style="flex: 1"></span>
+<button type="button" aria-label="Previous month" style="width: 40px; height: 40px; border: 0; border-radius: 20px; background: transparent; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.left}}"></path></svg></button>
+<h1 style="margin: 0; font-size: 20px; font-weight: 500; min-width: 150px; text-align: center">November 2026</h1>
+<button type="button" aria-label="Next month" style="width: 40px; height: 40px; border: 0; border-radius: 20px; background: transparent; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.right}}"></path></svg></button>
+<button type="button" style="height: 36px; padding: 0 12px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.23); background: transparent; font: inherit; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em">Today</button>
+</div>
+
+<main style="flex: 1; box-sizing: border-box; padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<aside style="flex: 1 1 220px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 12px 0 8px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 0 16px 4px; font-size: 16px; font-weight: 500">Templates</h2>
+<div style="padding: 0 16px 8px; font-size: 13px; color: rgba(0,0,0,0.6)">Drag onto a start date</div>
+<sc-for list="{{templates}}" as="t" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 0 12px 0 8px; border-top: 1px solid rgba(0,0,0,0.12); background: {{t.bg}}">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.38)"><path d="{{ic.drag}}"></path></svg>
+<span style="width: 10px; height: 10px; border-radius: 5px; background: {{t.dot}}; flex-shrink: 0"></span>
+<div style="flex: 1; min-width: 0"><div style="font-size: 14px">{{t.name}}</div><div style="font-size: 12px; color: rgba(0,0,0,0.6)">{{t.meta}}</div></div>
+</div>
+</sc-for>
+</aside>
+
+<section style="flex: 4 1 600px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 16px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 12px; font-size: 13px; color: rgba(0,0,0,0.7)">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 3px; background: #E0F2EF"></span>Strength Foundations (current)</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 3px; background: #F3EFFA; border: 1px dashed #5B4BA0; box-sizing: border-box"></span>Hypertrophy Block (preview)</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 3px; background: #FFF3E0"></span>Class booking (Calendly)</span>
+</div>
+<div style="overflow-x: auto">
+<div style="min-width: 700px">
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-bottom: 1px solid rgba(0,0,0,0.12)">
+<sc-for list="{{dows}}" as="d" hint-placeholder-count="7"><div style="padding: 8px; font-size: 12px; font-weight: 500; color: rgba(0,0,0,0.6); text-transform: uppercase">{{d}}</div></sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr))">
+<sc-for list="{{days}}" as="c" hint-placeholder-count="42">
+<div style="min-height: 112px; box-sizing: border-box; padding: 6px; border-right: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08); background: {{c.cellBg}}; outline: {{c.outline}}; outline-offset: -2px; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: {{c.numColor}}"><span style="font-weight: 500">{{c.label}}</span><sc-if value="{{c.isStart}}" hint-placeholder-val="{{false}}"><span style="height: 18px; padding: 0 6px; border-radius: 9px; background: #5B4BA0; color: #FFFFFF; font-size: 10px; font-weight: 500; display: flex; align-items: center">START</span></sc-if></div>
+<sc-for list="{{c.items}}" as="it" hint-placeholder-count="1">
+<div style="padding: 3px 6px; border-radius: 4px; font-size: 12px; line-height: 1.3; background: {{it.bg}}; color: {{it.fg}}; border: {{it.border}}">{{it.text}}</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</section>
+
+<aside style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; font-size: 20px; font-weight: 500">Assign program</h2>
+<sc-for list="{{fields}}" as="f" hint-placeholder-count="3">
+<label style="position: relative; display: block"><span style="position: absolute; top: -8px; left: 10px; padding: 0 4px; background: #FFFFFF; font-size: 12px; color: rgba(0,0,0,0.6)">{{f.label}}</span><input value="{{f.value}}" style="width: 100%; box-sizing: border-box; height: 52px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; padding: 0 14px; font: inherit; font-size: 15px"></label>
+</sc-for>
+<div>
+<div style="font-size: 13px; color: rgba(0,0,0,0.6); margin-bottom: 8px">Training days (4 per week)</div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{trainDays}}" as="d" hint-placeholder-count="7">
+<button type="button" aria-pressed="{{d.on}}" aria-label="{{d.full}}" style="height: 40px; border-radius: 20px; border: 1px solid {{d.border}}; background: {{d.bg}}; color: {{d.fg}}; font: inherit; font-size: 13px; font-weight: 500">{{d.short}}</button>
+</sc-for>
+</div>
+</div>
+<div style="font-size: 14px; color: rgba(0,0,0,0.7); display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.flag}}"></path></svg>Ends Fri Jan 8, 2027 · 32 workouts</div>
+<div style="display: flex; gap: 12px; padding: 12px 14px; border-radius: 4px; background: #FFF4E5; color: #663C00; font-size: 14px; line-height: 1.45"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="#ED6C02" style="flex-shrink: 0"><path d="{{ic.warn}}"></path></svg><div>Jordan is on Strength Foundations through Dec 27.<fieldset style="border: 0; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 2px"><legend style="position: absolute; width: 1px; height: 1px; overflow: hidden">Overlap</legend><label style="display: flex; align-items: center; gap: 8px; min-height: 32px"><input type="radio" name="overlap" checked style="width: 16px; height: 16px; accent-color: {{primary}}">Replace its last 18 workouts</label><label style="display: flex; align-items: center; gap: 8px; min-height: 32px"><input type="radio" name="overlap" style="width: 16px; height: 16px; accent-color: {{primary}}">Run both programs</label></fieldset></div></div>
+<label style="display: flex; align-items: center; gap: 10px; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: {{primary}}">Notify Jordan in the app</label>
+<label style="display: flex; align-items: center; gap: 10px; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: {{primary}}">Let Jordan move workouts within the week</label>
+<div style="display: flex; justify-content: flex-end; gap: 8px">
+<button type="button" style="height: 36px; padding: 0 16px; border: 0; border-radius: 4px; background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase">Cancel</button>
+<button type="button" style="height: 36px; padding: 0 16px; border: 0; border-radius: 4px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)">Assign program</button>
+</div>
+</aside>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":1280,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      drop: 'M7 10l5 5 5-5z',
+      left: 'M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z',
+      right: 'M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z',
+      drag: 'M11 18c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-2-8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z',
+      flag: 'M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z',
+      warn: 'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z'
+    };
+    const templates = [
+      { name: 'Strength Foundations', meta: '12 wk · 3 days', dot: '#4DB6AC', bg: 'transparent' },
+      { name: 'Hypertrophy Block', meta: '8 wk · 4 days', dot: '#5B4BA0', bg: '#F3EFFA' },
+      { name: 'Home Dumbbell 6-Week', meta: '6 wk · 3 days', dot: '#E57373', bg: 'transparent' },
+      { name: 'Fat Loss Circuit', meta: '8 wk · 3 days', dot: '#FFB74D', bg: 'transparent' },
+      { name: 'Return to Run', meta: '6 wk · 3 days', dot: '#AED581', bg: 'transparent' }
+    ];
+    const dows = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const cur = { bg: '#E0F2EF', fg: '#00504A', border: '0' };
+    const pre = { bg: '#F3EFFA', fg: '#3F327A', border: '1px dashed #5B4BA0' };
+    const cls = { bg: '#FFF3E0', fg: '#7A4100', border: '0' };
+    const curNames = { 0: 'Lower A', 2: 'Upper A', 4: 'Full Body' };
+    const newNames = { 0: 'Upper A', 1: 'Lower A', 3: 'Upper B', 4: 'Lower B' };
+    const startDate = new Date(2026, 10, 16);
+    const days = [];
+    for (let i = 0; i < 42; i++) {
+      const d = new Date(2026, 9, 26 + i);
+      const dow = i % 7;
+      const inMonth = d.getMonth() === 10;
+      const items = [];
+      if (d < startDate && curNames[dow]) items.push({ ...cur, text: curNames[dow] });
+      if (d >= startDate && newNames[dow]) items.push({ ...pre, text: newNames[dow] });
+      if (dow === 5) items.push({ ...cls, text: 'Small Group 9 AM' });
+      const isStart = d.getTime() === startDate.getTime();
+      days.push({
+        label: d.getDate() === 1 ? (d.getMonth() === 10 ? 'Nov 1' : 'Dec 1') : String(d.getDate()),
+        items,
+        isStart,
+        cellBg: inMonth ? '#FFFFFF' : '#FAFAFA',
+        numColor: inMonth ? 'rgba(0,0,0,0.87)' : 'rgba(0,0,0,0.45)',
+        outline: isStart ? '2px solid #5B4BA0' : 'none'
+      });
+    }
+    const fields = [
+      { label: 'Template', value: 'Hypertrophy Block · 8 weeks' },
+      { label: 'Client', value: 'Jordan R.' },
+      { label: 'Start date', value: 'Mon, Nov 16, 2026' }
+    ];
+    const picked = [0, 1, 3, 4];
+    const trainDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((full, i) => {
+      const on = picked.includes(i);
+      return { full, short: full[0], on, bg: on ? primary : 'transparent', fg: on ? '#FFFFFF' : 'rgba(0,0,0,0.87)', border: on ? primary : '#BDBDBD' };
+    });
+    return { primary, ic, templates, dows, days, fields, trainDays };
+  }
+}
+</script>
+</body>
+</html>

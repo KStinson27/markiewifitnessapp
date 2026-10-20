@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Program Templates · Material UI</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 960px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 0 24px; background: {{primary}}; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<div style="flex: 1; font-size: 20px; font-weight: 500">[MARKIEWI FITNESS]</div>
+<button type="button" aria-label="Notifications" style="width: 40px; height: 40px; border: 0; border-radius: 20px; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.bell}}"></path></svg></button>
+</header>
+
+<div style="flex: 1; display: flex; flex-wrap: wrap">
+<nav aria-label="Dashboard" style="flex: 1 1 240px; max-width: 100%; box-sizing: border-box; background: #FFFFFF; border-right: 1px solid rgba(0,0,0,0.12); padding: 8px 0">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="8">
+<a href="{{n.href}}" style="display: flex; align-items: center; gap: 24px; min-height: 48px; padding: 0 16px; text-decoration: none; font-size: 15px; color: rgba(0,0,0,0.87); background: {{n.bg}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="{{n.fg}}"><path d="{{n.icon}}"></path></svg>{{n.label}}</a>
+</sc-for>
+</nav>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+<div><h1 style="margin: 0; font-size: 28px; font-weight: 400">Program templates</h1><div style="font-size: 14px; color: rgba(0,0,0,0.6); margin-top: 4px">Build once, then assign on the calendar or let clients choose.</div></div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<a href="M3ProgramCalendar.dc.html" style="height: 36px; padding: 0 16px; border-radius: 4px; border: 1px solid rgba(0,106,96,0.5); color: {{primary}}; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.calendar}}"></path></svg>Assign on calendar</a>
+<a href="M3ProgramBuilder.dc.html" style="height: 36px; padding: 0 16px; border-radius: 4px; background: {{primary}}; color: #FFFFFF; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 8px; box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.add}}"></path></svg>New template</a>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<label style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 12px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; background: #FFFFFF; flex: 0 1 280px; min-width: 0">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.search}}"></path></svg>
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden">Search templates</span>
+<input placeholder="Search templates" style="flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; font: inherit; font-size: 15px">
+</label>
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="5">
+<button type="button" style="height: 32px; padding: 0 12px; border-radius: 16px; border: 1px solid {{f.border}}; background: {{f.bg}}; color: {{f.fg}}; font: inherit; font-size: 13px; display: flex; align-items: center; gap: 6px">{{f.label}}</button>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<div style="flex: 3 1 560px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px">
+<sc-for list="{{templates}}" as="t" hint-placeholder-count="6">
+<article style="background: #FFFFFF; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="height: 72px; background: {{t.tint}}; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; color: rgba(0,0,0,0.7)">
+<svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="{{t.icon}}"></path></svg>
+<sc-if value="{{t.selectable}}" hint-placeholder-val="{{false}}"><span style="height: 24px; padding: 0 8px; border-radius: 12px; background: rgba(255,255,255,0.9); font-size: 12px; font-weight: 500; display: flex; align-items: center; gap: 4px; color: #1B5E20"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.visible}}"></path></svg>Client can choose</span></sc-if>
+</div>
+<div style="padding: 16px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+<h2 style="margin: 0; font-size: 18px; font-weight: 500">{{t.name}}</h2>
+<div style="font-size: 14px; color: rgba(0,0,0,0.6)">{{t.meta}}</div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{t.tags}}" as="g" hint-placeholder-count="2"><span style="height: 24px; padding: 0 10px; border-radius: 12px; background: #EEEEEE; font-size: 12px; display: flex; align-items: center">{{g}}</span></sc-for></div>
+<div style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: rgba(0,0,0,0.6)"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.people}}"></path></svg>{{t.usage}}</div>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 40px; font-size: 14px; border-top: 1px solid rgba(0,0,0,0.12); padding-top: 8px; margin-top: auto"><input type="checkbox" role="switch" checked="{{t.selectable}}" style="width: 18px; height: 18px; accent-color: {{primary}}"><span style="flex: 1">Clients can choose this</span></label>
+</div>
+<div style="display: flex; gap: 4px; padding: 0 8px 8px">
+<a href="M3ProgramBuilder.dc.html" style="height: 36px; padding: 0 8px; border-radius: 4px; color: {{primary}}; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none; display: flex; align-items: center">Edit</a>
+<a href="M3ProgramCalendar.dc.html" style="height: 36px; padding: 0 8px; border-radius: 4px; color: {{primary}}; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none; display: flex; align-items: center">Assign</a>
+<span style="flex: 1"></span>
+<button type="button" aria-label="More options for {{t.name}}" style="width: 36px; height: 36px; border: 0; border-radius: 18px; background: transparent; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.more}}"></path></svg></button>
+</div>
+</article>
+</sc-for>
+</div>
+
+<aside style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<section style="background: #FFFFFF; border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; font-size: 18px; font-weight: 500; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="{{primary}}"><path d="{{ic.visible}}"></path></svg>Client self-select</h2>
+<div style="font-size: 14px; color: rgba(0,0,0,0.6); line-height: 1.5">Templates with "Clients can choose this" turned on appear in the client app under Programs.</div>
+<fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+<legend style="font-size: 14px; font-weight: 500; margin-bottom: 4px">When a client picks one</legend>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 40px; font-size: 14px"><input type="radio" name="approve" style="width: 18px; height: 18px; accent-color: {{primary}}">Start right away and notify me</label>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 40px; font-size: 14px"><input type="radio" name="approve" checked style="width: 18px; height: 18px; accent-color: {{primary}}">Wait for my approval</label>
+</fieldset>
+<fieldset style="border: 0; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+<legend style="font-size: 14px; font-weight: 500; margin-bottom: 4px">Who sees them</legend>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 40px; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: {{primary}}">Active clients</label>
+<label style="display: flex; align-items: center; gap: 10px; min-height: 40px; font-size: 14px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: {{primary}}">Community members (challenge sign-ups)</label>
+</fieldset>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 12px 16px; font-size: 18px; font-weight: 500">Client requests</h2>
+<div style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 8px 0 16px; border-top: 1px solid rgba(0,0,0,0.12)">
+<span style="width: 36px; height: 36px; border-radius: 18px; background: #BDBDBD; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0">AW</span>
+<div style="flex: 1; min-width: 0"><div style="font-size: 14px">Alicia W. · Home Dumbbell 6-Week</div><div style="font-size: 12px; color: rgba(0,0,0,0.6)">Wants to start Mon Nov 2</div></div>
+<button type="button" style="height: 32px; padding: 0 8px; border: 0; background: transparent; color: {{primary}}; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase">Approve</button>
+</div>
+</section>
+</aside>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":1280,"height":960}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      bell: 'M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z',
+      dashboard: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z',
+      people: 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z',
+      fitness: 'M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z',
+      calendar: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z',
+      library: 'M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z',
+      trophy: 'M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z',
+      chat: 'M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z',
+      payments: 'M19 14V6c0-1.1-.9-2-2-2H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-9-1c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm13-6v11c0 1.1-.9 2-2 2H4v-2h17V7h2z',
+      add: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z',
+      search: 'M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z',
+      visible: 'M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z',
+      more: 'M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z',
+      run: 'M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z',
+      home: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z',
+      heart: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
+      event: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z'
+    };
+    const active = 'Programs';
+    const nav = [
+      { label: 'Home', href: 'M3CoachDashboard.dc.html', icon: ic.dashboard },
+      { label: 'Clients', href: '#', icon: ic.people },
+      { label: 'Programs', href: 'M3ProgramLibrary.dc.html', icon: ic.fitness },
+      { label: 'Calendar', href: 'M3ProgramCalendar.dc.html', icon: ic.calendar },
+      { label: 'Exercise library', href: '#', icon: ic.library },
+      { label: 'Challenges', href: 'M3ChallengeBuilder.dc.html', icon: ic.trophy },
+      { label: 'Classes & flyers', href: 'M3Admin.dc.html', icon: ic.event },
+      { label: 'Messages', href: '#', icon: ic.chat },
+      { label: 'Billing', href: '#', icon: ic.payments }
+    ].map((n) => ({ ...n, bg: n.label === active ? 'rgba(0,106,96,0.08)' : 'transparent', fg: n.label === active ? primary : 'rgba(0,0,0,0.54)' }));
+    const filters = ['All', 'Strength', 'Fat loss', 'Beginner', 'Client can choose'].map((label, i) => ({
+      label, bg: i === 0 ? primary : 'transparent', fg: i === 0 ? '#FFFFFF' : 'rgba(0,0,0,0.87)', border: i === 0 ? primary : '#BDBDBD'
+    }));
+    const templates = [
+      { name: 'Strength Foundations', meta: '12 weeks · 3 days/week · Beginner', tags: ['Barbell', 'Gym'], usage: 'Assigned to 6 clients', selectable: false, tint: '#CCE8E2', icon: ic.fitness },
+      { name: 'Hypertrophy Block', meta: '8 weeks · 4 days/week · Intermediate', tags: ['Gym', 'Push/Pull/Legs'], usage: 'Assigned to 3 clients', selectable: false, tint: '#E3E1EC', icon: ic.fitness },
+      { name: 'Home Dumbbell 6-Week', meta: '6 weeks · 3 days/week · All levels', tags: ['Dumbbells', 'Home'], usage: 'Chosen by 4 clients', selectable: true, tint: '#F2E0D9', icon: ic.home },
+      { name: 'Fat Loss Circuit', meta: '8 weeks · 3 days/week · Beginner', tags: ['Circuits', 'Gym or home'], usage: 'Assigned to 5 clients', selectable: true, tint: '#FFE0B2', icon: ic.heart },
+      { name: 'Return to Run', meta: '6 weeks · 3 days/week · Beginner', tags: ['Running', 'Mobility'], usage: 'Assigned to 1 client', selectable: false, tint: '#DCEDC8', icon: ic.run },
+      { name: 'Small Group Companion', meta: '4 weeks · 2 days/week · All levels', tags: ['Pairs with classes'], usage: 'Chosen by 7 clients', selectable: true, tint: '#D1E4FF', icon: ic.people }
+    ];
+    return { primary, ic, nav, filters, templates };
+  }
+}
+</script>
+</body>
+</html>

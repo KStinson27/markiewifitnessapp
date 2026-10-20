@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Choose a Program · Material</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4FBF8; font-family: Roboto, system-ui, sans-serif; color: #161D1C; position: relative; overflow: hidden">
+<header style="display: flex; align-items: center; gap: 4px; height: 64px; padding: 0 4px; flex-shrink: 0">
+<a href="M3Workout.dc.html" aria-label="Back" style="width: 48px; height: 48px; border-radius: 24px; color: #161D1C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></a>
+<h1 style="flex: 1; margin: 0; font-size: 22px; font-weight: 400">Programs</h1>
+</header>
+
+<div style="flex: 1; overflow: auto; padding: 4px 16px 16px; display: flex; flex-direction: column; gap: 12px">
+<section style="background: #CCE8E2; color: #051F1C; border-radius: 16px; padding: 16px; display: flex; gap: 12px; align-items: center">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.fitness}}"></path></svg>
+<div style="flex: 1"><div style="font-size: 12px; font-weight: 500">CURRENT · FROM YOUR COACH</div><div style="font-size: 16px; font-weight: 500">Strength Foundations</div><div style="font-size: 13px">Week 3 of 12</div></div>
+</section>
+
+<div style="font-size: 14px; font-weight: 500; color: #3F4947; padding-top: 4px">Available to start</div>
+<sc-for list="{{programs}}" as="p" hint-placeholder-count="3">
+<article style="background: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="height: 64px; background: {{p.tint}}; display: flex; align-items: center; padding: 0 16px; color: rgba(0,0,0,0.7)"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="{{p.icon}}"></path></svg></div>
+<div style="padding: 12px 16px 16px; display: flex; flex-direction: column; gap: 6px">
+<div style="font-size: 18px">{{p.name}}</div>
+<div style="font-size: 14px; color: #3F4947">{{p.meta}}</div>
+<div style="display: flex; gap: 8px; margin-top: 6px">
+<button type="button" style="height: 40px; padding: 0 16px; border-radius: 20px; border: 1px solid #6F7977; background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500">Preview</button>
+<button type="button" style="height: 40px; padding: 0 16px; border-radius: 20px; border: 0; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500">Start</button>
+</div>
+</div>
+</article>
+</sc-for>
+</div>
+
+<div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.32)"></div>
+<section role="dialog" aria-label="Start Home Dumbbell 6-Week" style="position: absolute; left: 0; right: 0; bottom: 0; background: #EFF5F2; border-radius: 28px 28px 0 0; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 16px">
+<div style="width: 32px; height: 4px; border-radius: 2px; background: #6F7977; align-self: center"></div>
+<div><div style="font-size: 22px">Home Dumbbell 6-Week</div><div style="font-size: 14px; color: #3F4947; margin-top: 4px">6 weeks · 3 days/week · 18 workouts</div></div>
+<div>
+<div style="font-size: 14px; font-weight: 500; margin-bottom: 8px">Start on</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{starts}}" as="s" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{s.on}}" style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid {{s.border}}; background: {{s.bg}}; color: {{s.fg}}; font: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 6px">{{s.label}}</button>
+</sc-for>
+</div>
+</div>
+<div>
+<div style="font-size: 14px; font-weight: 500; margin-bottom: 8px">Workout days</div>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+<button type="button" aria-pressed="{{d.on}}" aria-label="{{d.full}}" style="height: 40px; border-radius: 20px; border: 1px solid {{d.border}}; background: {{d.bg}}; color: {{d.fg}}; font: inherit; font-size: 14px; font-weight: 500">{{d.short}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; gap: 10px; padding: 12px; border-radius: 12px; background: #FFFFFF; font-size: 14px; color: #3F4947; line-height: 1.4"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="{{primary}}" style="flex-shrink: 0"><path d="{{ic.info}}"></path></svg>Your coach will review this before it starts. Your current program keeps going until then.</div>
+<button type="button" style="height: 48px; border: 0; border-radius: 24px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 500">Request to start</button>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      fitness: 'M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z',
+      home: 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z',
+      heart: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
+      people: 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z',
+      info: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'
+    };
+    const programs = [
+      { name: 'Home Dumbbell 6-Week', meta: '6 weeks · 3 days/week · All levels', tint: '#F2E0D9', icon: ic.home },
+      { name: 'Fat Loss Circuit', meta: '8 weeks · 3 days/week · Beginner', tint: '#FFE0B2', icon: ic.heart },
+      { name: 'Small Group Companion', meta: '4 weeks · 2 days/week · Pairs with classes', tint: '#D1E4FF', icon: ic.people }
+    ];
+    const starts = ['Mon Oct 26', 'Mon Nov 2', 'Pick a date'].map((label, i) => ({
+      label, on: i === 0, bg: i === 0 ? '#CCE8E2' : 'transparent', fg: i === 0 ? '#051F1C' : '#3F4947', border: i === 0 ? '#CCE8E2' : '#6F7977'
+    }));
+    const picked = [0, 2, 4];
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((full, i) => {
+      const on = picked.includes(i);
+      return { full, short: full[0], on, bg: on ? primary : 'transparent', fg: on ? '#FFFFFF' : '#161D1C', border: on ? primary : '#6F7977' };
+    });
+    return { primary, ic, programs, starts, days };
+  }
+}
+</script>
+</body>
+</html>

@@ -107,7 +107,17 @@ billing — with room to add contract coaches later.
 ## 5. Feature set (MVP)
 
 - **Training:** exercise library (open-licensed starter set + own videos), workout and
-  program builders, calendar assignment, offline-capable workout player, PRs, adherence.
+  program builders, offline-capable workout player, PRs, adherence.
+- **Program templates:** reusable templates (weeks, days/week, level, equipment, tags) in a
+  template library; edit, duplicate, and assign.
+- **Calendar assignment:** per-client month/week calendar; drag a template onto a start date,
+  choose training days, see a preview alongside the current program and Calendly class
+  bookings; on overlap choose *replace remaining workouts* or *run both*; optional
+  "client may move workouts within the week".
+- **Client self-select:** per-template "Clients can choose this" switch; clients browse allowed
+  templates in the app, pick a start date and workout days; business setting decides
+  *start immediately + notify coach* or *wait for coach approval* (request queue on the
+  template library page); visibility for active clients and optionally Community Members.
 - **Nutrition:** per-client mode — *Habits*, *Portions*, or *Full Macros*; food search,
   barcode scan, custom foods, meal plans, meal photos, water.
 - **Habits:** ongoing (no end date) or challenge-scoped; daily check-off; streaks.
@@ -133,8 +143,10 @@ profiles(role) ─┬─ clients(coach_id, status, nutrition_mode, goals)
                 ├─ community_members
                 └─ staff(coach | admin | owner)
 
-exercises → workout_templates → programs(phases, weeks) → program_assignments
+exercises → workout_templates → programs(phases, weeks, client_selectable, tags)
+          → program_assignments(start_date, training_days, overlap_mode, source: coach | client_request)
           → scheduled_workouts → workout_logs → set_logs
+program_requests(client, program, start_date, training_days, status)
 
 nutrition_targets, meal_plans, foods(cache), food_logs, water_logs
 habits(scope: client | challenge) → habit_assignments → habit_logs
@@ -179,8 +191,9 @@ MVP = Phases 0–7. Each task ships as its own reviewable pull request.
 - P2-1 Profiles, goals, intake, e-signed waivers
 - P2-2 Exercise library (seed + uploads, business vs coach scope)
 - P2-3 Workout builder
-- P2-4 Program builder & templates
-- P2-5 Calendar assignment
+- P2-4 Program builder & template library (tags, duplicate, client-selectable switch)
+- P2-5 Calendar assignment (month/week view, drag to start date, training days, overlap handling)
+- P2-5b Client program browsing, self-start requests, coach approval queue
 - P2-6 Workout player (offline sync, rest timer, PRs)
 - P2-7 Adherence views
 
