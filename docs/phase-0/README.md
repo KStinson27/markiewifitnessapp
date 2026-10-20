@@ -24,6 +24,9 @@ parallel once the GitHub organization and Supabase account exist.
 - **Trainerize offers little bulk export**; migration focuses on clients, goals, PRs/working
   weights, programs and custom exercises via spreadsheet templates.
 
+## MVP gap review
+See [`MVP_GAP_REVIEW.md`](MVP_GAP_REVIEW.md) — proposed additions awaiting owner decisions.
+
 ## Wireframes
 Two versions, both with a placeholder teal accent until the brand kit arrives. Files in
 `wireframes/` are the canvas source (`.dc.html`).
@@ -48,3 +51,5 @@ Two versions, both with a placeholder teal accent until the brand kit arrives. F
 | Coach · Program templates (v2) | `M3ProgramLibrary.dc.html` |
 | Coach · Assign program on calendar (v2) | `M3ProgramCalendar.dc.html` |
 | Client · Choose a program (v2) | `M3ClientPrograms.dc.html` |
+| Client · Progress: weight & measurements (v2) | `M3Progress.dc.html` |
+| Coach · Client progress & trends (v2) | `M3ClientProgress.dc.html` |

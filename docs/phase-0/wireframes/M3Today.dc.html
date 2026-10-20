@@ -47,6 +47,12 @@ a{color:#006A60}a:hover{color:#00504A}
 </div>
 </a>
 
+<a href="M3Progress.dc.html" style="background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: #161D1C; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="flex: 1"><div style="font-size: 14px; font-weight: 500; color: #3F4947">Weight</div><div style="font-size: 22px">162.4 <span style="font-size: 14px; color: #3F4947">lb</span></div><div style="font-size: 13px; color: #3F4947">Down 3.6 lb since Sep 1</div></div>
+<svg role="img" aria-label="Weight trend, last 8 weeks" width="96" height="40" viewBox="0 0 96 40"><path d="{{spark}}" fill="none" stroke="{{primary}}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path></svg>
+<span style="height: 36px; padding: 0 14px; border-radius: 18px; background: #CCE8E2; color: #051F1C; font-size: 14px; font-weight: 500; display: flex; align-items: center">Log</span>
+</a>
+
 <a href="M3Classes.dc.html" style="background: #FFFFFF; border-radius: 16px; padding: 12px; display: flex; gap: 12px; align-items: center; text-decoration: none; color: #161D1C; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
 <div style="width: 64px; height: 80px; border-radius: 8px; background: #DAE5E1; color: #3F4947; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 10px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.image}}"></path></svg>Flyer</div>
 <div style="flex: 1"><div style="font-size: 12px; font-weight: 500; color: #3F4947">NEXT CLASS · BOOKED</div><div style="font-size: 16px; font-weight: 500">Small Group Strength</div><div style="font-size: 14px; color: #3F4947">Sat Oct 24 · 9:00 AM</div></div>
@@ -92,7 +98,9 @@ class Component extends DCLogic {
       { label: 'Challenges', href: 'M3Challenge.dc.html', icon: ic.trophy },
       { label: 'Classes', href: 'M3Classes.dc.html', icon: ic.event }
     ].map((t) => ({ ...t, bg: t.label === active ? '#CCE8E2' : 'transparent', fg: t.label === active ? '#051F1C' : '#3F4947' }));
-    return { primary: this.props.primary ?? '#006A60', ic, tabs };
+    const pts = [166.0, 165.4, 165.1, 164.2, 164.5, 163.6, 163.0, 162.4];
+    const spark = pts.map((v, i) => (i ? 'L' : 'M') + (4 + i * 88 / 7).toFixed(1) + ' ' + (36 - ((v - 162) / 4.5) * 32).toFixed(1)).join(' ');
+    return { primary: this.props.primary ?? '#006A60', ic, tabs, spark };
   }
 }
 </script>

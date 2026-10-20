@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Client Progress and Trends · Material UI</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 1100px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 16px; background: {{primary}}; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<a href="M3CoachDashboard.dc.html" aria-label="Back to clients" style="width: 40px; height: 40px; border-radius: 20px; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></a>
+<span style="width: 40px; height: 40px; border-radius: 20px; background: rgba(255,255,255,0.24); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 500">JR</span>
+<div style="flex: 1; min-width: 0"><div style="font-size: 20px; font-weight: 500">Jordan R.</div><div style="font-size: 13px; opacity: 0.85">Strength Foundations · Week 3 · Full Macros</div></div>
+<button type="button" style="height: 36px; padding: 0 12px; border: 0; border-radius: 4px; background: transparent; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.chat}}"></path></svg>Message</button>
+</header>
+<div role="tablist" aria-label="Client sections" style="display: flex; overflow-x: auto; background: #FFFFFF; border-bottom: 1px solid rgba(0,0,0,0.12); padding: 0 16px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="7">
+<button type="button" role="tab" aria-selected="{{t.on}}" style="flex-shrink: 0; min-height: 48px; padding: 0 16px; border: 0; border-bottom: 2px solid {{t.line}}; background: transparent; color: {{t.fg}}; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase">{{t.label}}</button>
+</sc-for>
+</div>
+
+<main style="width: 100%; max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 24px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<h1 style="flex: 1; margin: 0; font-size: 26px; font-weight: 400">Progress &amp; trends</h1>
+<div role="group" aria-label="Time range" style="display: flex; border: 1px solid rgba(0,106,96,0.5); border-radius: 4px; overflow: hidden; height: 36px">
+<sc-for list="{{ranges}}" as="r" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{r.on}}" style="padding: 0 14px; border: 0; border-left: {{r.divider}}; background: {{r.bg}}; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500">{{r.label}}</button>
+</sc-for>
+</div>
+<button type="button" style="height: 36px; padding: 0 16px; border: 0; border-radius: 4px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.add}}"></path></svg>Log for Jordan</button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
+<sc-for list="{{stats}}" as="s" hint-placeholder-count="4">
+<div style="background: #FFFFFF; border-radius: 4px; padding: 16px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="font-size: 14px; color: rgba(0,0,0,0.6)">{{s.label}}</div>
+<div style="font-size: 28px; margin-top: 4px">{{s.value}}</div>
+<div style="font-size: 13px; color: rgba(0,0,0,0.6); margin-top: 2px">{{s.sub}}</div>
+</div>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section style="flex: 2 1 560px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 20px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-bottom: 8px"><h2 style="margin: 0; font-size: 18px; font-weight: 500">Weight (lb)</h2><span style="font-size: 13px; color: rgba(0,0,0,0.6)">Weekly · from Apple Health (smart scale) and manual entries</span></div>
+<div style="position: relative">
+<svg role="img" aria-label="Jordan's weight fell from 166.0 lb on Sep 1 to 162.4 lb on Oct 20; goal 155 lb" viewBox="0 0 760 280" style="display: block; width: 100%; height: auto">
+<sc-for list="{{chart.grid}}" as="g" hint-placeholder-count="2">
+<line x1="48" x2="744" y1="{{g.y}}" y2="{{g.y}}" stroke="#ECECEC" stroke-width="1"></line>
+<text x="40" y="{{g.ty}}" text-anchor="end" font-size="12" fill="rgba(0,0,0,0.6)">{{g.label}}</text>
+</sc-for>
+<line x1="48" x2="744" y1="{{chart.goalY}}" y2="{{chart.goalY}}" stroke="#616161" stroke-width="1" stroke-dasharray="5 5"></line>
+<text x="40" y="{{chart.goalTy}}" text-anchor="end" font-size="12" fill="rgba(0,0,0,0.6)">155</text>
+<text x="744" y="{{chart.goalLy}}" text-anchor="end" font-size="12" fill="rgba(0,0,0,0.7)">Goal 155 lb</text>
+<line x1="{{chart.hoverX}}" x2="{{chart.hoverX}}" y1="16" y2="244" stroke="#9E9E9E" stroke-width="1"></line>
+<path d="{{chart.path}}" fill="none" stroke="{{primary}}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+<circle cx="{{chart.hoverX}}" cy="{{chart.hoverY}}" r="5" fill="{{primary}}" stroke="#FFFFFF" stroke-width="2"></circle>
+<circle cx="{{chart.lastX}}" cy="{{chart.lastY}}" r="5" fill="{{primary}}" stroke="#FFFFFF" stroke-width="2"></circle>
+<text x="{{chart.lastX}}" y="{{chart.lastTy}}" text-anchor="end" font-size="12" font-weight="500" fill="rgba(0,0,0,0.87)">162.4</text>
+<sc-for list="{{chart.xlabels}}" as="x" hint-placeholder-count="8">
+<text x="{{x.x}}" y="266" text-anchor="middle" font-size="12" fill="rgba(0,0,0,0.6)">{{x.label}}</text>
+</sc-for>
+</svg>
+<div role="tooltip" style="position: absolute; left: {{chart.tipLeft}}; top: 8%; background: #FFFFFF; border-radius: 4px; padding: 8px 12px; font-size: 13px; line-height: 1.5; box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12); pointer-events: none"><div style="font-weight: 500">Tue, Oct 13</div><div>163.0 lb · down 0.6 from prior week</div><div style="color: rgba(0,0,0,0.6)">Apple Health · Renpho scale</div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 8px; font-size: 13px; color: rgba(0,0,0,0.6)">
+<span>Hover for exact values</span>
+<button type="button" style="height: 28px; padding: 0 8px; border: 0; background: transparent; color: {{primary}}; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em">View as table</button>
+</div>
+</section>
+
+<section style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="display: flex; justify-content: space-between; align-items: center"><h2 style="margin: 0; font-size: 18px; font-weight: 500">Photos</h2><span style="font-size: 13px; color: rgba(0,0,0,0.6)">Front</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div><div style="aspect-ratio: 3 / 4; border-radius: 4px; background: #EEEEEE; color: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.person}}"></path></svg></div><div style="font-size: 13px; color: rgba(0,0,0,0.6); margin-top: 6px">Sep 1 · 166.0 lb</div></div>
+<div><div style="aspect-ratio: 3 / 4; border-radius: 4px; background: #EEEEEE; color: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.person}}"></path></svg></div><div style="font-size: 13px; color: rgba(0,0,0,0.6); margin-top: 6px">Oct 19 · 162.4 lb</div></div>
+</div>
+<button type="button" style="align-self: flex-start; height: 36px; padding: 0 8px; border: 0; background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase">Compare any two dates</button>
+</section>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<section style="flex: 2 1 560px; min-width: 0; background: #FFFFFF; border-radius: 4px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 16px 20px; font-size: 18px; font-weight: 500">Measurements</h2>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 620px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="text-align: left"><th style="padding: 12px 20px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Measure</th><th style="padding: 12px 16px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Sep 1</th><th style="padding: 12px 16px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Oct 19</th><th style="padding: 12px 16px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Change</th><th style="padding: 12px 16px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Trend</th></tr></thead>
+<tbody>
+<sc-for list="{{measures}}" as="m" hint-placeholder-count="6">
+<tr>
+<td style="padding: 10px 20px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{m.name}}</td>
+<td style="padding: 10px 16px; border-bottom: 1px solid rgba(0,0,0,0.12); color: rgba(0,0,0,0.6)">{{m.start}}</td>
+<td style="padding: 10px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{m.now}}</td>
+<td style="padding: 10px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{m.delta}}</td>
+<td style="padding: 6px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)"><svg role="img" aria-label="{{m.name}} trend" width="96" height="28" viewBox="0 0 96 28"><path d="{{m.spark}}" fill="none" stroke="{{primary}}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path></svg></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0 0 6px; font-size: 18px; font-weight: 500">Tracking settings</h2>
+<div style="font-size: 14px; color: rgba(0,0,0,0.6)">What Jordan tracks</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px">
+<sc-for list="{{tracked}}" as="k" hint-placeholder-count="8">
+<label style="display: flex; align-items: center; gap: 8px; min-height: 36px; font-size: 14px"><input type="checkbox" checked="{{k.on}}" style="width: 18px; height: 18px; accent-color: {{primary}}">{{k.label}}</label>
+</sc-for>
+</div>
+<label style="position: relative; display: block; margin-top: 12px"><span style="position: absolute; top: -8px; left: 10px; padding: 0 4px; background: #FFFFFF; font-size: 12px; color: rgba(0,0,0,0.6)">Weigh-in reminder</span><select style="width: 100%; height: 48px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; padding: 0 12px; font: inherit; font-size: 15px; background: #FFFFFF"><option>Weekly · Mondays 7:00 AM</option><option>Daily · 7:00 AM</option><option>Every 2 weeks</option><option>Off</option></select></label>
+<label style="display: flex; align-items: flex-start; gap: 10px; margin-top: 10px; font-size: 14px"><input type="checkbox" role="switch" checked style="width: 18px; height: 18px; margin: 2px 0 0; accent-color: {{primary}}"><span><span style="display: block">Show the scale number to Jordan</span><span style="display: block; font-size: 13px; color: rgba(0,0,0,0.6)">Turn off to show trends only, for clients who prefer not to see the number.</span></span></label>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":1280,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      chat: 'M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z',
+      add: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z',
+      person: 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'
+    };
+    const tabs = ['Overview', 'Program', 'Nutrition', 'Progress', 'Check-ins', 'Messages', 'Notes'].map((label) => {
+      const on = label === 'Progress';
+      return { label, on, line: on ? primary : 'transparent', fg: on ? primary : 'rgba(0,0,0,0.6)' };
+    });
+    const ranges = ['1M', '3M', '6M', 'All'].map((label, i) => ({
+      label, on: i === 1, bg: i === 1 ? 'rgba(0,106,96,0.12)' : 'transparent', divider: i === 0 ? '0' : '1px solid rgba(0,106,96,0.5)'
+    }));
+    const pts = [166.0, 165.4, 165.1, 164.2, 164.5, 163.6, 163.0, 162.4];
+    const dates = ['Sep 1', 'Sep 8', 'Sep 15', 'Sep 22', 'Sep 29', 'Oct 6', 'Oct 13', 'Oct 20'];
+    const x0 = 60, x1 = 736, yTop = 16, yBot = 244, lo = 154, hi = 167;
+    const sx = (i) => x0 + (i * (x1 - x0)) / (pts.length - 1);
+    const sy = (v) => yBot - ((v - lo) / (hi - lo)) * (yBot - yTop);
+    const hoverI = 6;
+    const chart = {
+      path: pts.map((v, i) => (i ? 'L' : 'M') + sx(i).toFixed(1) + ' ' + sy(v).toFixed(1)).join(' '),
+      lastX: sx(7), lastY: sy(pts[7]), lastTy: sy(pts[7]) - 12,
+      hoverX: sx(hoverI), hoverY: sy(pts[hoverI]),
+      tipLeft: ((sx(hoverI) - 230) / 760 * 100).toFixed(1) + '%',
+      goalY: sy(155), goalTy: sy(155) + 4, goalLy: sy(155) - 8,
+      grid: [160, 165].map((v) => ({ y: sy(v), ty: sy(v) + 4, label: String(v) })),
+      xlabels: dates.map((label, i) => ({ label, x: sx(i) }))
+    };
+    const spark = (vals) => {
+      const mn = Math.min(...vals), mx = Math.max(...vals), span = mx - mn || 1;
+      return vals.map((v, i) => (i ? 'L' : 'M') + (4 + i * 88 / (vals.length - 1)).toFixed(1) + ' ' + (24 - ((v - mn) / span) * 20).toFixed(1)).join(' ');
+    };
+    const measures = [
+      { name: 'Waist', start: '34.0 in', now: '32.5 in', delta: '−1.5 in', series: [34.0, 33.6, 33.1, 32.5] },
+      { name: 'Hips', start: '41.0 in', now: '40.2 in', delta: '−0.8 in', series: [41.0, 40.8, 40.5, 40.2] },
+      { name: 'Chest', start: '39.5 in', now: '39.0 in', delta: '−0.5 in', series: [39.5, 39.4, 39.1, 39.0] },
+      { name: 'Arm (right)', start: '13.0 in', now: '13.2 in', delta: '+0.2 in', series: [13.0, 13.0, 13.1, 13.2] },
+      { name: 'Thigh (right)', start: '23.5 in', now: '23.0 in', delta: '−0.5 in', series: [23.5, 23.4, 23.2, 23.0] },
+      { name: 'Body fat', start: '28.0%', now: '26.1%', delta: '−1.9 pts', series: [28.0, 27.4, 26.8, 26.1] }
+    ].map((m) => ({ ...m, spark: spark(m.series) }));
+    const stats = [
+      { label: 'Current weight', value: '162.4 lb', sub: 'Oct 20 · Apple Health' },
+      { label: 'Change', value: '−3.6 lb', sub: 'Since Sep 1 (7 weeks)' },
+      { label: 'Average rate', value: '−0.5 lb/wk', sub: 'Last 7 weeks' },
+      { label: 'Goal', value: '155 lb', sub: 'At this rate: about Jan 30' }
+    ];
+    const tracked = [
+      { label: 'Weight', on: true }, { label: 'Body fat %', on: true },
+      { label: 'Waist', on: true }, { label: 'Hips', on: true },
+      { label: 'Chest', on: true }, { label: 'Arms', on: true },
+      { label: 'Thighs', on: true }, { label: 'Photos', on: true }
+    ];
+    return { primary, ic, tabs, ranges, chart, measures, stats, tracked };
+  }
+}
+</script>
+</body>
+</html>

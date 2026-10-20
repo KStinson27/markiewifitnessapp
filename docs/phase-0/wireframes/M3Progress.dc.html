@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Progress · Material</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #FFFFFF; font-family: Roboto, system-ui, sans-serif; color: #161D1C">
+<header style="display: flex; align-items: center; gap: 4px; height: 64px; padding: 0 4px; flex-shrink: 0">
+<a href="M3Today.dc.html" aria-label="Back" style="width: 48px; height: 48px; border-radius: 24px; color: #161D1C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></a>
+<h1 style="flex: 1; margin: 0; font-size: 22px; font-weight: 400">Progress</h1>
+<button type="button" aria-label="Progress settings" style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: transparent; color: #3F4947; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.tune}}"></path></svg></button>
+</header>
+
+<div style="flex: 1; overflow: auto; padding: 4px 16px 16px; display: flex; flex-direction: column; gap: 12px">
+<div role="group" aria-label="Time range" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid #6F7977; border-radius: 20px; overflow: hidden; height: 40px; flex-shrink: 0">
+<sc-for list="{{ranges}}" as="r" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{r.on}}" style="border: 0; border-left: {{r.divider}}; background: {{r.bg}}; color: {{r.fg}}; font: inherit; font-size: 14px; font-weight: 500">{{r.label}}</button>
+</sc-for>
+</div>
+
+<section style="background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
+<div><h2 style="margin: 0; font-size: 14px; font-weight: 500; color: #3F4947">Weight</h2><div style="font-size: 32px; margin-top: 2px">162.4 <span style="font-size: 16px; color: #3F4947">lb</span></div>
+<div style="display: flex; align-items: center; gap: 4px; font-size: 14px; color: #3F4947"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.down}}"></path></svg>3.6 lb since Sep 1</div></div>
+<div style="text-align: right; font-size: 12px; color: #3F4947">Goal 155 lb<br>Synced from Apple Health</div>
+</div>
+<svg role="img" aria-label="Weight trend from 166.0 lb on Sep 1 to 162.4 lb on Oct 20, goal 155 lb" width="326" height="160" viewBox="0 0 326 160" style="display: block; max-width: 100%">
+<sc-for list="{{chart.grid}}" as="g" hint-placeholder-count="3">
+<line x1="34" x2="320" y1="{{g.y}}" y2="{{g.y}}" stroke="#E6E9E8" stroke-width="1"></line>
+<text x="28" y="{{g.ty}}" text-anchor="end" font-size="10" fill="#5B6563">{{g.label}}</text>
+</sc-for>
+<line x1="34" x2="320" y1="{{chart.goalY}}" y2="{{chart.goalY}}" stroke="#5B6563" stroke-width="1" stroke-dasharray="4 4"></line>
+<text x="318" y="{{chart.goalTy}}" text-anchor="end" font-size="10" fill="#3F4947">Goal 155</text>
+<path d="{{chart.path}}" fill="none" stroke="{{primary}}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+<circle cx="{{chart.lastX}}" cy="{{chart.lastY}}" r="5" fill="{{primary}}" stroke="#FFFFFF" stroke-width="2"></circle>
+<sc-for list="{{chart.xlabels}}" as="x" hint-placeholder-count="3">
+<text x="{{x.x}}" y="154" text-anchor="middle" font-size="10" fill="#5B6563">{{x.label}}</text>
+</sc-for>
+</svg>
+<div style="display: flex; gap: 8px; margin-top: 4px">
+<button type="button" style="flex: 1; height: 40px; border: 0; border-radius: 20px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.add}}"></path></svg>Log weight</button>
+<button type="button" style="flex: 1; height: 40px; border: 0; border-radius: 20px; background: #CCE8E2; color: #051F1C; font: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.ruler}}"></path></svg>Measurements</button>
+</div>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 16px; padding: 8px 0; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="display: flex; justify-content: space-between; padding: 8px 16px; font-size: 14px; font-weight: 500; color: #3F4947"><span>Measurements</span><span style="font-weight: 400">Last: Oct 19</span></div>
+<sc-for list="{{measures}}" as="m" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 16px; border-top: 1px solid #EEF0EF">
+<span style="flex: 1; font-size: 16px">{{m.name}}</span>
+<span style="font-size: 16px">{{m.now}}</span>
+<span style="width: 84px; display: flex; align-items: center; justify-content: flex-end; gap: 2px; font-size: 13px; color: #3F4947"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{m.icon}}"></path></svg>{{m.delta}}</span>
+</div>
+</sc-for>
+</section>
+
+<section style="background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="display: flex; justify-content: space-between; align-items: center"><h2 style="margin: 0; font-size: 14px; font-weight: 500; color: #3F4947">Progress photos</h2><button type="button" style="height: 36px; padding: 0 12px; border: 0; border-radius: 18px; background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500">Compare</button></div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{photos}}" as="p" hint-placeholder-count="3">
+<div style="aspect-ratio: 3 / 4; border-radius: 10px; background: #EEF0EF; color: #3F4947; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.person}}"></path></svg>{{p}}</div>
+</sc-for>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #3F4947"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.lock}}"></path></svg>Private. Only you and your coach can see these.</div>
+</section>
+
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; background: #F5F5F5; font-size: 14px; color: #3F4947"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.bell}}"></path></svg><span style="flex: 1">Weigh-in reminder: Mondays, 7:00 AM</span></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      tune: 'M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z',
+      down: 'M16 18l2.29-2.29-4.88-4.88-4 4L2 7.41 3.41 6l6 6 4-4 6.3 6.29L22 12v6z',
+      up: 'M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z',
+      add: 'M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z',
+      ruler: 'M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H3V8h2v4h2V8h2v4h2V8h2v4h2V8h2v4h2V8h2v8z',
+      person: 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z',
+      lock: 'M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z',
+      bell: 'M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z'
+    };
+    const ranges = ['1M', '3M', '6M', 'All'].map((label, i) => ({
+      label, on: i === 1, bg: i === 1 ? '#CCE8E2' : 'transparent', fg: i === 1 ? '#051F1C' : '#161D1C', divider: i === 0 ? '0' : '1px solid #6F7977'
+    }));
+    const pts = [166.0, 165.4, 165.1, 164.2, 164.5, 163.6, 163.0, 162.4];
+    const labels = ['Sep 1', '', '', '', 'Sep 29', '', '', 'Oct 20'];
+    const x0 = 44, x1 = 310, yTop = 10, yBot = 136, lo = 154, hi = 167;
+    const sx = (i) => x0 + (i * (x1 - x0)) / (pts.length - 1);
+    const sy = (v) => yBot - ((v - lo) / (hi - lo)) * (yBot - yTop);
+    const path = pts.map((v, i) => (i ? 'L' : 'M') + sx(i).toFixed(1) + ' ' + sy(v).toFixed(1)).join(' ');
+    const chart = {
+      path,
+      lastX: sx(pts.length - 1), lastY: sy(pts[pts.length - 1]),
+      goalY: sy(155), goalTy: sy(155) - 4,
+      grid: [165, 160].map((v) => ({ y: sy(v), ty: sy(v) + 3, label: String(v) })),
+      xlabels: labels.map((label, i) => ({ label, x: sx(i) })).filter((l) => l.label)
+    };
+    const measures = [
+      { name: 'Waist', now: '32.5 in', delta: '1.5 in', icon: ic.down },
+      { name: 'Hips', now: '40.2 in', delta: '0.8 in', icon: ic.down },
+      { name: 'Chest', now: '39.0 in', delta: '0.5 in', icon: ic.down },
+      { name: 'Arm (right)', now: '13.2 in', delta: '0.2 in', icon: ic.up },
+      { name: 'Body fat', now: '26.1%', delta: '1.9%', icon: ic.down }
+    ];
+    return { primary, ic, ranges, chart, measures, photos: ['Front', 'Side', 'Back'] };
+  }
+}
+</script>
+</body>
+</html>

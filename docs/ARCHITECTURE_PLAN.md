@@ -121,7 +121,13 @@ billing — with room to add contract coaches later.
 - **Nutrition:** per-client mode — *Habits*, *Portions*, or *Full Macros*; food search,
   barcode scan, custom foods, meal plans, meal photos, water.
 - **Habits:** ongoing (no end date) or challenge-scoped; daily check-off; streaks.
-- **Progress:** check-in forms, body metrics, progress photos (compare), charts.
+- **Progress:** check-in forms; weight and body measurements (waist, hips, chest, arms,
+  thighs, body fat %, custom) logged by the client, by the coach during a session, or synced
+  from Apple Health (smart scales); weight card on the client Today dashboard; client
+  Progress screen (trend chart vs goal, measurement changes, private progress photos with
+  compare); coach Progress tab per client (stat tiles, weekly trend with goal line and hover
+  values, measurement table with sparklines, photo compare, table view); per-client tracking
+  settings (which metrics, weigh-in reminder cadence, *hide scale number — show trends only*).
 - **Communication:** private coach chat; shared Support inbox (Owner + Admins); broadcasts; push/email.
 - **Schedule:** Upcoming Classes synced from Calendly + Eventbrite with "Book" deep-links;
   1:1 sessions shown from Calendly.
@@ -150,7 +156,9 @@ program_requests(client, program, start_date, training_days, status)
 
 nutrition_targets, meal_plans, foods(cache), food_logs, water_logs
 habits(scope: client | challenge) → habit_assignments → habit_logs
-checkin_forms → checkin_responses; body_metrics; progress_photos
+checkin_forms → checkin_responses; progress_photos(pose, taken_at)
+body_metrics(client, metric, value, unit, measured_at, source: manual | coach | apple_health)
+client_tracking_settings(metrics[], reminder_cadence, show_scale_weight, units)
 conversations(kind: coach | support) → messages; notifications
 challenges → challenge_teams, challenge_participants, challenge_metrics,
              challenge_points, challenge_feed_items, reactions
@@ -212,7 +220,8 @@ MVP = Phases 0–7. Each task ships as its own reviewable pull request.
 - P4-3 Meal plans, photos, water
 - P4-4 Habit engine (ongoing + challenge-scoped), streaks
 - P4-5 Check-in forms
-- P4-6 Body metrics, progress photos, charts
+- P4-6 Body metrics & progress photos: client logging, coach logging, Apple Health weight import,
+  Today weight card, client Progress screen, coach Progress tab with trends, tracking settings
 
 ### Phase 5 — Communication & schedule
 - P5-1 Coach chat; Support inbox; broadcasts
