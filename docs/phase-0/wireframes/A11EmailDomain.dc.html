@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Email and Domain Setup</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 900px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 24px; background: {{primary}}; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.settings}}"></path></svg>
+<div style="flex: 1; font-size: 20px; font-weight: 500">Settings · Email &amp; domain</div>
+<span style="font-size: 13px; opacity: 0.85">Owner only</span>
+</header>
+
+<main style="width: 100%; max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; gap: 12px; padding: 14px 16px; border-radius: 4px; background: #FFF4E5; color: #663C00; font-size: 14px; line-height: 1.5"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="#ED6C02" style="flex-shrink: 0"><path d="{{ic.warn}}"></path></svg><div><strong style="font-weight: 500">1 record still pending.</strong> Until DMARC is verified, sign-in links and receipts may land in spam. DNS changes can take up to 48 hours.</div></div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+<section style="flex: 1 1 340px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 24px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; font-size: 18px; font-weight: 500">Sender</h2>
+<sc-for list="{{sender}}" as="f" hint-placeholder-count="3">
+<label style="position: relative; display: block"><span style="position: absolute; top: -8px; left: 10px; padding: 0 4px; background: #FFFFFF; font-size: 12px; color: rgba(0,0,0,0.6)">{{f.label}}</span><input value="{{f.value}}" style="width: 100%; box-sizing: border-box; height: 52px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; padding: 0 14px; font: inherit; font-size: 15px"></label>
+</sc-for>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<button type="button" style="height: 36px; padding: 0 14px; border-radius: 4px; border: 1px solid rgba(0,106,96,0.5); background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.send}}"></path></svg>Send test email</button>
+<button type="button" style="height: 36px; padding: 0 14px; border-radius: 4px; border: 0; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase">Save</button>
+</div>
+</section>
+
+<section style="flex: 2 1 560px; min-width: 0; background: #FFFFFF; border-radius: 4px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 16px 20px"><h2 style="flex: 1; margin: 0; font-size: 18px; font-weight: 500">DNS records for markiewifitness.com</h2><button type="button" style="height: 36px; padding: 0 12px; border: 0; background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.sync}}"></path></svg>Check again</button></div>
+<div style="padding: 0 20px 12px; font-size: 14px; color: rgba(0,0,0,0.6)">Add these at your domain host (or Cloudflare). Copy each value exactly.</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="text-align: left"><th style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Purpose</th><th style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Type</th><th style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Host</th><th style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Value</th><th style="padding: 10px 20px 10px 12px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Status</th></tr></thead>
+<tbody>
+<sc-for list="{{records}}" as="r" hint-placeholder-count="4">
+<tr>
+<td style="padding: 12px 20px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{r.purpose}}</td>
+<td style="padding: 12px; border-bottom: 1px solid rgba(0,0,0,0.12)"><span style="padding: 2px 8px; border-radius: 4px; background: #EEEEEE; font-family: ui-monospace, monospace; font-size: 13px">{{r.type}}</span></td>
+<td style="padding: 12px; border-bottom: 1px solid rgba(0,0,0,0.12); font-family: ui-monospace, monospace; font-size: 13px">{{r.host}}</td>
+<td style="padding: 12px; border-bottom: 1px solid rgba(0,0,0,0.12)"><div style="display: flex; align-items: center; gap: 6px"><span style="font-family: ui-monospace, monospace; font-size: 13px; max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{r.value}}</span><button type="button" aria-label="Copy {{r.purpose}} value" style="width: 32px; height: 32px; border: 0; border-radius: 16px; background: transparent; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.copy}}"></path></svg></button></div></td>
+<td style="padding: 12px 20px 12px 12px; border-bottom: 1px solid rgba(0,0,0,0.12)"><span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 13px; background: {{r.bg}}; color: {{r.fg}}; font-size: 13px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{r.icon}}"></path></svg>{{r.status}}</span></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+
+<section style="background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 10px 20px; font-size: 18px; font-weight: 500">Emails clients receive</h2>
+<sc-for list="{{templates}}" as="t" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 0 20px; border-top: 1px solid rgba(0,0,0,0.12)">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.mail}}"></path></svg>
+<div style="flex: 1; min-width: 0"><div style="font-size: 15px">{{t.name}}</div><div style="font-size: 13px; color: rgba(0,0,0,0.6)">{{t.when}}</div></div>
+<button type="button" style="height: 32px; padding: 0 10px; border: 0; background: transparent; color: {{primary}}; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em">Preview</button>
+</div>
+</sc-for>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      settings: 'M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z',
+      warn: 'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z',
+      send: 'M2.01 21L23 12 2.01 3 2 10l15 2-15 2z',
+      sync: 'M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z',
+      copy: 'M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z',
+      ok: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
+      pending: 'M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z',
+      mail: 'M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'
+    };
+    const sender = [
+      { label: 'From name', value: 'Markiewi Fitness' },
+      { label: 'From address', value: 'hello@markiewifitness.com' },
+      { label: 'Reply-to', value: 'support@markiewifitness.com' }
+    ];
+    const verified = { status: 'Verified', bg: '#E8F5E9', fg: '#1B5E20', icon: ic.ok };
+    const pending = { status: 'Pending', bg: '#FFF4E5', fg: '#663C00', icon: ic.pending };
+    const records = [
+      { purpose: 'SPF (who may send)', type: 'TXT', host: 'send', value: 'v=spf1 include:amazonses.com ~all', ...verified },
+      { purpose: 'DKIM (signature)', type: 'TXT', host: 'resend._domainkey', value: 'p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQ…', ...verified },
+      { purpose: 'Bounce handling', type: 'MX', host: 'send', value: 'feedback-smtp.us-east-1.amazonses.com', ...verified },
+      { purpose: 'DMARC (policy)', type: 'TXT', host: '_dmarc', value: 'v=DMARC1; p=none; rua=mailto:dmarc@markiewifitness.com', ...pending }
+    ];
+    const templates = [
+      { name: 'Sign-in link', when: 'When a client signs in with email' },
+      { name: 'Welcome & invite', when: 'When you invite a new client' },
+      { name: 'Payment receipt', when: 'After each successful payment' },
+      { name: 'Payment problem', when: 'When a card is declined' },
+      { name: 'Pause confirmed', when: 'When staff approve a membership pause' }
+    ];
+    return { primary, ic, sender, records, templates };
+  }
+}
+</script>
+</body>
+</html>

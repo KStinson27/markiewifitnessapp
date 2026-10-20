@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Business Reports</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 1000px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 24px; background: {{primary}}; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.chart}}"></path></svg>
+<div style="flex: 1; font-size: 20px; font-weight: 500">Reports</div>
+<span style="font-size: 13px; opacity: 0.85">Owner only</span>
+</header>
+
+<main style="width: 100%; max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<label style="position: relative; display: block; width: 200px"><span style="position: absolute; top: -8px; left: 10px; padding: 0 4px; background: #F5F5F5; font-size: 12px; color: rgba(0,0,0,0.6)">Date range</span><select style="width: 100%; height: 44px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; padding: 0 12px; font: inherit; font-size: 15px; background: #FFFFFF"><option>Last 6 months</option><option>This month</option><option>Last 12 months</option></select></label>
+<label style="position: relative; display: block; width: 200px"><span style="position: absolute; top: -8px; left: 10px; padding: 0 4px; background: #F5F5F5; font-size: 12px; color: rgba(0,0,0,0.6)">Coach</span><select style="width: 100%; height: 44px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; padding: 0 12px; font: inherit; font-size: 15px; background: #FFFFFF"><option>All coaches</option><option>Owner</option></select></label>
+<span style="flex: 1"></span>
+<button type="button" style="height: 36px; padding: 0 14px; border-radius: 4px; border: 1px solid rgba(0,106,96,0.5); background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.download}}"></path></svg>Export CSV</button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5">
+<div style="background: #FFFFFF; border-radius: 4px; padding: 16px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="font-size: 14px; color: rgba(0,0,0,0.6)">{{k.label}}</div><div style="font-size: 28px; margin-top: 4px">{{k.value}}</div><div style="font-size: 13px; color: rgba(0,0,0,0.6)">{{k.sub}}</div>
+</div>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<section style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 20px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0 0 4px; font-size: 18px; font-weight: 500">Active clients</h2>
+<div style="font-size: 13px; color: rgba(0,0,0,0.6); margin-bottom: 12px">End of each month</div>
+<svg role="img" aria-label="Active clients by month: May 15, Jun 16, Jul 17, Aug 18, Sep 18, Oct 20" viewBox="0 0 520 240" style="display: block; width: 100%; height: auto">
+<sc-for list="{{bars.grid}}" as="g" hint-placeholder-count="3"><line x1="36" x2="512" y1="{{g.y}}" y2="{{g.y}}" stroke="#ECECEC" stroke-width="1"></line><text x="28" y="{{g.ty}}" text-anchor="end" font-size="12" fill="rgba(0,0,0,0.6)">{{g.label}}</text></sc-for>
+<line x1="36" x2="512" y1="200" y2="200" stroke="#BDBDBD" stroke-width="1"></line>
+<sc-for list="{{bars.items}}" as="b" hint-placeholder-count="6">
+<path d="{{b.d}}" fill="{{primary}}"></path>
+<text x="{{b.cx}}" y="222" text-anchor="middle" font-size="12" fill="rgba(0,0,0,0.6)">{{b.label}}</text>
+</sc-for>
+<text x="{{bars.lastX}}" y="{{bars.lastY}}" text-anchor="middle" font-size="12" font-weight="500" fill="rgba(0,0,0,0.87)">20</text>
+</svg>
+</section>
+
+<section style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 20px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0 0 4px; font-size: 18px; font-weight: 500">Workout adherence</h2>
+<div style="font-size: 13px; color: rgba(0,0,0,0.6); margin-bottom: 12px">% of assigned workouts completed, by week</div>
+<svg role="img" aria-label="Workout adherence by week rising from 72% to 84% over 8 weeks" viewBox="0 0 520 240" style="display: block; width: 100%; height: auto">
+<sc-for list="{{line.grid}}" as="g" hint-placeholder-count="3"><line x1="44" x2="512" y1="{{g.y}}" y2="{{g.y}}" stroke="#ECECEC" stroke-width="1"></line><text x="36" y="{{g.ty}}" text-anchor="end" font-size="12" fill="rgba(0,0,0,0.6)">{{g.label}}</text></sc-for>
+<path d="{{line.path}}" fill="none" stroke="{{primary}}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+<circle cx="{{line.lastX}}" cy="{{line.lastY}}" r="5" fill="{{primary}}" stroke="#FFFFFF" stroke-width="2"></circle>
+<text x="{{line.lastX}}" y="{{line.lastTy}}" text-anchor="end" font-size="12" font-weight="500" fill="rgba(0,0,0,0.87)">84%</text>
+<sc-for list="{{line.xlabels}}" as="x" hint-placeholder-count="4"><text x="{{x.x}}" y="222" text-anchor="middle" font-size="12" fill="rgba(0,0,0,0.6)">{{x.label}}</text></sc-for>
+</svg>
+</section>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px">
+<section style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; border-radius: 4px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 16px 20px 4px; font-size: 18px; font-weight: 500">Revenue by product</h2>
+<div style="padding: 0 20px 8px; font-size: 13px; color: rgba(0,0,0,0.6)">Live from Stripe · amounts fill in once billing is connected</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 420px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="text-align: left"><th style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Product</th><th style="padding: 10px 16px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Clients</th><th style="padding: 10px 16px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12); text-align: right">This month</th></tr></thead>
+<tbody>
+<sc-for list="{{revenue}}" as="r" hint-placeholder-count="4"><tr><td style="padding: 10px 20px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{r.name}}</td><td style="padding: 10px 16px; border-bottom: 1px solid rgba(0,0,0,0.12)">{{r.n}}</td><td style="padding: 10px 16px; border-bottom: 1px solid rgba(0,0,0,0.12); text-align: right; color: rgba(0,0,0,0.6)">[$ amount]</td></tr></sc-for>
+</tbody>
+</table>
+</div>
+</section>
+
+<section style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 10px 20px; font-size: 18px; font-weight: 500">Retention watch</h2>
+<sc-for list="{{watch}}" as="w" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 14px; min-height: 56px; padding: 0 20px; border-top: 1px solid rgba(0,0,0,0.12)">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="{{w.color}}"><path d="{{w.icon}}"></path></svg>
+<div style="flex: 1; font-size: 14px">{{w.text}}</div><span style="font-size: 13px; color: rgba(0,0,0,0.6)">{{w.tag}}</span>
+</div>
+</sc-for>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      chart: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z',
+      download: 'M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z',
+      warn: 'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z',
+      pause: 'M6 19h4V5H6v14zm8-14v14h4V5h-4z',
+      exit: 'M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z',
+      card: 'M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z'
+    };
+    const kpis = [
+      { label: 'Active clients', value: '20', sub: '+2 vs. September' },
+      { label: 'Monthly recurring revenue', value: '[$ MRR]', sub: 'From Stripe' },
+      { label: 'Workout adherence', value: '84%', sub: 'Last week' },
+      { label: 'Check-ins completed', value: '89%', sub: 'Last 4 weeks' },
+      { label: 'Churned this month', value: '1', sub: '1 paused · 2 at risk' }
+    ];
+    const counts = [15, 16, 17, 18, 18, 20];
+    const months = ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
+    const yb = 200, yt = 20, max = 25;
+    const by = (v) => yb - (v / max) * (yb - yt);
+    const slot = (512 - 44) / counts.length, bw = 40;
+    const items = counts.map((v, i) => {
+      const cx = 44 + slot * i + slot / 2, x = cx - bw / 2, y = by(v), r = 4;
+      const d = 'M' + x + ' ' + yb + ' V' + (y + r) + ' Q' + x + ' ' + y + ' ' + (x + r) + ' ' + y + ' H' + (x + bw - r) + ' Q' + (x + bw) + ' ' + y + ' ' + (x + bw) + ' ' + (y + r) + ' V' + yb + ' Z';
+      return { d, cx, label: months[i] };
+    });
+    const bars = {
+      items,
+      grid: [10, 20].map((v) => ({ y: by(v), ty: by(v) + 4, label: String(v) })),
+      lastX: items[5].cx, lastY: by(20) - 8
+    };
+    const pct = [72, 75, 78, 74, 80, 82, 79, 84];
+    const lo = 60, hi = 100, x0 = 56, x1 = 500;
+    const sx = (i) => x0 + i * (x1 - x0) / (pct.length - 1);
+    const sy = (v) => yb - ((v - lo) / (hi - lo)) * (yb - yt);
+    const line = {
+      path: pct.map((v, i) => (i ? 'L' : 'M') + sx(i).toFixed(1) + ' ' + sy(v).toFixed(1)).join(' '),
+      lastX: sx(7), lastY: sy(84), lastTy: sy(84) - 12,
+      grid: [60, 80, 100].map((v) => ({ y: sy(v), ty: sy(v) + 4, label: v + '%' })),
+      xlabels: [{ i: 0, l: 'Aug 31' }, { i: 3, l: 'Sep 21' }, { i: 7, l: 'Oct 19' }].map((o) => ({ x: sx(o.i), label: o.l }))
+    };
+    const revenue = [
+      { name: 'Monthly Coaching', n: 14 }, { name: 'Pay in full programs', n: 4 },
+      { name: 'Add-ons', n: 6 }, { name: 'Small group class packages', n: 12 }
+    ];
+    const watch = [
+      { text: 'Chris M. · no workouts or logins in 6 days', tag: 'At risk', icon: ic.warn, color: '#ED6C02' },
+      { text: 'Dana K. · payment failed Oct 15, retrying', tag: 'Past due', icon: ic.card, color: '#B3261E' },
+      { text: 'Sam P. · paused Oct 10 – Oct 31 (injury)', tag: 'Paused', icon: ic.pause, color: 'rgba(0,0,0,0.54)' },
+      { text: 'Lee T. · cancelled Oct 3 (moved away)', tag: 'Churned', icon: ic.exit, color: 'rgba(0,0,0,0.54)' }
+    ];
+    return { primary, ic, kpis, bars, line, revenue, watch };
+  }
+}
+</script>
+</body>
+</html>

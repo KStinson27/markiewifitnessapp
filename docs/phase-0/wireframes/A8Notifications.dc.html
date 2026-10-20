@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Notification Settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #FFFFFF; font-family: Roboto, system-ui, sans-serif; color: #161D1C">
+<header style="display: flex; align-items: center; gap: 4px; height: 64px; padding: 0 4px; flex-shrink: 0">
+<button type="button" aria-label="Back" style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: transparent; color: #161D1C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></button>
+<h1 style="flex: 1; margin: 0; font-size: 22px; font-weight: 400">Notifications</h1>
+</header>
+<div style="flex: 1; overflow: auto; padding: 0 0 16px">
+<div style="padding: 8px 16px; font-size: 14px; font-weight: 500; color: {{primary}}">Push notifications</div>
+<sc-for list="{{items}}" as="n" hint-placeholder-count="7">
+<label style="display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 0 16px">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{n.icon}}"></path></svg>
+<span style="flex: 1"><span style="display: block; font-size: 16px">{{n.label}}</span><span style="display: block; font-size: 13px; color: #3F4947">{{n.sub}}</span></span>
+<span style="width: 52px; height: 32px; border-radius: 16px; background: {{n.track}}; border: 2px solid {{n.trackBorder}}; box-sizing: border-box; position: relative; flex-shrink: 0"><span style="position: absolute; top: {{n.knobTop}}; left: {{n.knobLeft}}; width: {{n.knob}}; height: {{n.knob}}; border-radius: 12px; background: {{n.knobBg}}"></span></span>
+<input type="checkbox" role="switch" checked="{{n.on}}" disabled="{{n.locked}}" style="position: absolute; width: 1px; height: 1px; opacity: 0">
+</label>
+</sc-for>
+
+<div style="height: 1px; background: #EEF0EF; margin: 8px 16px"></div>
+<div style="padding: 8px 16px; font-size: 14px; font-weight: 500; color: {{primary}}">Quiet hours &amp; privacy</div>
+<div style="display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 0 16px"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.moon}}"></path></svg><span style="flex: 1"><span style="display: block; font-size: 16px">Quiet hours</span><span style="display: block; font-size: 13px; color: #3F4947">9:00 PM – 7:00 AM · reminders wait until morning</span></span></div>
+<div style="display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 0 16px"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.lock}}"></path></svg><span style="flex: 1"><span style="display: block; font-size: 16px">Hide details on lock screen</span><span style="display: block; font-size: 13px; color: #3F4947">On by default</span></span></div>
+<div style="margin: 4px 16px 0; padding: 12px; border-radius: 16px; background: #F5F5F5">
+<div style="font-size: 12px; color: #3F4947; margin-bottom: 8px">Lock screen preview</div>
+<div style="display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(0,0,0,0.12)">
+<span style="width: 32px; height: 32px; border-radius: 8px; background: {{primary}}; flex-shrink: 0"></span>
+<div><div style="font-size: 13px; font-weight: 500">Markiewi Fitness</div><div style="font-size: 13px; color: #3F4947">You have a new message from your coach</div></div>
+</div>
+<div style="font-size: 12px; color: #3F4947; margin-top: 8px">Weights, measurements and message text never appear on the lock screen.</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      fitness: 'M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z',
+      chat: 'M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z',
+      task: 'M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z',
+      event: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z',
+      trophy: 'M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z',
+      campaign: 'M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z',
+      card: 'M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z',
+      moon: 'M9.37 5.51c-.18.64-.27 1.31-.27 1.99 0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27C17.45 17.19 14.93 19 12 19c-3.86 0-7-3.14-7-7 0-2.93 1.81-5.45 4.37-6.49zM12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z',
+      lock: 'M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z'
+    };
+    const items = [
+      { label: 'Workout reminders', sub: 'Morning of a scheduled workout', icon: ic.fitness, on: true },
+      { label: 'Messages', sub: 'Coach and support replies', icon: ic.chat, on: true },
+      { label: 'Check-ins & habits', sub: 'Weekly check-in, daily habits, weigh-ins', icon: ic.task, on: true },
+      { label: 'Class reminders', sub: '2 hours before a booked class', icon: ic.event, on: true },
+      { label: 'Challenge updates', sub: 'Rank changes, cheers, comments', icon: ic.trophy, on: false },
+      { label: 'Announcements', sub: 'News from the studio', icon: ic.campaign, on: true },
+      { label: 'Billing', sub: 'Receipts and payment problems · always on', icon: ic.card, on: true, locked: true }
+    ].map((n) => ({
+      ...n, locked: !!n.locked,
+      track: n.on ? (n.locked ? '#9FBDB8' : primary) : '#E3E6E5', trackBorder: n.on ? (n.locked ? '#9FBDB8' : primary) : '#6F7977',
+      knob: n.on ? '24px' : '16px', knobTop: n.on ? '2px' : '6px', knobLeft: n.on ? '22px' : '6px', knobBg: n.on ? '#FFFFFF' : '#6F7977'
+    }));
+    return { primary, ic, items };
+  }
+}
+</script>
+</body>
+</html>

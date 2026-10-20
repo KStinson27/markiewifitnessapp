@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Units and Account Settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #FFFFFF; font-family: Roboto, system-ui, sans-serif; color: #161D1C">
+<header style="display: flex; align-items: center; gap: 4px; height: 64px; padding: 0 4px; flex-shrink: 0">
+<button type="button" aria-label="Back" style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: transparent; color: #161D1C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></button>
+<h1 style="flex: 1; margin: 0; font-size: 22px; font-weight: 400">Account</h1>
+</header>
+<div style="flex: 1; overflow: auto; padding-bottom: 16px">
+<div style="display: flex; align-items: center; gap: 14px; padding: 8px 16px 16px">
+<span style="width: 56px; height: 56px; border-radius: 28px; background: {{primary}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 20px">JR</span>
+<div style="flex: 1"><div style="font-size: 18px">Jordan Rivera</div><div style="font-size: 14px; color: #3F4947">jordan@example.com</div></div>
+<button type="button" style="height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #6F7977; background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500">Edit</button>
+</div>
+
+<div style="padding: 8px 16px; font-size: 14px; font-weight: 500; color: {{primary}}">Units</div>
+<sc-for list="{{units}}" as="u" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 16px">
+<span style="flex: 1; font-size: 16px">{{u.label}}</span>
+<div role="group" aria-label="{{u.label}} unit" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 128px; height: 36px; border: 1px solid #6F7977; border-radius: 18px; overflow: hidden">
+<button type="button" aria-pressed="true" style="border: 0; border-right: 1px solid #6F7977; background: #CCE8E2; color: #051F1C; font: inherit; font-size: 14px; font-weight: 500">{{u.a}}</button>
+<button type="button" aria-pressed="false" style="border: 0; background: transparent; color: #161D1C; font: inherit; font-size: 14px; font-weight: 500">{{u.b}}</button>
+</div>
+</div>
+</sc-for>
+<div style="display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 0 16px"><span style="flex: 1"><span style="display: block; font-size: 16px">Time zone</span><span style="display: block; font-size: 13px; color: #3F4947">Eastern Time (Detroit) · set automatically</span></span></div>
+
+<div style="height: 1px; background: #EEF0EF; margin: 8px 16px"></div>
+<div style="padding: 8px 16px; font-size: 14px; font-weight: 500; color: {{primary}}">Connected</div>
+<div style="display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 0 16px"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#C2185B"><path d="{{ic.heart}}"></path></svg><span style="flex: 1"><span style="display: block; font-size: 16px">Apple Health</span><span style="display: block; font-size: 13px; color: #3F4947">Steps, workouts, sleep, weight · last sync 8:02 AM</span></span><span style="font-size: 13px; font-weight: 500; color: {{primary}}">Manage</span></div>
+
+<div style="height: 1px; background: #EEF0EF; margin: 8px 16px"></div>
+<div style="padding: 8px 16px; font-size: 14px; font-weight: 500; color: {{primary}}">Your data</div>
+<sc-for list="{{links}}" as="l" hint-placeholder-count="4">
+<a href="#" style="display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 0 16px; text-decoration: none; color: #161D1C"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{l.icon}}"></path></svg><span style="flex: 1; font-size: 16px">{{l.label}}</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="#6F7977"><path d="{{ic.chev}}"></path></svg></a>
+</sc-for>
+<button type="button" style="display: flex; align-items: center; gap: 16px; width: 100%; min-height: 56px; padding: 0 16px; border: 0; background: transparent; font: inherit; font-size: 16px; color: #B3261E; text-align: left"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#B3261E"><path d="{{ic.trash}}"></path></svg>Delete account</button>
+<div style="padding: 0 16px 0 56px; font-size: 12px; color: #3F4947; line-height: 1.4">Deletes your profile, logs and photos within 30 days. Billing records are kept as required by law.</div>
+<div style="padding: 16px"><button type="button" style="width: 100%; height: 44px; border-radius: 22px; border: 1px solid #6F7977; background: transparent; font: inherit; font-size: 15px; font-weight: 500; color: {{primary}}">Sign out</button></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      heart: 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z',
+      chev: 'M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z',
+      download: 'M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z',
+      shield: 'M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z',
+      doc: 'M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z',
+      key: 'M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z',
+      trash: 'M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z'
+    };
+    const units = [
+      { label: 'Weight', a: 'lb', b: 'kg' },
+      { label: 'Measurements', a: 'in', b: 'cm' },
+      { label: 'Distance', a: 'mi', b: 'km' }
+    ];
+    const links = [
+      { label: 'Sign-in & passkeys', icon: ic.key },
+      { label: 'Download my data', icon: ic.download },
+      { label: 'Privacy policy', icon: ic.shield },
+      { label: 'Terms & waiver', icon: ic.doc }
+    ];
+    return { primary, ic, units, links };
+  }
+}
+</script>
+</body>
+</html>

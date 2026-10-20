@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pause Membership</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #FFFFFF; font-family: Roboto, system-ui, sans-serif; color: #161D1C; position: relative; overflow: hidden">
+<header style="display: flex; align-items: center; gap: 4px; height: 64px; padding: 0 4px; flex-shrink: 0">
+<button type="button" aria-label="Back" style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: transparent; color: #161D1C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></button>
+<h1 style="flex: 1; margin: 0; font-size: 22px; font-weight: 400">Membership</h1>
+</header>
+<div style="flex: 1; overflow: auto; padding: 4px 16px; display: flex; flex-direction: column; gap: 12px">
+<section style="border-radius: 16px; padding: 16px; background: #CCE8E2; color: #051F1C; display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 13px; font-weight: 500">ACTIVE</div><div style="font-size: 20px">Monthly Coaching</div><div style="font-size: 14px">[YOUR PRICE]/month · renews Nov 15</div>
+</section>
+<section style="border-radius: 16px; padding: 8px 0; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 0 16px"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.card}}"></path></svg><span style="flex: 1">Payment method · Visa 4242</span></div>
+<div style="display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 0 16px; border-top: 1px solid #EEF0EF"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.receipt}}"></path></svg><span style="flex: 1">Invoices</span></div>
+<div style="display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 0 16px; border-top: 1px solid #EEF0EF"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.pause}}"></path></svg><span style="flex: 1">Pause membership</span></div>
+</section>
+</div>
+
+<div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(0,0,0,0.32)"></div>
+<section role="dialog" aria-label="Pause membership" style="position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 28px 28px 0 0; padding: 12px 20px 28px; display: flex; flex-direction: column; gap: 16px">
+<div style="width: 32px; height: 4px; border-radius: 2px; background: #6F7977; align-self: center"></div>
+<div><div style="font-size: 22px">Pause membership</div><div style="font-size: 14px; color: #3F4947; margin-top: 4px">Up to 8 weeks per year · 8 weeks available</div></div>
+<div><div style="font-size: 14px; font-weight: 500; margin-bottom: 8px">Reason</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{reasons}}" as="r" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{r.on}}" style="height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid {{r.border}}; background: {{r.bg}}; font: inherit; font-size: 14px; font-weight: 500; color: #161D1C">{{r.label}}</button>
+</sc-for></div></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<label style="position: relative; display: block"><span style="position: absolute; top: -8px; left: 12px; padding: 0 4px; background: #FFFFFF; font-size: 12px; color: #3F4947">From</span><input value="Dec 20, 2026" style="width: 100%; box-sizing: border-box; height: 52px; border: 1px solid #6F7977; border-radius: 4px; padding: 0 14px; font: inherit; font-size: 15px"></label>
+<label style="position: relative; display: block"><span style="position: absolute; top: -8px; left: 12px; padding: 0 4px; background: #FFFFFF; font-size: 12px; color: #3F4947">Until</span><input value="Jan 3, 2027" style="width: 100%; box-sizing: border-box; height: 52px; border: 1px solid #6F7977; border-radius: 4px; padding: 0 14px; font: inherit; font-size: 15px"></label>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 12px; background: #F5F5F5; font-size: 14px; color: #3F4947">
+<sc-for list="{{effects}}" as="e" hint-placeholder-count="3"><div style="display: flex; gap: 8px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="{{primary}}" style="flex-shrink: 0"><path d="{{ic.check}}"></path></svg>{{e}}</div></sc-for>
+</div>
+<button type="button" style="height: 48px; border: 0; border-radius: 24px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 500">Request pause</button>
+<div style="font-size: 12px; color: #3F4947; text-align: center">The studio confirms pause requests within 1 business day.</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      card: 'M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z',
+      receipt: 'M18 17H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2zM3 22l1.5-1.5L6 22l1.5-1.5L9 22l1.5-1.5L12 22l1.5-1.5L15 22l1.5-1.5L18 22l1.5-1.5L21 22V2l-1.5 1.5L18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2 7.5 3.5 6 2 4.5 3.5 3 2v20z',
+      pause: 'M6 19h4V5H6v14zm8-14v14h4V5h-4z',
+      check: 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'
+    };
+    const reasons = ['Vacation', 'Injury or illness', 'Other'].map((label, i) => ({
+      label, on: i === 0, bg: i === 0 ? '#CCE8E2' : 'transparent', border: i === 0 ? '#CCE8E2' : '#6F7977'
+    }));
+    const effects = [
+      'No charge for the paused weeks; the Jan 15 renewal moves to Jan 29',
+      'Your program resumes where you left off on Jan 4',
+      'Class package expiry extends by 2 weeks'
+    ];
+    return { primary, ic, reasons, effects };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Workout History and Personal Records</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #FFFFFF; font-family: Roboto, system-ui, sans-serif; color: #161D1C">
+<header style="display: flex; align-items: center; gap: 4px; height: 64px; padding: 0 4px; flex-shrink: 0">
+<button type="button" aria-label="Back" style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: transparent; color: #161D1C; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></button>
+<h1 style="flex: 1; margin: 0; font-size: 22px; font-weight: 400">My training</h1>
+</header>
+<div role="tablist" aria-label="Training views" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid #E3E6E5; flex-shrink: 0">
+<button type="button" role="tab" aria-selected="true" style="height: 48px; border: 0; border-bottom: 3px solid {{primary}}; background: transparent; color: {{primary}}; font: inherit; font-size: 14px; font-weight: 500">Records</button>
+<button type="button" role="tab" aria-selected="false" style="height: 48px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: #3F4947; font: inherit; font-size: 14px; font-weight: 500">History</button>
+</div>
+
+<div style="flex: 1; overflow: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{prs}}" as="p" hint-placeholder-count="4">
+<div style="border-radius: 16px; padding: 14px; background: {{p.bg}}; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; gap: 6px; font-size: 13px; color: #3F4947"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.trophy}}"></path></svg>{{p.name}}</div>
+<div style="font-size: 24px">{{p.best}}</div>
+<div style="font-size: 12px; color: #3F4947">{{p.sub}}</div>
+</div>
+</sc-for>
+</div>
+
+<div style="font-size: 14px; font-weight: 500; color: #3F4947; padding-top: 8px">Recent sessions</div>
+<sc-for list="{{sessions}}" as="s" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 14px; padding: 12px 14px; border-radius: 16px; box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 3px 1px rgba(0,0,0,0.06)">
+<div style="width: 44px; text-align: center; flex-shrink: 0"><div style="font-size: 11px; color: #3F4947">{{s.dow}}</div><div style="font-size: 20px">{{s.day}}</div></div>
+<div style="flex: 1; min-width: 0"><div style="font-size: 16px">{{s.name}}</div><div style="font-size: 13px; color: #3F4947">{{s.meta}}</div></div>
+<sc-if value="{{s.coach}}" hint-placeholder-val="{{false}}"><span style="height: 24px; padding: 0 8px; border-radius: 8px; border: 1px solid #6F7977; font-size: 11px; font-weight: 500; color: #3F4947; display: flex; align-items: center">With coach</span></sc-if>
+<sc-if value="{{s.pr}}" hint-placeholder-val="{{false}}"><span style="height: 24px; padding: 0 8px; border-radius: 8px; background: #CCE8E2; color: #051F1C; font-size: 11px; font-weight: 500; display: flex; align-items: center; gap: 3px"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.trophy}}"></path></svg>PR</span></sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      trophy: 'M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z'
+    };
+    const prs = [
+      { name: 'Back Squat', best: '160 × 8', sub: 'Est. 1RM 203 lb · Oct 20', bg: '#CCE8E2' },
+      { name: 'Deadlift', best: '205 × 5', sub: 'Est. 1RM 239 lb · Oct 9', bg: '#F5F5F5' },
+      { name: 'Bench Press', best: '115 × 6', sub: 'Est. 1RM 138 lb · Oct 13', bg: '#F5F5F5' },
+      { name: 'Pull-ups', best: '6 reps', sub: 'Bodyweight · Oct 16', bg: '#F5F5F5' }
+    ];
+    const sessions = [
+      { dow: 'TUE', day: 20, name: 'Lower Body A', meta: '6 exercises · 47 min · 9,840 lb volume', coach: false, pr: true },
+      { dow: 'SAT', day: 17, name: 'Small Group Strength', meta: 'Class · 55 min', coach: true, pr: false },
+      { dow: 'FRI', day: 16, name: 'Full Body', meta: '5 exercises · 42 min', coach: false, pr: true },
+      { dow: 'WED', day: 14, name: 'Upper Body A', meta: '6 exercises · 44 min', coach: false, pr: false },
+      { dow: 'MON', day: 12, name: 'Lower Body A', meta: 'Coach-led · 60 min', coach: true, pr: false }
+    ];
+    return { primary, ic, prs, sessions };
+  }
+}
+</script>
+</body>
+</html>

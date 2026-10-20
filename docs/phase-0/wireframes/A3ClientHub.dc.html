@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Client Profile Hub</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 1000px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 16px; background: {{primary}}; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<a href="M3CoachDashboard.dc.html" aria-label="Back to clients" style="width: 40px; height: 40px; border-radius: 20px; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></a>
+<span style="width: 40px; height: 40px; border-radius: 20px; background: rgba(255,255,255,0.24); display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 500">JR</span>
+<div style="flex: 1; min-width: 0"><div style="font-size: 20px; font-weight: 500">Jordan Rivera</div><div style="font-size: 13px; opacity: 0.85">In person · Client since Jan 2025 · Coach: Owner</div></div>
+<a href="A2SessionMode.dc.html" style="height: 36px; padding: 0 14px; border-radius: 4px; background: #FFFFFF; color: {{primary}}; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.play}}"></path></svg>Start session</a>
+</header>
+<div role="tablist" aria-label="Client sections" style="display: flex; overflow-x: auto; background: #FFFFFF; border-bottom: 1px solid rgba(0,0,0,0.12); padding: 0 16px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="7">
+<a href="{{t.href}}" role="tab" aria-selected="{{t.on}}" style="flex-shrink: 0; min-height: 48px; padding: 0 16px; display: flex; align-items: center; border-bottom: 2px solid {{t.line}}; color: {{t.fg}}; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none">{{t.label}}</a>
+</sc-for>
+</div>
+
+<main style="width: 100%; max-width: 1280px; margin: 0 auto; box-sizing: border-box; padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+<aside style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<section style="background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<sc-for list="{{facts}}" as="f" hint-placeholder-count="6">
+<div style="display: flex; align-items: center; gap: 14px; min-height: 52px; padding: 0 16px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{f.icon}}"></path></svg><div style="min-width: 0"><div style="font-size: 12px; color: rgba(0,0,0,0.6)">{{f.k}}</div><div style="font-size: 14px">{{f.v}}</div></div></div>
+</sc-for>
+</section>
+<section style="background: #FFFFFF; border-radius: 4px; padding: 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; font-size: 16px; font-weight: 500">Goals</h2>
+<div style="font-size: 14px">Lose 15 lb · Deadlift 225 lb · Run a 5K in spring</div>
+<div style="display: flex; gap: 8px; padding: 10px 12px; border-radius: 4px; background: #FFF4E5; color: #663C00; font-size: 13px"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#ED6C02" style="flex-shrink: 0"><path d="{{ic.warn}}"></path></svg>Left knee: meniscus repair 2023 · PAR-Q flag cleared by physician Oct 3</div>
+</section>
+</aside>
+
+<div style="flex: 2 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+<sc-for list="{{week}}" as="w" hint-placeholder-count="4">
+<div style="background: #FFFFFF; border-radius: 4px; padding: 14px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)"><div style="font-size: 13px; color: rgba(0,0,0,0.6)">{{w.k}}</div><div style="font-size: 24px; margin-top: 2px">{{w.v}}</div><div style="font-size: 12px; color: rgba(0,0,0,0.6)">{{w.sub}}</div></div>
+</sc-for>
+</div>
+<section style="background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 10px 16px; font-size: 16px; font-weight: 500">Recent activity</h2>
+<sc-for list="{{activity}}" as="a" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 14px; min-height: 56px; padding: 0 16px; border-top: 1px solid rgba(0,0,0,0.12)">
+<span style="width: 36px; height: 36px; border-radius: 18px; background: #E3F2EF; color: {{primary}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="{{a.icon}}"></path></svg></span>
+<div style="flex: 1; min-width: 0; font-size: 14px">{{a.text}}</div><span style="font-size: 12px; color: rgba(0,0,0,0.6)">{{a.when}}</span>
+</div>
+</sc-for>
+</section>
+<section style="background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 10px 16px; font-size: 16px; font-weight: 500">Coming up</h2>
+<div style="display: flex; align-items: center; gap: 14px; min-height: 52px; padding: 0 16px; border-top: 1px solid rgba(0,0,0,0.12); font-size: 14px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.event}}"></path></svg>Thu Oct 22 · 7:00 AM · 1:1 session (Calendly)</div>
+<div style="display: flex; align-items: center; gap: 14px; min-height: 52px; padding: 0 16px; border-top: 1px solid rgba(0,0,0,0.12); font-size: 14px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.event}}"></path></svg>Sat Oct 24 · 9:00 AM · Small Group Strength</div>
+<div style="display: flex; align-items: center; gap: 14px; min-height: 52px; padding: 0 16px; border-top: 1px solid rgba(0,0,0,0.12); font-size: 14px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.card}}"></path></svg>Nov 15 · Monthly Coaching renews</div>
+</section>
+</div>
+
+<aside style="flex: 1 1 280px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 16px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="{{primary}}"><path d="{{ic.lock}}"></path></svg><h2 style="flex: 1; margin: 0; font-size: 16px; font-weight: 500">Coach notes</h2></div>
+<div style="font-size: 12px; color: rgba(0,0,0,0.6)">Private. Never shown to Jordan; admins can't see them.</div>
+<label style="display: block"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden">New note</span><textarea rows="3" placeholder="Add a note…" style="width: 100%; box-sizing: border-box; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; padding: 10px 12px; font: inherit; font-size: 14px; resize: none"></textarea></label>
+<button type="button" style="align-self: flex-end; height: 32px; padding: 0 12px; border: 0; border-radius: 4px; background: {{primary}}; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em">Save note</button>
+<sc-for list="{{notes}}" as="n" hint-placeholder-count="3">
+<div style="padding: 12px; border-radius: 4px; background: {{n.bg}}; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: rgba(0,0,0,0.6)"><sc-if value="{{n.pinned}}" hint-placeholder-val="{{false}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.pin}}"></path></svg>Pinned · </sc-if>{{n.when}}</div>
+<div style="font-size: 14px; line-height: 1.4">{{n.text}}</div>
+</div>
+</sc-for>
+</aside>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"primary":{"editor":"color","default":"#006A60","options":["#006A60","#3F51B5","#9C4146","#4F5B92"]},"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const primary = this.props.primary ?? '#006A60';
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      play: 'M8 5v14l11-7z',
+      mail: 'M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z',
+      phone: 'M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z',
+      card: 'M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z',
+      ticket: 'M22 10V6c0-1.11-.9-2-2-2H4c-1.1 0-1.99.89-1.99 2v4c1.1 0 1.99.9 1.99 2s-.89 2-2 2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-4c-1.1 0-2-.9-2-2s.9-2 2-2z',
+      fitness: 'M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z',
+      food: 'M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z',
+      warn: 'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z',
+      event: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z',
+      lock: 'M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z',
+      pin: 'M16 9V4h1c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1h1v5c0 1.66-1.34 3-3 3v2h5.97v7l1 1 1-1v-7H19v-2c-1.66 0-3-1.34-3-3z',
+      scale: 'M16 18l2.29-2.29-4.88-4.88-4 4L2 7.41 3.41 6l6 6 4-4 6.3 6.29L22 12v6z',
+      chat: 'M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z'
+    };
+    const tabs = [
+      { label: 'Overview', href: 'A3ClientHub.dc.html' }, { label: 'Program', href: 'M3ProgramCalendar.dc.html' },
+      { label: 'Nutrition', href: '#' }, { label: 'Progress', href: 'M3ClientProgress.dc.html' },
+      { label: 'Check-ins', href: '#' }, { label: 'Messages', href: 'A5FormCheck.dc.html' }, { label: 'Billing', href: '#' }
+    ].map((t) => {
+      const on = t.label === 'Overview';
+      return { ...t, on, line: on ? primary : 'transparent', fg: on ? primary : 'rgba(0,0,0,0.6)' };
+    });
+    const facts = [
+      { k: 'Email', v: 'jordan@example.com', icon: ic.mail },
+      { k: 'Phone', v: '(555) 555-0100', icon: ic.phone },
+      { k: 'Membership', v: 'Monthly Coaching · Active', icon: ic.card },
+      { k: 'Class package', v: '6 of 10 left · exp Dec 15', icon: ic.ticket },
+      { k: 'Program', v: 'Strength Foundations · W3 of 12', icon: ic.fitness },
+      { k: 'Nutrition', v: 'Full Macros · 1,900 kcal', icon: ic.food }
+    ];
+    const week = [
+      { k: 'Workouts', v: '3 / 3', sub: 'This week' },
+      { k: 'Food logged', v: '6 / 7', sub: 'Days' },
+      { k: 'Habits', v: '85%', sub: 'Completion' },
+      { k: 'Weight', v: '−3.6 lb', sub: 'Since Sep 1' }
+    ];
+    const activity = [
+      { text: 'New PR: Back Squat 160 × 8', when: 'Today', icon: ic.fitness },
+      { text: 'Weighed in at 162.4 lb (Apple Health)', when: 'Today', icon: ic.scale },
+      { text: 'Weekly check-in submitted: energy 4/5, sleep 7h', when: 'Sun', icon: ic.chat },
+      { text: 'Swap approved: Walking Lunge → Step-up', when: 'Sat', icon: ic.fitness },
+      { text: 'Attended Small Group Strength', when: 'Sat', icon: ic.event }
+    ];
+    const notes = [
+      { text: 'Responds well to clear numbers. Prefers morning sessions; travels for work 1 week a month.', when: 'Sep 2', pinned: true, bg: '#FFF8E1' },
+      { text: 'Knee felt fine on step-ups. Re-test lunges after week 6.', when: 'Oct 17', pinned: false, bg: '#F5F5F5' },
+      { text: 'Wants to run a spring 5K. Add a conditioning day in Phase 2.', when: 'Oct 3', pinned: false, bg: '#F5F5F5' }
+    ];
+    return { primary, ic, tabs, facts, week, activity, notes };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 # MVP Gap Review
 
-Status: **proposed — awaiting owner decisions** (2026-10-20)
+Status: **proposed — awaiting owner decisions** (2026-10-20). Views for A1–A11 are drafted on the
+wireframe canvas ("MVP additions" page; files `wireframes/A*.dc.html`).
 
 Features the approved plan does not cover yet (or covers only implicitly) that a business
 leaving Trainerize will need. Grouped by recommendation.

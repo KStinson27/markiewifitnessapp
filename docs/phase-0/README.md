@@ -53,3 +53,14 @@ Two versions, both with a placeholder teal accent until the brand kit arrives. F
 | Client · Choose a program (v2) | `M3ClientPrograms.dc.html` |
 | Client · Progress: weight & measurements (v2) | `M3Progress.dc.html` |
 | Coach · Client progress & trends (v2) | `M3ClientProgress.dc.html` |
+| A1 · Client onboarding (health check step) | `A1Onboarding.dc.html` |
+| A2 · Coach-led session mode (tablet) | `A2SessionMode.dc.html` |
+| A3 · Client profile hub & private coach notes | `A3ClientHub.dc.html` |
+| A4 · Workout history & PRs | `A4History.dc.html` |
+| A5 · Exercise swap & form-check video | `A5FormCheck.dc.html` |
+| A6 · Announcements | `A6Announcements.dc.html` |
+| A7 · Pause membership | `A7Pause.dc.html` |
+| A8 · Notification settings & lock-screen privacy | `A8Notifications.dc.html` |
+| A9 · Units & account (export, deletion) | `A9Account.dc.html` |
+| A10 · Business reports | `A10Reports.dc.html` |
+| A11 · Email & domain (SPF/DKIM/DMARC) | `A11EmailDomain.dc.html` |
