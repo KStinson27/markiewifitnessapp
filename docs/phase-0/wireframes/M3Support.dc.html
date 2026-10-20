@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Account Help</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 1000px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 16px; min-height: 64px; padding: 0 24px; background: #006A60; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<div style="flex: 1; font-size: 20px; font-weight: 500; letter-spacing: 0.01em">[MARKIEWI FITNESS] · Admin</div>
+<div style="width: 36px; height: 36px; border-radius: 18px; background: rgba(255,255,255,0.24); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500">AM</div>
+</header>
+
+<div style="flex: 1; display: flex; flex-wrap: wrap">
+<nav aria-label="Admin" style="flex: 1 1 220px; max-width: 240px; box-sizing: border-box; background: #FFFFFF; border-right: 1px solid rgba(0,0,0,0.12); padding: 8px 0">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="7">
+<a href="{{n.href}}" style="display: flex; align-items: center; gap: 24px; min-height: 48px; padding: 0 16px; text-decoration: none; font-size: 15px; color: rgba(0,0,0,0.87); background: {{n.bg}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="{{n.fg}}"><path d="{{n.icon}}"></path></svg>{{n.label}}</a>
+</sc-for>
+<div style="margin: 16px; padding: 12px; border-radius: 4px; background: #E3F2EF; font-size: 13px; line-height: 1.5; color: rgba(0,0,0,0.75); display: flex; gap: 8px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink: 0"><path d="{{ic.lock}}"></path></svg>You can fix sign-in problems without seeing health data, chats or payment amounts. Every action is logged.</div>
+</nav>
+
+<main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 20px 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<section aria-label="Find an account" style="flex: 1 1 240px; max-width: 280px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h1 style="margin: 0; padding: 10px 16px 8px; font-size: 20px; font-weight: 500">Account help</h1>
+<label style="display: block; padding: 0 16px 10px"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden">Search by name or email</span><input placeholder="Search name or email" style="width: 100%; box-sizing: border-box; height: 40px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; padding: 0 12px; font: inherit; font-size: 14px"></label>
+<sc-for list="{{people}}" as="p" hint-placeholder-count="4">
+<button type="button" onClick="{{p.pick}}" aria-pressed="{{p.on}}" style="width: 100%; display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 6px 16px; border: 0; border-top: 1px solid rgba(0,0,0,0.08); background: {{p.bg}}; font: inherit; text-align: left; cursor: pointer">
+<span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 18px; background: #DAE5E1; color: #00332D; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500">{{p.initials}}</span>
+<span style="flex: 1; min-width: 0"><span style="display: block; font-size: 14px; font-weight: 500">{{p.name}}</span><span style="display: block; font-size: 12px; color: rgba(0,0,0,0.6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{p.why}}</span></span>
+</button>
+</sc-for>
+</section>
+
+<div style="flex: 3 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<sc-if value="{{c.ticket}}" hint-placeholder-val="{{true}}"><div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 4px; background: #FFFFFF; border: 1px solid rgba(0,0,0,0.12); font-size: 14px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{ic.chat}}"></path></svg><span style="flex: 1">Support ticket: “{{c.ticket}}”</span><a href="#" style="font-weight: 500; text-decoration: none">Open ticket</a></div></sc-if>
+
+<section aria-label="Account" style="background: #FFFFFF; border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 16px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 400">{{c.name}}</h2>
+<sc-for list="{{c.chips}}" as="ch" hint-placeholder-count="3"><span style="height: 24px; padding: 0 10px; border-radius: 12px; background: {{ch.bg}}; color: {{ch.fg}}; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center">{{ch.t}}</span></sc-for>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px 20px; font-size: 13px">
+<sc-for list="{{c.facts}}" as="f" hint-placeholder-count="6"><div><div style="color: rgba(0,0,0,0.6)">{{f.k}}</div><div style="margin-top: 2px; font-size: 14px; color: {{f.fg}}">{{f.v}}</div></div></sc-for>
+</div>
+<div>
+<h3 style="margin: 0 0 6px; font-size: 14px; font-weight: 500">Sign-in methods</h3>
+<sc-for list="{{c.methods}}" as="m" hint-placeholder-count="3">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 44px; border-top: 1px solid rgba(0,0,0,0.08); font-size: 14px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="rgba(0,0,0,0.54)"><path d="{{m.icon}}"></path></svg><span style="flex: 1">{{m.t}}</span><span style="font-size: 12px; color: {{m.fg}}">{{m.s}}</span></div>
+</sc-for>
+</div>
+</section>
+
+<section aria-label="Verify identity" style="background: #FFFFFF; border-radius: 4px; padding: 16px 20px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h3 style="margin: 0; font-size: 16px; font-weight: 500; display: flex; align-items: center; gap: 8px"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="{{verifyColor}}"><path d="{{ic.shield}}"></path></svg>Check it's really {{c.first}}</h3>
+<div style="font-size: 13px; color: rgba(0,0,0,0.6)">Needed before removing a device or changing an email. Use contact details already on file, never ones given in the ticket.</div>
+<sc-for list="{{checks}}" as="k" hint-placeholder-count="2"><label style="display: flex; align-items: center; gap: 10px; min-height: 36px; font-size: 14px; cursor: pointer"><input type="checkbox" checked="{{k.on}}" onChange="{{k.toggle}}" style="width: 18px; height: 18px; accent-color: #006A60">{{k.t}}</label></sc-for>
+</section>
+
+<section aria-label="Actions" style="background: #FFFFFF; border-radius: 4px; padding: 16px 20px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h3 style="margin: 0 0 8px; font-size: 16px; font-weight: 500">Fix it</h3>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px">
+<sc-for list="{{actions}}" as="a" hint-placeholder-count="6">
+<button type="button" onClick="{{a.run}}" disabled="{{a.off}}" style="display: flex; align-items: flex-start; gap: 10px; padding: 12px; border-radius: 8px; border: 1px solid {{a.border}}; background: #FFFFFF; font: inherit; text-align: left; cursor: {{a.cursor}}; opacity: {{a.op}}">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="#006A60" style="flex-shrink: 0"><path d="{{a.icon}}"></path></svg>
+<span><span style="display: block; font-size: 14px; font-weight: 500">{{a.t}}</span><span style="display: block; margin-top: 2px; font-size: 12px; line-height: 1.4; color: rgba(0,0,0,0.6)">{{a.note}}</span></span>
+</button>
+</sc-for>
+</div>
+<sc-if value="{{toast}}" hint-placeholder-val="{{false}}"><div role="status" style="margin-top: 12px; padding: 10px 14px; border-radius: 4px; background: #323232; color: #FFFFFF; font-size: 14px">{{toast}}</div></sc-if>
+</section>
+</div>
+
+<section aria-label="Activity" style="flex: 1 1 240px; max-width: 300px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h3 style="margin: 0; padding: 10px 16px 6px; font-size: 16px; font-weight: 500">Account activity</h3>
+<sc-for list="{{log}}" as="l" hint-placeholder-count="5">
+<div style="padding: 8px 16px; border-top: 1px solid rgba(0,0,0,0.08); font-size: 13px"><div>{{l.t}}</div><div style="margin-top: 2px; font-size: 12px; color: rgba(0,0,0,0.6)">{{l.when}} · {{l.who}}</div></div>
+</sc-for>
+<div style="padding: 10px 16px 4px; font-size: 12px; line-height: 1.45; color: rgba(0,0,0,0.6); border-top: 1px solid rgba(0,0,0,0.08)">Coach and admin accounts: two-step code resets are owner-only.</div>
+</section>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const ic = {
+      event: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z',
+      campaign: 'M18 11v2h4v-2h-4zm-2 6.61c.96.71 2.21 1.65 3.2 2.39.4-.53.8-1.07 1.2-1.6-.99-.74-2.24-1.68-3.2-2.4-.4.54-.8 1.08-1.2 1.61zM20.4 5.6c-.4-.53-.8-1.07-1.2-1.6-.99.74-2.24 1.68-3.2 2.4.4.53.8 1.07 1.2 1.6.96-.72 2.21-1.65 3.2-2.4zM4 9c-1.1 0-2 .9-2 2v2c0 1.1.9 2 2 2h1v4h2v-4h1l5 3V6L8 9H4zm11.5 3c0-1.33-.58-2.53-1.5-3.35v6.69c.92-.81 1.5-2.01 1.5-3.34z',
+      inbox: 'M19 3H4.99c-1.11 0-1.98.89-1.98 2L3 19c0 1.1.88 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2zm0 12h-4c0 1.66-1.35 3-3 3s-3-1.34-3-3H4.99V5H19v10z',
+      help: 'M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm1 18h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z',
+      people: 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z',
+      trophy: 'M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z',
+      lock: 'M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z',
+      chat: 'M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z',
+      shield: 'M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z',
+      key: 'M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z',
+      mail: 'M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z',
+      phone: 'M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z',
+      logout: 'M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z',
+      unlock: 'M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z',
+      send: 'M2.01 21L23 12 2.01 3 2 10l15 2-15 2z'
+    };
+    const active = 'Account help';
+    const nav = [
+      { label: 'Classes & flyers', href: 'M3Admin.dc.html', icon: ic.event },
+      { label: 'Coach calendars', href: 'M3CoachCalendar.dc.html', icon: ic.event },
+      { label: 'Social planner', href: 'M3Social.dc.html', icon: ic.campaign },
+      { label: 'Support inbox', href: '#', icon: ic.inbox },
+      { label: 'Account help', href: 'M3Support.dc.html', icon: ic.help },
+      { label: 'Client directory', href: '#', icon: ic.people },
+      { label: 'Challenges', href: 'M3ChallengeBuilder.dc.html', icon: ic.trophy }
+    ].map((n) => ({ ...n, bg: n.label === active ? 'rgba(0,106,96,0.08)' : 'transparent', fg: n.label === active ? '#006A60' : 'rgba(0,0,0,0.54)' }));
+    const ok = '#1B5E20', warn = '#B3261E', mute = 'rgba(0,0,0,0.6)';
+    const chip = { green: { bg: '#E3F2EF', fg: '#00504A' }, red: { bg: '#FBE4E2', fg: '#8C1D18' }, amber: { bg: '#FFE7C2', fg: '#5A3300' }, grey: { bg: '#ECEFF3', fg: '#3C4250' }, violet: { bg: '#E7E3FA', fg: '#2A1F6E' } };
+    const P = {
+      dana: {
+        name: 'Dana K.', first: 'Dana', initials: 'DK', why: 'Can’t log in on new phone', ticket: 'Can’t log in on new phone',
+        chips: [{ t: 'Client · Active', ...chip.green }, { t: 'Locked: 5 failed sign-ins', ...chip.red }],
+        facts: [
+          { k: 'Coach', v: 'Owner' }, { k: 'Membership', v: 'Monthly coaching' }, { k: 'Billing', v: 'Up to date', fg: ok },
+          { k: 'Last sign-in', v: 'Oct 2 · iPhone 13' }, { k: 'App version', v: '1.0.4 (latest)' }, { k: 'Sign-in emails', v: 'Delivered · Oct 20, 9:41 AM', fg: ok }
+        ],
+        methods: [
+          { icon: ic.key, t: 'Passkey · iPhone 13', s: 'Old phone · last used Oct 2', fg: mute },
+          { icon: ic.mail, t: 'Email link · d•••@gmail.com', s: 'On', fg: ok },
+          { icon: ic.phone, t: 'Sign in with Apple', s: 'Not set up', fg: mute }
+        ],
+        log: [
+          { t: '5 failed sign-ins from a new iPhone · account locked for 30 min', when: 'Today 9:38 AM', who: 'System' },
+          { t: 'Support ticket opened', when: 'Today 9:45 AM', who: 'Dana K.' },
+          { t: 'Signed in', when: 'Oct 2, 6:02 AM', who: 'Dana K.' }
+        ],
+        locked: true, joined: true
+      },
+      chris: {
+        name: 'Chris M.', first: 'Chris', initials: 'CM', why: 'Payment failed · app shows “restricted”',
+        chips: [{ t: 'Client · Restricted', ...chip.amber }],
+        facts: [
+          { k: 'Coach', v: 'Owner' }, { k: 'Membership', v: 'Small group package' }, { k: 'Billing', v: 'Payment failed Oct 18 · owner notified', fg: warn },
+          { k: 'Last sign-in', v: 'Today · Pixel 8' }, { k: 'App version', v: '1.0.3 · update available', fg: '#5A3300' }, { k: 'Sign-in emails', v: 'Delivered · Oct 1', fg: ok }
+        ],
+        methods: [
+          { icon: ic.mail, t: 'Email link · c•••@outlook.com', s: 'On', fg: ok },
+          { icon: ic.phone, t: 'Sign in with Google', s: 'On · Pixel 8', fg: ok }
+        ],
+        log: [
+          { t: 'Card update link emailed by Stripe', when: 'Oct 18, 8:00 AM', who: 'System' },
+          { t: 'Signed in', when: 'Today 7:15 AM', who: 'Chris M.' }
+        ],
+        locked: false, joined: true, billingNote: true
+      },
+      sam: {
+        name: 'Sam T.', first: 'Sam', initials: 'ST', why: 'Community member · steps not syncing',
+        chips: [{ t: 'Community member', ...chip.violet }],
+        facts: [
+          { k: 'Joined via', v: 'Fall Steps Challenge link' }, { k: 'Membership', v: 'None (free challenges)' }, { k: 'Apple Health', v: 'Not connected', fg: warn },
+          { k: 'Last sign-in', v: 'Yesterday · iPhone 15' }, { k: 'App version', v: '1.0.4 (latest)' }, { k: 'Sign-in emails', v: 'Delivered · Oct 19', fg: ok }
+        ],
+        methods: [{ icon: ic.mail, t: 'Email link · s•••@yahoo.com', s: 'On', fg: ok }],
+        log: [{ t: 'Joined Fall Steps Challenge', when: 'Oct 19', who: 'Sam T.' }],
+        locked: false, joined: true, health: true
+      },
+      jamie: {
+        name: 'Jamie P.', first: 'Jamie', initials: 'JP', why: 'Invite never arrived',
+        chips: [{ t: 'Invited · not joined', ...chip.grey }],
+        facts: [
+          { k: 'Coach', v: 'Owner' }, { k: 'Membership', v: 'Starts Nov 1' }, { k: 'Billing', v: 'Not started' },
+          { k: 'Last sign-in', v: 'Never' }, { k: 'App version', v: '—' }, { k: 'Invite email', v: 'Bounced · mailbox full', fg: warn }
+        ],
+        methods: [{ icon: ic.mail, t: 'Email link · j•••@icloud.com', s: 'Invite bounced Oct 16', fg: warn }],
+        log: [{ t: 'Invite sent by Owner · bounced', when: 'Oct 16', who: 'System' }],
+        locked: false, joined: false
+      }
+    };
+    const keys = ['dana', 'chris', 'sam', 'jamie'];
+    const sel = st.sel || 'dana';
+    const p = P[sel];
+    const verified = (st.verified && st.verified[sel]) || {};
+    const isVerified = !!verified.email || !!verified.call;
+    const done = (st.done && st.done[sel]) || [];
+    const people = keys.map((k) => ({ name: P[k].name, initials: P[k].initials, why: P[k].why, on: k === sel, bg: k === sel ? 'rgba(0,106,96,0.08)' : 'transparent', pick: () => this.setState({ sel: k, toast: '' }) }));
+    const setVer = (field) => () => {
+      const all = { ...((this.state && this.state.verified) || {}) };
+      all[sel] = { ...(all[sel] || {}), [field]: !(all[sel] && all[sel][field]) };
+      this.setState({ verified: all });
+    };
+    const checks = [
+      { k: 'email', t: 'Sent a 6-digit code to the email on file, and ' + p.first + ' read it back' },
+      { k: 'call', t: 'Called the phone number on file' }
+    ].map((c) => ({ t: c.t, on: !!verified[c.k], toggle: setVer(c.k) }));
+    const run = (id, msg, logLine) => () => {
+      const d = { ...((this.state && this.state.done) || {}) };
+      d[sel] = [...(d[sel] || []), { id, t: logLine }];
+      this.setState({ done: d, toast: msg });
+    };
+    const did = (id) => done.some((x) => x.id === id);
+    const defs = [
+      { id: 'link', icon: ic.send, t: 'Send sign-in link', note: 'Emails a one-time link to the address on file', needs: false, show: p.joined, msg: 'Sign-in link sent to the email on file.', log: 'Sign-in link sent' },
+      { id: 'unlock', icon: ic.unlock, t: 'Unlock account', note: 'Clears the lock from failed sign-ins', needs: false, show: p.locked, msg: 'Account unlocked.', log: 'Account unlocked' },
+      { id: 'device', icon: ic.key, t: 'Remove old passkey', note: 'For a lost or replaced phone. They add a new one at next sign-in', needs: true, show: sel === 'dana', msg: 'Old iPhone passkey removed. Dana can sign in with the email link and add a new passkey.', log: 'Passkey for iPhone 13 removed' },
+      { id: 'out', icon: ic.logout, t: 'Sign out everywhere', note: 'Ends every session on every device', needs: true, show: p.joined, msg: 'Signed out on all devices.', log: 'Signed out of all devices' },
+      { id: 'email', icon: ic.mail, t: 'Change email', note: 'Confirm by a code to both the old and new address', needs: true, show: true, msg: 'Email change started. Codes sent to both addresses.', log: 'Email change started' },
+      { id: 'invite', icon: ic.send, t: 'Resend invite', note: 'Fix the email first if it bounced', needs: false, show: !p.joined, msg: 'Invite sent again.', log: 'Invite resent' },
+      { id: 'card', icon: ic.send, t: 'Resend card update link', note: 'Stripe emails a secure link. You never see card details or amounts', needs: false, show: !!p.billingNote, msg: 'Card update link sent by Stripe.', log: 'Card update link resent' },
+      { id: 'update', icon: ic.phone, t: 'Send app update reminder', note: 'Push notification with a store link', needs: false, show: sel === 'chris', msg: 'Update reminder sent.', log: 'App update reminder sent' },
+      { id: 'health', icon: ic.help, t: 'Send Apple Health setup guide', note: 'Step-by-step help to reconnect steps. You don’t see their step data', needs: false, show: !!p.health, msg: 'Setup guide sent in the app.', log: 'Apple Health setup guide sent' }
+    ];
+    const actions = defs.filter((d) => d.show).map((d) => {
+      const blocked = d.needs && !isVerified;
+      const finished = did(d.id);
+      return {
+        icon: d.icon, t: finished ? d.t + ' ✓' : d.t, note: blocked ? 'Check identity first' : d.note,
+        off: blocked || finished, op: blocked ? 0.5 : finished ? 0.65 : 1, cursor: blocked || finished ? 'default' : 'pointer',
+        border: blocked ? 'rgba(0,0,0,0.12)' : 'rgba(0,106,96,0.4)',
+        run: run(d.id, d.msg, d.log)
+      };
+    });
+    const log = [...done.slice().reverse().map((x) => ({ t: x.t, when: 'Just now', who: 'Admin (AM)' })), ...(isVerified ? [{ t: 'Identity checked', when: 'Just now', who: 'Admin (AM)' }] : []), ...p.log];
+    return {
+      ic, nav, people, checks, actions, log,
+      c: { ...p, ticket: p.ticket || '', facts: p.facts.map((f) => ({ ...f, fg: f.fg || 'rgba(0,0,0,0.87)' })) },
+      verifyColor: isVerified ? '#1B5E20' : 'rgba(0,0,0,0.54)',
+      toast: st.toast || ''
+    };
+  }
+}
+</script>
+</body>
+</html>

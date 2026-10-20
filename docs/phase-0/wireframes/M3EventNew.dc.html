@@ -119,6 +119,7 @@ class Component extends DCLogic {
       { label: 'Coach calendars', href: 'M3CoachCalendar.dc.html', icon: ic.event },
       { label: 'Social planner', href: 'M3Social.dc.html', icon: ic.campaign },
       { label: 'Support inbox', href: '#', icon: ic.inbox },
+      { label: 'Account help', href: 'M3Support.dc.html', icon: 'M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm1 18h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z' },
       { label: 'Client directory', href: '#', icon: ic.people },
       { label: 'Challenges', href: 'M3ChallengeBuilder.dc.html', icon: ic.trophy }
     ].map((n) => ({ ...n, bg: n.label === active ? 'rgba(0,106,96,0.08)' : 'transparent', fg: n.label === active ? '#006A60' : 'rgba(0,0,0,0.54)' }));

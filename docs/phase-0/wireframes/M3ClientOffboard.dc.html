@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>End Client Coaching</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 1000px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 16px; background: #006A60; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<a href="A3ClientHub.dc.html" aria-label="Back to client profile" style="width: 40px; height: 40px; border-radius: 20px; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></a>
+<div style="flex: 1; font-size: 20px; font-weight: 500">Rachel T. · End coaching</div>
+<span style="font-size: 13px; opacity: 0.9; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.lock}}"></path></svg>Owner only · billing change</span>
+</header>
+
+<main style="flex: 1; box-sizing: border-box; padding: 20px 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<div style="flex: 3 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<section aria-label="Details" style="background: #FFFFFF; border-radius: 4px; padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; font-size: 13px; color: rgba(0,0,0,0.6)"><span style="height: 24px; padding: 0 10px; border-radius: 12px; background: {{statusBg}}; color: {{statusFg}}; font-weight: 500; display: inline-flex; align-items: center">{{statusText}}</span>Monthly coaching · bills on the 19th · client since Jan 2025 · coach: Owner</div>
+<label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: rgba(0,0,0,0.6); max-width: 360px">Why is Rachel leaving? (only you see this)
+<select style="height: 44px; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; padding: 0 10px; font: inherit; font-size: 15px; color: rgba(0,0,0,0.87); background: #FFFFFF"><option>Moving away</option><option>Cost</option><option>Reached her goal</option><option>Schedule doesn't work</option><option>Not happy with the service</option><option>Other</option></select></label>
+<div role="radiogroup" aria-label="When coaching ends" style="display: flex; flex-direction: column; gap: 8px">
+<div style="font-size: 14px; font-weight: 500">When does coaching end?</div>
+<sc-for list="{{whenOpts}}" as="w" hint-placeholder-count="2"><label style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; cursor: pointer"><input type="radio" name="when" checked="{{w.on}}" onChange="{{w.pick}}" style="width: 18px; height: 18px; margin: 1px 0 0; accent-color: #006A60"><span><span style="font-weight: 500">{{w.t}}</span><span style="display: block; font-size: 12px; color: rgba(0,0,0,0.6)">{{w.note}}</span></span></label></sc-for>
+</div>
+</section>
+
+<section aria-label="What Rachel keeps" style="background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 10px 20px 6px; font-size: 16px; font-weight: 500">What Rachel keeps</h2>
+<sc-for list="{{keeps}}" as="k" hint-placeholder-count="5">
+<label style="display: flex; align-items: flex-start; gap: 12px; padding: 10px 20px; border-top: 1px solid rgba(0,0,0,0.08); cursor: pointer; opacity: {{k.op}}">
+<input type="checkbox" checked="{{k.on}}" disabled="{{k.fixed}}" onChange="{{k.toggle}}" style="width: 18px; height: 18px; margin: 1px 0 0; accent-color: #006A60">
+<span style="flex: 1"><span style="display: block; font-size: 14px; font-weight: 500">{{k.t}}</span><span style="display: block; font-size: 12px; line-height: 1.45; color: rgba(0,0,0,0.6); margin-top: 2px">{{k.note}}</span></span>
+</label>
+</sc-for>
+</section>
+
+<section aria-label="Timeline" style="background: #FFFFFF; border-radius: 4px; padding: 16px 20px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0 0 12px; font-size: 16px; font-weight: 500">What happens next</h2>
+<ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+<sc-for list="{{timeline}}" as="t" hint-placeholder-count="4">
+<li style="display: flex; flex-direction: column; gap: 4px"><span style="height: 4px; border-radius: 2px; background: {{t.c}}"></span><span style="font-size: 12px; font-weight: 500; color: {{t.dateFg}}">{{t.date}}</span><span style="font-size: 14px; font-weight: 500">{{t.t}}</span><span style="font-size: 12px; line-height: 1.45; color: rgba(0,0,0,0.6)">{{t.note}}</span></li>
+</sc-for>
+</ol>
+<div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: 13px; color: rgba(0,0,0,0.6)">
+<span style="flex: 1; min-width: 240px">If Rachel asks to be deleted sooner, you can delete her data now. Payment records stay 7 years for taxes. Restarting coaching any time before archive brings everything back.</span>
+<button type="button" onClick="{{askDelete}}" style="height: 36px; padding: 0 12px; border-radius: 4px; border: 1px solid rgba(179,38,30,0.5); background: transparent; color: #B3261E; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; cursor: pointer">Delete on request…</button>
+</div>
+<sc-if value="{{deleteOpen}}" hint-placeholder-val="{{false}}"><div role="alertdialog" aria-label="Confirm deletion" style="margin-top: 12px; padding: 12px 14px; border-radius: 4px; background: #FBE4E2; color: #410E0B; font-size: 13px; line-height: 1.5; display: flex; flex-wrap: wrap; align-items: center; gap: 10px"><span style="flex: 1; min-width: 220px">Deletes workouts, food logs, photos, measurements, check-ins and chats for good. Rachel gets her export first. This can't be undone.</span><button type="button" onClick="{{askDelete}}" style="height: 32px; padding: 0 10px; border: 0; background: transparent; color: #410E0B; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase; cursor: pointer">Cancel</button><button type="button" style="height: 32px; padding: 0 12px; border: 0; border-radius: 4px; background: #B3261E; color: #FFFFFF; font: inherit; font-size: 13px; font-weight: 500; text-transform: uppercase">Delete with step-up sign-in</button></div></sc-if>
+</section>
+
+<div style="display: flex; align-items: center; gap: 8px">
+<span style="flex: 1; font-size: 13px; color: rgba(0,0,0,0.6)">Admins can see that Rachel left, but not why.</span>
+<button type="button" style="height: 40px; padding: 0 16px; border: 0; border-radius: 4px; background: transparent; color: #006A60; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase">Offer a pause instead</button>
+<button type="button" onClick="{{confirm}}" disabled="{{doneFlag}}" style="height: 40px; padding: 0 18px; border: 0; border-radius: 4px; background: {{ctaBg}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; cursor: pointer; box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)">End coaching</button>
+</div>
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}"><div role="status" style="padding: 12px 16px; border-radius: 4px; background: #323232; color: #FFFFFF; font-size: 14px; line-height: 1.45">{{done}}</div></sc-if>
+</div>
+
+<aside aria-label="What Rachel sees" style="flex: 1 1 300px; max-width: 340px; min-width: 0; display: flex; flex-direction: column; gap: 8px; align-items: center">
+<div style="font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(0,0,0,0.6)">What Rachel sees after {{endShort}}</div>
+<div style="width: 300px; max-width: 100%; height: 620px; box-sizing: border-box; border: 10px solid #1F1F1F; border-radius: 36px; background: #FFFFFF; overflow: hidden; display: flex; flex-direction: column">
+<div style="padding: 18px 16px 8px; font-size: 22px; font-weight: 400">Hi, Rachel</div>
+<div style="margin: 0 12px; padding: 14px; border-radius: 12px; background: #F2F4F7; font-size: 13px; line-height: 1.5">
+<div style="font-weight: 500; font-size: 14px">Your coaching ended on {{endLong}}</div>
+<div style="color: rgba(0,0,0,0.7); margin-top: 4px">You can still see your workouts, PRs and progress until <b style="font-weight: 500">{{readUntil}}</b>.</div>
+<div style="display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap">
+<span style="height: 32px; padding: 0 12px; border-radius: 16px; background: #006A60; color: #FFFFFF; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center">Restart coaching</span>
+<span style="height: 32px; padding: 0 12px; border-radius: 16px; border: 1px solid #6F7977; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center">Download my data</span>
+</div>
+</div>
+<div style="padding: 14px 16px 6px; font-size: 12px; font-weight: 500; color: rgba(0,0,0,0.6); text-transform: uppercase; letter-spacing: 0.04em">Still yours</div>
+<sc-for list="{{phoneRows}}" as="r" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 0 16px; border-top: 1px solid rgba(0,0,0,0.06); font-size: 14px; opacity: {{r.op}}"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="{{r.c}}"><path d="{{r.icon}}"></path></svg><span style="flex: 1">{{r.t}}</span><span style="font-size: 12px; color: rgba(0,0,0,0.6)">{{r.s}}</span></div>
+</sc-for>
+</div>
+</aside>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const when = st.when || 'period';
+    const keep = { credits: true, community: true, export: true, survey: true, ...(st.keep || {}) };
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      lock: 'M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z',
+      history: 'M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z',
+      event: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z',
+      trophy: 'M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z',
+      chat: 'M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z',
+      fit: 'M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z'
+    };
+    const now = when === 'now';
+    const D = now
+      ? { endShort: 'Oct 20', endLong: 'Oct 20, 2026', read: 'Jan 18, 2027', del: 'Oct 20, 2029' }
+      : { endShort: 'Nov 19', endLong: 'Nov 19, 2026', read: 'Feb 17, 2027', del: 'Nov 19, 2029' };
+    const whenOpts = [
+      { k: 'period', t: 'End of this billing period · Thu Nov 19, 2026', note: 'No refund needed. Rachel keeps full coaching until then.' },
+      { k: 'now', t: 'Today, with a prorated refund', note: 'Refund of the unused part of this month through Stripe ($145.16 of $150).' }
+    ].map((w) => ({ t: w.t, note: w.note, on: when === w.k, pick: () => this.setState({ when: w.k, done: '' }) }));
+    const flip = (k) => () => { const m = { credits: true, community: true, export: true, survey: true, ...((this.state && this.state.keep) || {}) }; m[k] = !m[k]; this.setState({ keep: m }); };
+    const keeps = [
+      { k: 'history', t: 'Read-only history for 90 days', note: 'Workouts, PRs, progress and session results until ' + D.read + '. Chat becomes read-only.', fixed: true },
+      { k: 'credits', t: 'Class package: 3 sessions left', note: 'Still bookable until they expire on Jan 15, 2027' },
+      { k: 'community', t: 'Free challenges', note: 'Rachel becomes a Community Member, so she can keep joining challenges' },
+      { k: 'export', t: 'Email her a data export now', note: 'Workouts, food logs, measurements and photos as a ZIP. She can download it again any time before archive' },
+      { k: 'survey', t: 'Send a 3-question exit survey', note: 'Answers go to you only' }
+    ].map((x) => ({ t: x.t, note: x.note, fixed: !!x.fixed, on: x.fixed ? true : !!keep[x.k], op: x.fixed ? 0.75 : 1, toggle: x.fixed ? () => {} : flip(x.k) }));
+    const timeline = [
+      { date: 'Today', t: 'Notice sent', note: 'Rachel gets an email and an in-app message with what to expect', c: '#006A60' },
+      { date: D.endLong, t: 'Coaching ends', note: 'Program and coach chat stop. Billing stops', c: '#3FA897' },
+      { date: D.read, t: 'Account archived', note: 'Read-only access ends. Restart brings everything back until here', c: '#7CCBBE' },
+      { date: D.del, t: 'Health data deleted', note: 'After your 3-year retention setting. Payment records kept 7 years', c: '#A3ACBA' }
+    ].map((t, i) => ({ ...t, dateFg: i === 0 ? '#006A60' : 'rgba(0,0,0,0.6)' }));
+    const phoneRows = [
+      { icon: ic.history, t: 'My history & PRs', s: 'View only', c: '#006A60', op: 1 },
+      { icon: ic.event, t: 'Classes', s: keep.credits ? '3 credits' : 'Book & pay', c: '#6250D6', op: 1 },
+      { icon: ic.trophy, t: 'Challenges', s: keep.community ? 'Join free' : 'Off', c: '#6250D6', op: keep.community ? 1 : 0.4 },
+      { icon: ic.chat, t: 'Coach chat', s: 'Read only', c: 'rgba(0,0,0,0.54)', op: 0.6 },
+      { icon: ic.fit, t: 'Today’s workout', s: 'Ended', c: 'rgba(0,0,0,0.54)', op: 0.4 }
+    ];
+    const done = st.done || '';
+    return {
+      ic, whenOpts, keeps, timeline, phoneRows, done,
+      endShort: D.endShort, endLong: D.endLong, readUntil: D.read,
+      deleteOpen: !!st.del,
+      askDelete: () => this.setState({ del: !(this.state && this.state.del) }),
+      confirm: () => this.setState({ done: now ? 'Coaching ended today. Refund of $145.16 sent through Stripe. Rachel has read-only access until Jan 18, 2027.' : 'Coaching ends Nov 19. Rachel has been told, and billing will stop after this period.' }),
+      doneFlag: !!done, ctaBg: done ? '#9E9E9E' : '#B3261E',
+      statusText: done ? (now ? 'Ended' : 'Ending Nov 19') : 'Active',
+      statusBg: done ? '#FFE7C2' : '#E3F2EF', statusFg: done ? '#5A3300' : '#00504A'
+    };
+  }
+}
+</script>
+</body>
+</html>

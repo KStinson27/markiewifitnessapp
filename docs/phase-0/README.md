@@ -57,6 +57,9 @@ Two versions, both with a placeholder teal accent until the brand kit arrives. F
 | Coach · My calendar & to-dos (clickable prototype) | `M3CoachCalendar.dc.html` |
 | Admin · Social media planner & approval rules (clickable prototype) | `M3Social.dc.html` |
 | Admin · New class or event → Eventbrite & Instagram (clickable prototype) | `M3EventNew.dc.html` |
+| Admin · Account help / support tools (clickable prototype) | `M3Support.dc.html` |
+| Owner · Offboard a coach (clickable prototype) | `M3CoachOffboard.dc.html` |
+| Owner · End a client's coaching (clickable prototype) | `M3ClientOffboard.dc.html` |
 | Client · Progress: weight & measurements (v2) | `M3Progress.dc.html` |
 | Coach · Client progress & trends (v2) | `M3ClientProgress.dc.html` |
 | A1 · Client onboarding (health check step) | `A1Onboarding.dc.html` |

@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Offboard a Coach</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#006A60}a:hover{color:#00504A}
+</style>
+</helmet>
+<div style="min-height: 1000px; box-sizing: border-box; display: flex; flex-direction: column; background: #F5F5F5; font-family: Roboto, system-ui, sans-serif; color: rgba(0,0,0,0.87)">
+<header style="display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 0 16px; background: #006A60; color: #FFFFFF; box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)">
+<a href="#" aria-label="Back to team" style="width: 40px; height: 40px; border-radius: 20px; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.back}}"></path></svg></a>
+<div style="flex: 1; font-size: 20px; font-weight: 500">Team · Offboard coach</div>
+<span style="font-size: 13px; opacity: 0.9; display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.lock}}"></path></svg>Owner only</span>
+</header>
+
+<main style="flex: 1; box-sizing: border-box; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; max-width: 1180px; width: 100%; margin: 0 auto">
+<section style="background: #FFFFFF; border-radius: 4px; padding: 16px 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<span style="width: 48px; height: 48px; border-radius: 24px; background: #E7E3FA; color: #2A1F6E; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 500">TB</span>
+<div style="flex: 1; min-width: 200px"><h1 style="margin: 0; font-size: 22px; font-weight: 400">Taylor B.</h1><div style="font-size: 13px; color: rgba(0,0,0,0.6); margin-top: 2px">Contract coach since Mar 3, 2026 · 6 clients · agreement signed Mar 3, 2026</div></div>
+<span style="height: 26px; padding: 0 12px; border-radius: 13px; background: {{statusBg}}; color: {{statusFg}}; font-size: 13px; font-weight: 500; display: inline-flex; align-items: center">{{statusText}}</span>
+</section>
+
+<ol aria-label="Steps" style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+<li><button type="button" onClick="{{s.go}}" aria-current="{{s.current}}" style="width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 0; border-bottom: 3px solid {{s.bar}}; background: #FFFFFF; border-radius: 4px 4px 0 0; font: inherit; text-align: left; cursor: pointer">
+<span style="width: 26px; height: 26px; flex-shrink: 0; border-radius: 13px; background: {{s.dotBg}}; color: {{s.dotFg}}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500">{{s.mark}}</span>
+<span style="font-size: 14px; font-weight: {{s.weight}}; color: {{s.fg}}">{{s.label}}</span>
+</button></li>
+</sc-for>
+</ol>
+
+<sc-if value="{{is1}}" hint-placeholder-val="{{true}}">
+<section aria-label="Move clients" style="background: #FFFFFF; border-radius: 4px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 16px 20px 8px">
+<h2 style="flex: 1; margin: 0; font-size: 18px; font-weight: 500">Move Taylor's clients</h2>
+<span style="font-size: 14px; color: rgba(0,0,0,0.6)">Move all to</span>
+<sc-for list="{{bulk}}" as="b" hint-placeholder-count="2"><button type="button" onClick="{{b.go}}" style="height: 32px; padding: 0 12px; border-radius: 4px; border: 1px solid rgba(0,106,96,0.5); background: transparent; color: #006A60; font: inherit; font-size: 13px; font-weight: 500; cursor: pointer">{{b.label}}</button></sc-for>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 640px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="text-align: left"><th style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Client</th><th style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Current program</th><th style="padding: 10px 12px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">Next session with Taylor</th><th style="padding: 10px 20px; font-weight: 500; border-bottom: 1px solid rgba(0,0,0,0.12)">New coach</th></tr></thead>
+<tbody>
+<sc-for list="{{clients}}" as="c" hint-placeholder-count="6">
+<tr>
+<td style="padding: 10px 20px; border-bottom: 1px solid rgba(0,0,0,0.08)"><div style="font-weight: 500">{{c.name}}</div><div style="font-size: 12px; color: rgba(0,0,0,0.6)">{{c.kind}}</div></td>
+<td style="padding: 10px 12px; border-bottom: 1px solid rgba(0,0,0,0.08)">{{c.program}}</td>
+<td style="padding: 10px 12px; border-bottom: 1px solid rgba(0,0,0,0.08); color: {{c.nextFg}}">{{c.next}}</td>
+<td style="padding: 10px 20px; border-bottom: 1px solid rgba(0,0,0,0.08)">
+<div role="group" aria-label="New coach for {{c.name}}" style="display: inline-flex; border: 1px solid rgba(0,0,0,0.23); border-radius: 4px; overflow: hidden">
+<sc-for list="{{c.opts}}" as="o" hint-placeholder-count="2"><button type="button" onClick="{{o.pick}}" aria-pressed="{{o.on}}" style="height: 32px; padding: 0 12px; border: 0; border-left: {{o.sep}}; background: {{o.bg}}; color: {{o.fg}}; font: inherit; font-size: 13px; font-weight: 500; cursor: pointer">{{o.label}}</button></sc-for>
+</div>
+</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<div style="padding: 12px 20px 16px; display: flex; flex-direction: column; gap: 6px">
+<h3 style="margin: 0 0 4px; font-size: 14px; font-weight: 500">What moves with each client</h3>
+<sc-for list="{{carry}}" as="k" hint-placeholder-count="4"><label style="display: flex; align-items: flex-start; gap: 10px; min-height: 32px; font-size: 14px; cursor: pointer; opacity: {{k.op}}"><input type="checkbox" checked="{{k.on}}" disabled="{{k.fixed}}" onChange="{{k.toggle}}" style="width: 18px; height: 18px; margin: 1px 0 0; accent-color: #006A60"><span><span>{{k.t}}</span><span style="display: block; font-size: 12px; color: rgba(0,0,0,0.6)">{{k.note}}</span></span></label></sc-for>
+</div>
+</section>
+</sc-if>
+
+<sc-if value="{{is2}}" hint-placeholder-val="{{false}}">
+<section aria-label="Open items" style="background: #FFFFFF; border-radius: 4px; padding: 8px 0; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; padding: 10px 20px 6px; font-size: 18px; font-weight: 500">Open items</h2>
+<div style="padding: 0 20px 8px; font-size: 13px; color: rgba(0,0,0,0.6)">Most items move on their own. Tick the ones that need you once they're done.</div>
+<sc-for list="{{items}}" as="i" hint-placeholder-count="6">
+<div style="display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 8px 20px; border-top: 1px solid rgba(0,0,0,0.08)">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="{{i.color}}" style="flex-shrink: 0"><path d="{{i.icon}}"></path></svg>
+<div style="flex: 1; min-width: 0"><div style="font-size: 14px; font-weight: 500">{{i.t}}</div><div style="font-size: 12px; color: rgba(0,0,0,0.6); margin-top: 2px">{{i.note}}</div></div>
+<sc-if value="{{i.auto}}" hint-placeholder-val="{{true}}"><span style="height: 24px; padding: 0 10px; border-radius: 12px; background: #E3F2EF; color: #00504A; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; white-space: nowrap">Automatic</span></sc-if>
+<sc-if value="{{i.manual}}" hint-placeholder-val="{{false}}"><label style="display: flex; align-items: center; gap: 8px; font-size: 13px; white-space: nowrap; cursor: pointer"><input type="checkbox" checked="{{i.on}}" onChange="{{i.toggle}}" style="width: 18px; height: 18px; accent-color: #006A60">Done</label></sc-if>
+</div>
+</sc-for>
+</section>
+</sc-if>
+
+<sc-if value="{{is3}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<section aria-label="Access" style="flex: 1 1 360px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; font-size: 18px; font-weight: 500">End access</h2>
+<sc-for list="{{whenOpts}}" as="w" hint-placeholder-count="2"><label style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; cursor: pointer"><input type="radio" name="when" checked="{{w.on}}" onChange="{{w.pick}}" style="width: 18px; height: 18px; margin: 1px 0 0; accent-color: #006A60"><span><span style="font-weight: 500">{{w.t}}</span><span style="display: block; font-size: 12px; color: rgba(0,0,0,0.6)">{{w.note}}</span></span></label></sc-for>
+<h3 style="margin: 8px 0 0; font-size: 14px; font-weight: 500">Removed at that time</h3>
+<ul style="margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.7">
+<li>Sign-in, sessions on every device, and the two-step code app</li>
+<li>Access to every client record, chat and file</li>
+<li>Google Calendar link and synced "Markiewi Fitness" calendar</li>
+<li>Calendly booking link mapping (set up in Calendly)</li>
+</ul>
+<h3 style="margin: 8px 0 0; font-size: 14px; font-weight: 500">Kept by the business</h3>
+<div style="font-size: 14px; line-height: 1.5">14 exercises, 5 program templates and 3 session templates Taylor made stay in the library, marked "made by Taylor B." (contractor agreement §6).</div>
+</section>
+<section aria-label="Final pay" style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border-radius: 4px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; font-size: 18px; font-weight: 500">Final pay</h2>
+<sc-for list="{{payLines}}" as="l" hint-placeholder-count="4"><div style="display: flex; justify-content: space-between; gap: 12px; font-size: 14px; padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.08); font-weight: {{l.w}}"><span>{{l.k}}</span><span style="font-variant-numeric: tabular-nums">{{l.v}}</span></div></sc-for>
+<div style="font-size: 12px; line-height: 1.45; color: rgba(0,0,0,0.6)">Commission covers payments through the last day of access. The report goes to your accountant; you pay Taylor outside the app as usual.</div>
+<label style="display: flex; align-items: center; gap: 8px; font-size: 14px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #006A60">Email the final payout report to the accountant</label>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{is4}}" hint-placeholder-val="{{false}}">
+<section aria-label="Review" style="background: #FFFFFF; border-radius: 4px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)">
+<h2 style="margin: 0; font-size: 18px; font-weight: 500">Review</h2>
+<sc-for list="{{summary}}" as="r" hint-placeholder-count="5"><div style="display: flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.5"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="{{r.color}}" style="flex-shrink: 0"><path d="{{r.icon}}"></path></svg><span>{{r.t}}</span></div></sc-for>
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}"><div role="status" style="padding: 12px 16px; border-radius: 4px; background: #323232; color: #FFFFFF; font-size: 14px; line-height: 1.45">{{done}}</div></sc-if>
+</section>
+</sc-if>
+
+<div style="display: flex; align-items: center; gap: 8px">
+<button type="button" onClick="{{prev}}" style="height: 40px; padding: 0 16px; border: 0; border-radius: 4px; background: transparent; color: #006A60; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; cursor: pointer; visibility: {{prevVis}}">Back</button>
+<span style="flex: 1"></span>
+<button type="button" onClick="{{next}}" disabled="{{nextOff}}" style="height: 40px; padding: 0 18px; border: 0; border-radius: 4px; background: {{nextBg}}; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase; cursor: pointer; box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)">{{nextLabel}}</button>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const step = st.step || 1;
+    const ic = {
+      back: 'M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z',
+      lock: 'M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z',
+      ok: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z',
+      cal: 'M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z',
+      check: 'M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z',
+      doc: 'M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z',
+      chat: 'M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z',
+      warn: 'M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z',
+      people: 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z',
+      pay: 'M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z'
+    };
+    const coaches = ['Owner', 'Morgan R.'];
+    const base = [
+      { id: 'priya', name: 'Priya N.', kind: 'Monthly coaching · in person', program: 'Strength Base · wk 3 of 8', next: 'Thu Oct 22 · 7:00 AM', def: 'Owner' },
+      { id: 'ben', name: 'Ben O.', kind: 'Monthly coaching · online (Ohio)', program: 'Run + Lift Hybrid · wk 5 of 12', next: 'Online · no sessions', def: 'Morgan R.' },
+      { id: 'lena', name: 'Lena V.', kind: 'Pay-in-full · in person', program: 'Glute Focus · wk 2 of 6', next: 'Fri Oct 23 · 6:00 PM', def: 'Owner' },
+      { id: 'marcus', name: 'Marcus D.', kind: 'Monthly coaching · in person', program: 'Post-rehab Knee · wk 4 of 8', next: 'Mon Oct 26 · 6:00 AM', def: 'Owner' },
+      { id: 'kim', name: 'Kim H. & Ana G.', kind: 'Couples sessions', program: 'Partner Strength · wk 1 of 6', next: 'Wed Oct 28 · 5:30 PM', def: 'Morgan R.', n: 2 }
+    ];
+    const assign = st.assign || {};
+    const clients = base.map((c) => {
+      const cur = assign[c.id] || c.def;
+      return {
+        name: c.name, kind: c.kind, program: c.program, next: c.next, nextFg: c.next.indexOf('Online') === 0 ? 'rgba(0,0,0,0.6)' : 'rgba(0,0,0,0.87)',
+        opts: coaches.map((o, i) => ({
+          label: o, on: cur === o, bg: cur === o ? 'rgba(0,106,96,0.12)' : 'transparent', fg: cur === o ? '#00332D' : 'rgba(0,0,0,0.75)', sep: i ? '1px solid rgba(0,0,0,0.23)' : '0',
+          pick: () => { const m = { ...((this.state && this.state.assign) || {}) }; m[c.id] = o; this.setState({ assign: m }); }
+        }))
+      };
+    });
+    const bulk = coaches.map((o) => ({ label: o, go: () => { const m = {}; base.forEach((c) => { m[c.id] = o; }); this.setState({ assign: m }); } }));
+    const carryState = { notes: true, intro: true, ...(st.carry || {}) };
+    const flipCarry = (k) => () => { const m = { notes: true, intro: true, ...((this.state && this.state.carry) || {}) }; m[k] = !m[k]; this.setState({ carry: m }); };
+    const carry = [
+      { k: 'hist', t: 'History, programs, nutrition, habits and progress', note: 'Always moves. Programs keep running with no gap.', fixed: true },
+      { k: 'chat', t: 'Chat history', note: 'Always moves. Taylor’s past messages stay visible to the new coach.', fixed: true },
+      { k: 'notes', t: 'Taylor’s private coach notes', note: 'Injuries and preferences. Clients never see these.' },
+      { k: 'intro', t: 'Send an intro message from the new coach', note: 'A draft each new coach can edit before it sends.' }
+    ].map((x) => ({ t: x.t, note: x.note, fixed: !!x.fixed, on: x.fixed ? true : !!carryState[x.k], op: x.fixed ? 0.75 : 1, toggle: x.fixed ? () => {} : flipCarry(x.k) }));
+
+    const manual = st.manual || {};
+    const flipManual = (k) => () => { const m = { ...((this.state && this.state.manual) || {}) }; m[k] = !m[k]; this.setState({ manual: m }); };
+    const itemDefs = [
+      { k: 'cal', icon: ic.cal, t: '4 upcoming Calendly sessions with Taylor (Oct 22 – Oct 28)', note: 'Move them to the new coach’s Calendly link, or cancel and let clients rebook', auto: false },
+      { k: 'ci', icon: ic.check, t: '2 weekly check-ins waiting for review', note: 'Go to each new coach’s review inbox', auto: true },
+      { k: 'res', icon: ic.doc, t: '1 session result not yet reviewed (Marcus D., Oct 19)', note: 'Goes to you to review before it’s shared with Marcus', auto: true },
+      { k: 'draft', icon: ic.doc, t: '3 draft programs', note: 'Saved in Programs as “Taylor’s drafts”', auto: true },
+      { k: 'todo', icon: ic.check, t: '2 open to-dos linked to clients', note: 'Move to the new coach of each client', auto: true },
+      { k: 'tell', icon: ic.chat, t: 'Tell clients about the change', note: 'Best done by you or Taylor before access ends, then the intro message follows', auto: false }
+    ];
+    const items = itemDefs.map((d) => ({ t: d.t, note: d.note, icon: d.icon, auto: d.auto, manual: !d.auto, on: !!manual[d.k], toggle: flipManual(d.k), color: d.auto ? '#006A60' : manual[d.k] ? '#006A60' : '#B45309' }));
+    const manualLeft = itemDefs.filter((d) => !d.auto && !manual[d.k]).length;
+
+    const when = st.when || 'eom';
+    const whenOpts = [
+      { k: 'eom', t: 'End of day, Sat Oct 31', note: 'Taylor can finish this week’s sessions and say goodbye' },
+      { k: 'now', t: 'Right now', note: 'Use if trust is broken. Taylor is signed out everywhere immediately' }
+    ].map((w) => ({ t: w.t, note: w.note, on: when === w.k, pick: () => this.setState({ when: w.k }) }));
+    const payLines = [
+      { k: 'October payments from Taylor’s clients', v: '$2,850.00', w: 400 },
+      { k: 'Commission rate (agreement)', v: '40%', w: 400 },
+      { k: when === 'now' ? 'Final payout (through Oct 20)' : 'Final payout (through Oct 31)', v: when === 'now' ? '$812.00' : '$1,140.00', w: 500 }
+    ];
+
+    const moved = base.map((c) => assign[c.id] || c.def);
+    const toOwner = base.filter((c, i) => moved[i] === 'Owner').reduce((a, c) => a + (c.n || 1), 0);
+    const summary = [
+      { icon: ic.people, color: '#006A60', t: toOwner + ' client' + (toOwner === 1 ? '' : 's') + ' to you, ' + (6 - toOwner) + ' to Morgan R.' + (carryState.notes ? ', with private notes' : ', without private notes') + (carryState.intro ? ', intro messages ready to send' : '') },
+      { icon: manualLeft ? ic.warn : ic.ok, color: manualLeft ? '#B45309' : '#006A60', t: manualLeft ? manualLeft + ' open item' + (manualLeft > 1 ? 's' : '') + ' still need you (step 2)' : 'All open items handled' },
+      { icon: ic.lock, color: '#006A60', t: 'Access ends ' + (when === 'now' ? 'right now' : 'Sat Oct 31 at 11:59 PM') },
+      { icon: ic.pay, color: '#006A60', t: 'Final payout report: ' + payLines[2].v + ', emailed to the accountant' },
+      { icon: ic.doc, color: '#006A60', t: 'Taylor’s exercises and templates stay in the library. Everything is written to the audit log' }
+    ];
+    const labels = ['Move clients', 'Open items', 'Access & pay', 'Review'];
+    const steps = labels.map((l, i) => {
+      const n = i + 1, cur = n === step, past = n < step;
+      return {
+        label: l, current: cur ? 'step' : 'false', mark: past ? '✓' : String(n),
+        bar: cur ? '#006A60' : past ? '#7CCBBE' : '#E0E0E0', dotBg: cur || past ? '#006A60' : '#E0E0E0', dotFg: cur || past ? '#FFFFFF' : 'rgba(0,0,0,0.6)',
+        fg: cur ? '#006A60' : 'rgba(0,0,0,0.75)', weight: cur ? 500 : 400,
+        go: () => this.setState({ step: n })
+      };
+    });
+    const done = st.done || '';
+    const finish = () => this.setState({ done: when === 'now' ? 'Taylor B. is offboarded and signed out. Clients moved and intro messages queued.' : 'Taylor B. is set to offboard on Sat Oct 31 at 11:59 PM. Clients move now; Taylor keeps access to finish this week.' });
+    return {
+      ic, steps, clients, bulk, carry, items, whenOpts, payLines, summary, done,
+      is1: step === 1, is2: step === 2, is3: step === 3, is4: step === 4,
+      prevVis: step > 1 ? 'visible' : 'hidden',
+      prev: () => this.setState({ step: Math.max(1, step - 1) }),
+      next: step < 4 ? () => this.setState({ step: step + 1 }) : finish,
+      nextLabel: step < 4 ? 'Next' : 'Offboard Taylor',
+      nextOff: step === 4 && (manualLeft > 0 || !!done),
+      nextBg: step === 4 && (manualLeft > 0 || !!done) ? '#9E9E9E' : '#006A60',
+      statusText: done ? (when === 'now' ? 'Offboarded' : 'Leaving Oct 31') : 'Active',
+      statusBg: done ? '#FBE4E2' : '#E3F2EF', statusFg: done ? '#8C1D18' : '#00504A'
+    };
+  }
+}
+</script>
+</body>
+</html>

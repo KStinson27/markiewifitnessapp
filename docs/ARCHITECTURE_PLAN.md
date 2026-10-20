@@ -207,12 +207,24 @@ billing — with room to add contract coaches later.
 - **Coaches (contractors):** coach onboarding (invite, MFA, signed contractor agreement,
   profile and bio); per-coach commission rules (percent or flat amount per product); a monthly
   payout report per coach for the accountant (paid outside the app at first); **coach
-  offboarding**: access ends at once, and their clients move to another coach with history,
-  programs and private notes kept.
-- **Admin support tools (no health data):** resend an invite or sign-in link, reset a client's
-  MFA or lost device, and see account status (active, paused, payment failed, last login,
-  app version). Every action is written to the audit log.
-- **Client offboarding & data retention:** when a client cancels, they keep read-only access to
+  offboarding** (owner only, 4 steps): move each client to a new coach (history, programs and
+  chat always move; private notes and an intro message optional), handle open items (Calendly
+  sessions, check-ins, unreviewed session results, draft programs, to-dos), end access now or
+  at a set date (sign-in, devices, Google Calendar link), keep the coach's exercises and
+  templates in the business library, and send a final payout report to the accountant.
+- **Admin support tools — "Account help" (no health data):** look up a client or community
+  member and see account status (active, restricted, invited, locked), billing status without
+  amounts, last sign-in and device, app version, sign-in methods and email delivery (e.g. a
+  bounced invite). Actions: send a sign-in link, unlock after failed sign-ins, resend an invite,
+  resend Stripe's card-update link, send an app-update reminder or Apple Health setup guide.
+  Removing a passkey for a lost phone, signing out everywhere and changing an email first
+  require an **identity check using contact details already on file** (a code to the email on
+  file, or a call to the phone on file). Two-step code resets for staff accounts are
+  owner-only. Every action is written to the audit log.
+- **Client offboarding & data retention (owner only):** end at the end of the billing period or
+  today with a prorated Stripe refund; private reason; optional pause offer instead; unused class
+  credits stay bookable until they expire; the client can stay on as a Community Member for free
+  challenges; optional exit survey. The client keeps read-only access to
   their history for 90 days, get an automatic data export by email, and then their account
   is archived. Health data is deleted after the retention period the owner sets (default
   3 years for liability), sooner on request. Former clients can be re-activated.
@@ -222,7 +234,7 @@ billing — with room to add contract coaches later.
 - **Package & cancellation rules:** per package: sessions included, expiry, late-cancel window
   (e.g. 12 h), whether a late cancel or no-show uses a credit, and an optional late fee
   charged through Stripe with owner approval.
-- **Leads & consults:** challenge members, Eventbrite attendees and website sign-ups who are
+- **Leads & consults (post-launch, Phase 11):** challenge members, Eventbrite attendees and website sign-ups who are
   not clients appear in a simple lead list (source, status: new / contacted / consult booked /
   client / not now) with a "book a consult" Calendly link; converting a lead creates the client
   invite. Challenge and promo-code tracking shows which challenges bring in clients.
@@ -264,7 +276,7 @@ client_handoffs(client, from_coach, to_coach, at)
 emergency_contacts(client, name, phone, relation); guardians(client, guardian_profile, consent_at)
 package_policies(package, sessions, expires_days, late_cancel_hours, late_cancel_uses_credit,
                  no_show_uses_credit, late_fee_cents?)
-leads(name, email, source: challenge | eventbrite | website | instagram, status, notes, client?)
+leads(name, email, source: challenge | eventbrite | website | instagram, status, notes, client?)  -- Phase 11
 retention_settings(health_data_years, readonly_days); data_exports(client, requested_at, file)
 
 nutrition_targets, meal_plans, foods(cache), food_logs, water_logs
@@ -374,14 +386,13 @@ off Trainerize while Phases 8–9 are built, so the core is proven before full c
 - P7-6 **Beta checkpoint:** import the beta clients, 3–5 clients move off Trainerize
 
 ### Phase 8 — Marketing, events, coaches & reports
-- P8-1 Leads list and "book a consult" link; promo-code and challenge conversion tracking
-- P8-2 Social media planner, approval rules, client "feature me" consent
-- P8-3 Instagram Graph API publishing (reminder fallback until Meta approves)
-- P8-4 New class/event form → Eventbrite publish (event, ticket class, banner, weekly series),
+- P8-1 Social media planner, approval rules, client "feature me" consent
+- P8-2 Instagram Graph API publishing (reminder fallback until Meta approves)
+- P8-3 New class/event form → Eventbrite publish (event, ticket class, banner, weekly series),
   booking webhooks, auto-drafted Instagram posts
-- P8-5 Coach onboarding, contractor agreement e-sign, commission rules, monthly payout report
-- P8-6 Coach offboarding and client handoff
-- P8-7 Business reports (A10): active clients, adherence, churn, revenue per coach, lead conversion
+- P8-4 Coach onboarding, contractor agreement e-sign, commission rules, monthly payout report
+- P8-5 Coach offboarding and client handoff
+- P8-6 Business reports (A10): active clients, adherence, churn, revenue per coach
 
 ### Phase 9 — Migration & launch
 - P9-1 Import all clients, goals, history
@@ -394,6 +405,7 @@ off Trainerize while Phases 8–9 are built, so the core is proven before full c
 ### Post-launch
 - **Phase 10 — Wearables+:** Google Health Connect (Android clients' Garmin data; until then
   they enter steps by hand); direct Garmin and Oura APIs
-- **Phase 11 — Automations & polish:** welcome sequences and nudges (B1), habit and check-in
+- **Phase 11 — Leads, automations & polish:** leads list and "book a consult" link with
+  promo-code and challenge conversion tracking (D7); welcome sequences and nudges (B1), habit and check-in
   template library (B2), in-app help/FAQ (B4), dark mode and large-text pass (B5);
   Stripe Connect payouts with 1099s if coach payouts outgrow the monthly report
