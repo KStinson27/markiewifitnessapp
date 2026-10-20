@@ -123,7 +123,15 @@ billing — with room to add contract coaches later.
 - **Coach calendar & to-dos:** one Day/Week/Month calendar per coach combining Calendly 1:1 and
   couples sessions (with session-plan status), classes from Calendly/Eventbrite (with bookings),
   and the coach's own to-dos (all-day or timed, optionally linked to a client, with reminders);
-  filters per type; a to-do list beside it with quick add and done/undo.
+  filters per type; a to-do list beside it with quick add and done/undo. **Admins can view coach
+  calendars** (names, times, event types, class bookings; never session-plan contents or health
+  data) and to-dos marked "visible to admins" (on by default).
+- **Google Calendar sync (per coach, optional):** OAuth connect from the calendar page. The app
+  writes to-dos and app-only events to a dedicated "Markiewi Fitness" Google calendar
+  (`calendar.events` scope) and reads the coach's other calendars as free/busy only, shown as
+  grey "Busy" blocks. Calendly bookings are not re-sent (Calendly already writes them to Google);
+  events are de-duplicated by Calendly event ID. Changes flow both ways for synced to-dos via
+  Google push notifications (watch channels) handled by an Edge Function.
 - **Session results for clients:** after a session, the client sees it under *My profile →
   Sessions*: their own sets and weights, PRs, and the coach notes marked as shared. Results
   are released only after the coach reviews them ("End & review" → share).
@@ -185,7 +193,9 @@ session_templates(audience: 1:1 | couple | any)
           → session_participants(client, per-exercise load overrides)
           → session_logs(per participant) → set_logs (shared with program logs for history/PRs)
 session_notes(participant | all, shared_with_client)   -- RLS: a client reads only their own logs
-coach_tasks(coach, title, due_date, due_time?, all_day, client?, reminder_at?, done_at)
+coach_tasks(coach, title, due_date, due_time?, all_day, client?, reminder_at?, done_at,
+            visible_to_admins, google_event_id?)
+google_calendar_links(coach, google_account, calendar_id, sync_token, watch_channel, expires_at)  -- tokens encrypted
 
 nutrition_targets, meal_plans, foods(cache), food_logs, water_logs
 habits(scope: client | challenge) → habit_assignments → habit_logs

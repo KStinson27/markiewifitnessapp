@@ -33,6 +33,7 @@ Legend: ⏱ = long lead time, start first · 💲 = costs money
 | 8 | Resend, Sentry, PostHog | Free | Can be created during Phase 1 |
 | 9 | 💲 Calendly | Standard or higher | Needed for booking webhooks |
 | 10 | Eventbrite | Existing | Need organizer account access for an API token |
+| 11 | Google Cloud project (for Google Calendar sync) | Free | OAuth consent screen in the LLC's name; calendar scopes need Google's app verification (allow a few weeks; needs the live privacy policy URL and verified domain) |
 
 Turn on **two-factor authentication** for every one of these accounts. Add the
 developer/Claude-operated service accounts as team members — don't share your login.
