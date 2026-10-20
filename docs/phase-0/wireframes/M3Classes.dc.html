@@ -14,7 +14,7 @@ body{margin:0}
 a{color:#006A60}a:hover{color:#00504A}
 </style>
 </helmet>
-<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4FBF8; font-family: Roboto, system-ui, sans-serif; color: #161D1C">
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #FFFFFF; font-family: Roboto, system-ui, sans-serif; color: #161D1C">
 <header style="display: flex; align-items: center; height: 64px; padding: 0 16px; flex-shrink: 0">
 <h1 style="flex: 1; margin: 0; font-size: 22px; font-weight: 400">Classes</h1>
 <button type="button" aria-label="Calendar view" style="width: 48px; height: 48px; border: 0; border-radius: 24px; background: transparent; color: #3F4947; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.event}}"></path></svg></button>
@@ -55,7 +55,7 @@ a{color:#006A60}a:hover{color:#00504A}
 <div style="font-size: 12px; color: #3F4947; text-align: center">Tap a flyer to see it full size</div>
 </div>
 
-<nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 80px; background: #E9EFEC; flex-shrink: 0; padding-bottom: 8px">
+<nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 80px; background: #F5F5F5; flex-shrink: 0; padding-bottom: 8px">
 <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
 <a href="{{t.href}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #3F4947; font-size: 12px; font-weight: 500">
 <span style="width: 64px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: {{t.bg}}; color: {{t.fg}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{t.icon}}"></path></svg></span>{{t.label}}</a>

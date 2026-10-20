@@ -14,7 +14,7 @@ body{margin:0}
 a{color:#006A60}a:hover{color:#00504A}
 </style>
 </helmet>
-<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #F4FBF8; font-family: Roboto, system-ui, sans-serif; color: #161D1C; position: relative">
+<div style="width: 390px; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #FFFFFF; font-family: Roboto, system-ui, sans-serif; color: #161D1C; position: relative">
 <div style="padding: 12px 16px 8px; flex-shrink: 0">
 <label style="display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 4px 0 16px; border-radius: 28px; background: #E3EAE7">
 <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="#3F4947"><path d="{{ic.search}}"></path></svg>
@@ -56,7 +56,7 @@ a{color:#006A60}a:hover{color:#00504A}
 
 <button type="button" style="position: absolute; right: 16px; bottom: 96px; height: 56px; padding: 0 20px 0 16px; border: 0; border-radius: 16px; background: #9EF2E4; color: #00201C; font: inherit; font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 8px 3px rgba(0,0,0,0.15)"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{ic.add}}"></path></svg>Log food</button>
 
-<nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 80px; background: #E9EFEC; flex-shrink: 0; padding-bottom: 8px">
+<nav aria-label="Main" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); height: 80px; background: #F5F5F5; flex-shrink: 0; padding-bottom: 8px">
 <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
 <a href="{{t.href}}" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #3F4947; font-size: 12px; font-weight: 500">
 <span style="width: 64px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: {{t.bg}}; color: {{t.fg}}"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="{{t.icon}}"></path></svg></span>{{t.label}}</a>
